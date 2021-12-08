@@ -34,6 +34,7 @@ import formatMessage from '../../format-message'
 import {courseShape} from '../plannerPropTypes'
 import styles from './styles.css'
 import theme from './theme'
+
 // @ts-check
 export class UpdateItemTray extends Component {
   static propTypes = {
