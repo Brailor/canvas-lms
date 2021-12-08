@@ -24,6 +24,9 @@ import router from './react/router'
 import configureStore from './react/store/configureStore'
 import initialState from './react/store/initialState'
 import ready from '@instructure/ready'
+import {InstUISettingsProvider} from '@instructure/emotion'
+import canvasTheme from '@instructure/canvas-theme'
+import canvasHighContrastTheme from '@instructure/canvas-high-contrast-theme'
 
 // eg: '/accounts/xxx' for anything like '/accounts/xxx/whatever`
 initialState.tabList.basePath = window.location.pathname.match(/.*accounts\/[^/]*/)[0]
@@ -48,7 +51,7 @@ const props = {
 const originalDocumentTitle = document.title
 function updateDocumentTitleBreadcrumbAndActiveTab(activeTab) {
   // give the correct left nav item an active class
-  $('#section-tabs .section a').each(function() {
+  $('#section-tabs .section a').each(function () {
     const $tab = $(this)
     $tab[$tab.hasClass(activeTab.button_class) ? 'addClass' : 'removeClass']('active')
   })
@@ -66,7 +69,12 @@ ready(() => {
     const selectedTab = tabState.tabs[tabState.selected]
     updateDocumentTitleBreadcrumbAndActiveTab(selectedTab)
 
-    ReactDOM.render(<App {...props} />, content)
+    ReactDOM.render(
+      <InstUISettingsProvider theme={ENV.use_high_contrast ? canvasHighContrastTheme : canvasTheme}>
+        <App {...props} />
+      </InstUISettingsProvider>,
+      content
+    )
   })
 
   router.start(store)

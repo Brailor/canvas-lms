@@ -165,26 +165,24 @@ class DeveloperKey extends React.Component {
                   shouldCloseOnDocumentClick
                   onDismiss={this.handleShowKey}
                   label={I18n.t('Key')}
-                >
-                  <Popover.Trigger>
+                  renderTrigger={
                     <Button onClick={this.handleShowKey} size="small">
                       {this.state.showKey ? I18n.t('Hide Key') : I18n.t('Show Key')}
                       <ScreenReaderContent>{this.getToolName()}</ScreenReaderContent>
                     </Button>
-                  </Popover.Trigger>
-                  <Popover.Content>
-                    <CloseButton
-                      placement="end"
-                      offset="x-small"
-                      variant="icon"
-                      onClick={this.handleShowKey}
-                    >
-                      {I18n.t('Close')}
-                    </CloseButton>
-                    <View padding="large small small small" display="block">
-                      {developerKey.api_key}
-                    </View>
-                  </Popover.Content>
+                  }
+                >
+                  <CloseButton
+                    placement="end"
+                    offset="x-small"
+                    variant="icon"
+                    onClick={this.handleShowKey}
+                  >
+                    {I18n.t('Close')}
+                  </CloseButton>
+                  <View padding="large small small small" display="block">
+                    {developerKey.api_key}
+                  </View>
                 </Popover>
               </div>
             )}

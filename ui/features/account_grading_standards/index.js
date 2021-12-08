@@ -20,20 +20,25 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import AccountTabContainer from './react/AccountTabContainer'
 import ready from '@instructure/ready'
+import {InstUISettingsProvider} from '@instructure/emotion'
+import canvasTheme from '@instructure/canvas-theme'
+import canvasHighContrastTheme from '@instructure/canvas-high-contrast-theme'
 
 ready(() => {
   ReactDOM.render(
-    <AccountTabContainer
-      {...{
-        readOnly: ENV.GRADING_PERIODS_READ_ONLY,
-        urls: {
-          enrollmentTermsURL: ENV.ENROLLMENT_TERMS_URL,
-          gradingPeriodsUpdateURL: ENV.GRADING_PERIODS_UPDATE_URL,
-          gradingPeriodSetsURL: ENV.GRADING_PERIOD_SETS_URL,
-          deleteGradingPeriodURL: ENV.DELETE_GRADING_PERIOD_URL
-        }
-      }}
-    />,
+    <InstUISettingsProvider theme={ENV.use_high_contrast ? canvasHighContrastTheme : canvasTheme}>
+      <AccountTabContainer
+        {...{
+          readOnly: ENV.GRADING_PERIODS_READ_ONLY,
+          urls: {
+            enrollmentTermsURL: ENV.ENROLLMENT_TERMS_URL,
+            gradingPeriodsUpdateURL: ENV.GRADING_PERIODS_UPDATE_URL,
+            gradingPeriodSetsURL: ENV.GRADING_PERIOD_SETS_URL,
+            deleteGradingPeriodURL: ENV.DELETE_GRADING_PERIOD_URL
+          }
+        }}
+      />
+    </InstUISettingsProvider>,
     document.getElementById('react_grading_tabs')
   )
 })

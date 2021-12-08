@@ -164,8 +164,7 @@ class OutcomePopover extends React.Component {
           placement="bottom"
           on={['hover', 'click']}
           shouldContainFocus
-        >
-          <Popover.Trigger>
+          renderTrigger={
             <IconButton
               size="small"
               margin="xx-small"
@@ -177,8 +176,9 @@ class OutcomePopover extends React.Component {
               onMouseEnter={() => this.setState({linkHover: true})}
               onMouseLeave={() => this.setState({linkHover: false})}
             />
-          </Popover.Trigger>
-          <Popover.Content>{this.renderPopoverContent()}</Popover.Content>
+          }
+        >
+          {this.renderPopoverContent()}
         </Popover>
       </span>
     )

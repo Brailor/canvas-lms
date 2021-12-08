@@ -22,7 +22,7 @@ import {TruncateText} from '@instructure/ui-truncate-text'
 import {Badge} from '@instructure/ui-badge'
 import {View} from '@instructure/ui-view'
 import {Flex} from '@instructure/ui-flex'
-import {Focusable, FocusableView} from '@instructure/ui-focusable'
+import {Focusable} from '@instructure/ui-focusable'
 
 import {Tooltip} from '@instructure/ui-tooltip'
 
@@ -74,9 +74,9 @@ export default class AuditEvent extends PureComponent {
                   tip={message}
                   variant="inverse"
                 >
-                  <FocusableView as="div" focused={focused}>
+                  <View as="div" withFocusOutline={focused}>
                     {innerView}
-                  </FocusableView>
+                  </View>
                 </Tooltip>
               </View>
             </Badge>

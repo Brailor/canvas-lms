@@ -23,7 +23,8 @@ import {FormFieldGroup} from '@instructure/ui-form-field'
 import {ScreenReaderContent} from '@instructure/ui-a11y-content'
 import {Button} from '@instructure/ui-buttons'
 import PropTypes from 'prop-types'
-import {DateTimeInput} from '@instructure/ui-forms'
+// import {DateTimeInput} from '@instructure/ui-forms'
+import {DateTimeInput as NewDateTimeInput} from '@instructure/ui-date-time-input'
 import {TextArea} from '@instructure/ui-text-area'
 import {TextInput} from '@instructure/ui-text-input'
 import {SimpleSelect} from '@instructure/ui-simple-select'
@@ -33,7 +34,7 @@ import formatMessage from '../../format-message'
 import {courseShape} from '../plannerPropTypes'
 import styles from './styles.css'
 import theme from './theme'
-
+// @ts-check
 export class UpdateItemTray extends Component {
   static propTypes = {
     courses: PropTypes.arrayOf(PropTypes.shape(courseShape)).isRequired,
@@ -196,18 +197,18 @@ export class UpdateItemTray extends Component {
         ? this.state.updates.date.toISOString()
         : undefined
     return (
-      <DateTimeInput
-        required
+      <NewDateTimeInput
+        isRequired
         description={
           <ScreenReaderContent>
             {formatMessage('The date and time this to do is due')}
           </ScreenReaderContent>
         }
         messages={this.state.dateMessages}
-        dateLabel={formatMessage('Date')}
-        dateNextLabel={formatMessage('Next Month')}
-        datePreviousLabel={formatMessage('Previous Month')}
-        timeLabel={formatMessage('Time')}
+        dateRenderLabel={formatMessage('Date')}
+        nextMonthLabel={formatMessage('Next Month')}
+        prevMonthLabel={formatMessage('Previous Month')}
+        timeRenderLabel={formatMessage('Time')}
         timeStep={30}
         locale={this.props.locale}
         timezone={this.props.timeZone}
@@ -217,6 +218,28 @@ export class UpdateItemTray extends Component {
         invalidDateTimeMessage={this.onInvalidDateTimeMessage}
       />
     )
+    // return (
+    //   <DateTimeInput
+    //     required
+    //     description={
+    //       <ScreenReaderContent>
+    //         {formatMessage('The date and time this to do is due')}
+    //       </ScreenReaderContent>
+    //     }
+    //     messages={this.state.dateMessages}
+    //     dateLabel={formatMessage('Date')}
+    //     dateNextLabel={formatMessage('Next Month')}
+    //     datePreviousLabel={formatMessage('Previous Month')}
+    //     timeLabel={formatMessage('Time')}
+    //     timeStep={30}
+    //     locale={this.props.locale}
+    //     timezone={this.props.timeZone}
+    //     value={datevalue}
+    //     layout="stacked"
+    //     onChange={this.handleDateChange}
+    //     invalidDateTimeMessage={this.onInvalidDateTimeMessage}
+    //   />
+    // )
   }
 
   renderCourseSelect() {
@@ -273,6 +296,7 @@ export class UpdateItemTray extends Component {
   }
 
   render() {
+    console.log('datetimeinput')
     return (
       <div className={styles.root}>
         <View as="div" padding="large medium medium">

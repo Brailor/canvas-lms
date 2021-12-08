@@ -19,9 +19,17 @@ import Backbone from '@canvas/backbone'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import MutationAuditLog from '../../react/MutationAuditLog'
+import {InstUISettingsProvider} from '@instructure/emotion'
+import canvasTheme from '@instructure/canvas-theme'
+import canvasHighContrastTheme from '@instructure/canvas-high-contrast-theme'
 
 export default class GraphQLMutationContentView extends Backbone.View {
   render() {
-    ReactDOM.render(<MutationAuditLog />, this.el)
+    ReactDOM.render(
+      <InstUISettingsProvider theme={ENV.use_high_contrast ? canvasHighContrastTheme : canvasTheme}>
+        <MutationAuditLog />
+      </InstUISettingsProvider>,
+      this.el
+    )
   }
 }

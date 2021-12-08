@@ -133,6 +133,7 @@ import('intl-polyfills')
 /* eslint-enable no-console */
 
 ready(() => {
+  // console.log("hello")
   // eslint-disable-next-line promise/catch-or-return
   Promise.all((window.deferredBundles || []).map(loadBundle)).then(() =>
     advanceReadiness('deferredBundles')

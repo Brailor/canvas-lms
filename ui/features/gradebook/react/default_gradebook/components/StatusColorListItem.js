@@ -94,8 +94,7 @@ class StatusColorListItem extends React.Component {
                 onToggle={colorPickerOnToggle}
                 contentRef={colorPickerContentRef}
                 shouldReturnFocus
-              >
-                <Popover.Trigger>
+                renderTrigger={
                   <Button buttonRef={colorPickerButtonRef} variant="icon" size="small">
                     <Text size="medium">
                       <ScreenReaderContent>
@@ -104,27 +103,25 @@ class StatusColorListItem extends React.Component {
                       <IconEditSolid />
                     </Text>
                   </Button>
-                </Popover.Trigger>
-
-                <Popover.Content>
-                  <ColorPicker
-                    parentComponent="StatusColorListItem"
-                    colors={colorPickerColors}
-                    currentColor={this.state.color}
-                    afterClose={colorPickerAfterClose}
-                    hideOnScroll={false}
-                    allowWhite
-                    nonModal
-                    hidePrompt
-                    withDarkCheck
-                    animate={false}
-                    withAnimation={false}
-                    withArrow={false}
-                    withBorder={false}
-                    withBoxShadow={false}
-                    setStatusColor={this.setColor}
-                  />
-                </Popover.Content>
+                }
+              >
+                <ColorPicker
+                  parentComponent="StatusColorListItem"
+                  colors={colorPickerColors}
+                  currentColor={this.state.color}
+                  afterClose={colorPickerAfterClose}
+                  hideOnScroll={false}
+                  allowWhite
+                  nonModal
+                  hidePrompt
+                  withDarkCheck
+                  animate={false}
+                  withAnimation={false}
+                  withArrow={false}
+                  withBorder={false}
+                  withBoxShadow={false}
+                  setStatusColor={this.setColor}
+                />
               </Popover>
             </Grid.Col>
           </Grid.Row>

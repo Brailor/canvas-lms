@@ -28,20 +28,30 @@ import FeatureFlags from '@canvas/feature-flags'
 import ready from '@instructure/ready'
 import MicrosoftSyncAccountSettings from '@canvas/integrations/react/accounts/microsoft_sync/MicrosoftSyncAccountSettings'
 import CourseCreationSettings from './react/course_creation_settings/CourseCreationSettings'
+import {InstUISettingsProvider} from '@instructure/emotion'
+import canvasTheme from '@instructure/canvas-theme'
+import canvasHighContrastTheme from '@instructure/canvas-high-contrast-theme'
 
 ready(() => {
-  ReactDOM.render(<FeatureFlags />, document.getElementById('tab-features'))
+  ReactDOM.render(
+    <InstUISettingsProvider theme={ENV.use_high_contrast ? canvasHighContrastTheme : canvasTheme}>
+      <FeatureFlags />
+    </InstUISettingsProvider>,
+    document.getElementById('tab-features')
+  )
 
   if (document.getElementById('custom_help_link_settings')) {
     ReactDOM.render(
-      <CustomHelpLinkSettings
-        {...{
-          name: window.ENV.help_link_name,
-          icon: window.ENV.help_link_icon,
-          links: window.ENV.CUSTOM_HELP_LINKS,
-          defaultLinks: window.ENV.DEFAULT_HELP_LINKS
-        }}
-      />,
+      <InstUISettingsProvider theme={ENV.use_high_contrast ? canvasHighContrastTheme : canvasTheme}>
+        <CustomHelpLinkSettings
+          {...{
+            name: window.ENV.help_link_name,
+            icon: window.ENV.help_link_icon,
+            links: window.ENV.CUSTOM_HELP_LINKS,
+            defaultLinks: window.ENV.DEFAULT_HELP_LINKS
+          }}
+        />
+      </InstUISettingsProvider>,
       document.getElementById('custom_help_link_settings')
     )
   }

@@ -20,7 +20,7 @@ import I18n from 'i18n!groups'
 import React from 'react'
 
 import {Flex} from '@instructure/ui-flex'
-import {Progress} from '@instructure/ui-progress'
+import {ProgressBar} from '@instructure/ui-progress'
 import {Text} from '@instructure/ui-text'
 
 const GroupCategoryProgress = props => {
@@ -29,19 +29,18 @@ const GroupCategoryProgress = props => {
       <Flex.Item>
         <Flex height="400px" width="400px" as="div" direction="column" textAlign="center">
           <Flex.Item margin="medium 0">
-            <Progress
-              label={I18n.t('Percent complete')}
+            <ProgressBar
+              screenReaderLabel={I18n.t('Percent complete')}
               size="large"
-              formatValueText={() =>
+              formatScreenReaderValue={() =>
                 I18n.t('%{progress} percent', {progress: props.progressPercent})
               }
-              formatDisplayedValue={() => (
+              renderValue={() => (
                 <Text size="large" weight="bold">
                   {Math.round(props.progressPercent)}%
                 </Text>
               )}
               valueNow={props.progressPercent}
-              animateOnMount
             />
           </Flex.Item>
           <Flex.Item>

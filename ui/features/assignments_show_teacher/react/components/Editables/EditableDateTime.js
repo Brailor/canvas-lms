@@ -27,7 +27,6 @@ import {IconCalendarMonthLine} from '@instructure/ui-icons'
 import {Editable} from '@instructure/ui-editable'
 import {View} from '@instructure/ui-view'
 import {Flex} from '@instructure/ui-flex'
-import {FocusableView} from '@instructure/ui-focusable'
 import {ScreenReaderContent} from '@instructure/ui-a11y-content'
 import {Text} from '@instructure/ui-text'
 
@@ -193,7 +192,7 @@ export default class EditableDateTime extends React.Component {
           onKeyUp={this.handleKey}
           data-testid="EditableDateTime-editor"
         >
-          <FocusableView display="block" width="100%" focused>
+          <View display="block" width="100%" withFocusOutline>
             <View display="inline-block" padding="x-small">
               <DateTimeInput
                 layout="stacked"
@@ -213,7 +212,7 @@ export default class EditableDateTime extends React.Component {
                 timezone={this.props.timeZone}
               />
             </View>
-          </FocusableView>
+          </View>
         </div>
       )
     }

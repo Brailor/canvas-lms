@@ -179,33 +179,35 @@ export default class ProficiencyRating extends React.Component {
         </Table.Cell>
         <Table.Cell>
           <span style={{whiteSpace: 'nowrap'}}>
-            <Popover on="click" show={this.state.showColorPopover} onToggle={this.handleMenuToggle}>
-              <Popover.Trigger>
+            <Popover
+              on="click"
+              show={this.state.showColorPopover}
+              onToggle={this.handleMenuToggle}
+              renderTrigger={
                 <Button ref={this.setColorRef} variant="link">
                   <div>
                     <span className="colorPickerIcon" style={{background: formatColor(color)}} />
                     {I18n.t('Change')}
                   </div>
                 </Button>
-              </Popover.Trigger>
-              <Popover.Content>
-                <ColorPicker
-                  parentComponent="ProficiencyRating"
-                  colors={PREDEFINED_COLORS}
-                  currentColor={formatColor(color)}
-                  isOpen
-                  hidePrompt
-                  nonModal
-                  hideOnScroll={false}
-                  withAnimation={false}
-                  withBorder={false}
-                  withBoxShadow={false}
-                  withArrow={false}
-                  focusOnMount={false}
-                  afterClose={this.handleMenuClose}
-                  setStatusColor={this.setColor}
-                />
-              </Popover.Content>
+              }
+            >
+              <ColorPicker
+                parentComponent="ProficiencyRating"
+                colors={PREDEFINED_COLORS}
+                currentColor={formatColor(color)}
+                isOpen
+                hidePrompt
+                nonModal
+                hideOnScroll={false}
+                withAnimation={false}
+                withBorder={false}
+                withBoxShadow={false}
+                withArrow={false}
+                focusOnMount={false}
+                afterClose={this.handleMenuClose}
+                setStatusColor={this.setColor}
+              />
             </Popover>
             <div className="delete">
               <Button

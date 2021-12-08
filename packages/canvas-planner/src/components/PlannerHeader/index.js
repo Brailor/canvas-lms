@@ -433,19 +433,17 @@ export class PlannerHeader extends Component {
           constrain="window"
           placement={placement}
           offsetY={offsetY}
+          renderTrigger={this.renderOpportunitiesButton(buttonMargin)}
         >
-          <Popover.Trigger>{this.renderOpportunitiesButton(buttonMargin)}</Popover.Trigger>
-          <Popover.Content>
-            <Opportunities
-              togglePopover={this.closeOpportunitiesDropdown}
-              newOpportunities={this.state.newOpportunities}
-              dismissedOpportunities={this.state.dismissedOpportunities}
-              courses={this.props.courses}
-              timeZone={this.props.timeZone}
-              dismiss={this.props.dismissOpportunity}
-              maxHeight={verticalRoom}
-            />
-          </Popover.Content>
+          <Opportunities
+            togglePopover={this.closeOpportunitiesDropdown}
+            newOpportunities={this.state.newOpportunities}
+            dismissedOpportunities={this.state.dismissedOpportunities}
+            courses={this.props.courses}
+            timeZone={this.props.timeZone}
+            dismiss={this.props.dismissOpportunity}
+            maxHeight={verticalRoom}
+          />
         </Popover>
         <Tray
           open={this.state.trayOpen}

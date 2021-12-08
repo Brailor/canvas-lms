@@ -176,6 +176,7 @@ function initializeCourseAndGroupColors(options) {
 // changeDashboardView,         <optional - method to change the current dashboard>
 // forCourse,                   <optional - course id if this is a sidebar for a specific course page>
 let initializedOptions = null
+
 export function initializePlanner(options) {
   return new Promise(resolve => {
     if (initializedOptions) throw new Error('initializePlanner may not be called more than once')
