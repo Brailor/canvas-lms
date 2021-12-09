@@ -640,15 +640,13 @@ function renderProgressIcon(attachment) {
   } else {
     const {icon, tip} = iconAndTipMap[attachment.upload_status] || iconAndTipMap.default
     const tooltip = (
-      <ThemeProvider>
-        <Tooltip renderTip={tip} on={['click', 'hover', 'focus']}>
-          <Button renderIcon={icon}>
-            <ScreenReaderContent>toggle tooltip</ScreenReaderContent>
-          </Button>
-        </Tooltip>
-      </ThemeProvider>
+      <Tooltip renderTip={tip} on={['click', 'hover', 'focus']}>
+        <Button renderIcon={icon}>
+          <ScreenReaderContent>toggle tooltip</ScreenReaderContent>
+        </Button>
+      </Tooltip>
     )
-    ReactDOM.render(tooltip, mountPoint)
+    ReactDOM.render(<ThemeProvider>{tooltip}</ThemeProvider>, mountPoint)
   }
 }
 
@@ -658,7 +656,9 @@ function renderHiddenSubmissionPill(submission) {
   if (isPostable(submission)) {
     ReactDOM.render(
       <ThemeProvider>
-        <Pill color="warning" children={I18n.t('Hidden')} margin="0 0 small" />
+        <Pill color="warning" margin="0 0 small">
+          {I18n.t('Hidden')}
+        </Pill>
       </ThemeProvider>,
       mountPoint
     )
@@ -1755,7 +1755,6 @@ EG = {
     const tray = <AssessmentAuditTray ref={bindRef} />
     ReactDOM.render(
       <ThemeProvider>{tray}</ThemeProvider>,
-
       document.getElementById(ASSESSMENT_AUDIT_TRAY_MOUNT_POINT)
     )
 
@@ -1777,7 +1776,10 @@ EG = {
     }
 
     const button = <AssessmentAuditButton onClick={onClick} />
-    ReactDOM.render(button, document.getElementById(ASSESSMENT_AUDIT_BUTTON_MOUNT_POINT))
+    ReactDOM.render(
+      <ThemeProvider>{button}</ThemeProvider>,
+      document.getElementById(ASSESSMENT_AUDIT_BUTTON_MOUNT_POINT)
+    )
   },
 
   tearDownAssessmentAuditTray() {
@@ -3747,7 +3749,7 @@ EG = {
     }
 
     const gradeSelector = <SpeedGraderProvisionalGradeSelector {...props} />
-    ReactDOM.render(<ThemeProvider>gradeSelector</ThemeProvider>, mountPoint)
+    ReactDOM.render(<ThemeProvider>{gradeSelector}</ThemeProvider>, mountPoint)
   },
 
   changeToSection(sectionId) {

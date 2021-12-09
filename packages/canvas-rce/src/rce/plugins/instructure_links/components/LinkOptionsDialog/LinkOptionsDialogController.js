@@ -20,6 +20,7 @@ import ReactDOM from 'react-dom'
 import bridge from '../../../../../bridge'
 import {isOnlyTextSelected, getAnchorElement} from '../../../../contentInsertionUtils'
 import LinkOptionsDialog from './index'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export const CONTAINER_ID = 'instructure-link-options-tray-container'
 export const CREATE_LINK = 'create'
@@ -111,6 +112,6 @@ export default class LinkOptionsDialogController {
         open={this._shouldOpen}
       />
     )
-    ReactDOM.render(element, this.$container)
+    ReactDOM.render(<ThemeProvider>{element}</ThemeProvider>, this.$container)
   }
 }

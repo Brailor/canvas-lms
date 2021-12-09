@@ -31,6 +31,7 @@ import htmlEscape from 'html-escape'
 import AssignmentExternalTools from '@canvas/assignments/react/AssignmentExternalTools'
 import DirectShareUserModal from '@canvas/direct-sharing/react/components/DirectShareUserModal'
 import DirectShareCourseTray from '@canvas/direct-sharing/react/components/DirectShareCourseTray'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default class TopicView extends Backbone.View {
   static initClass() {
@@ -268,15 +269,17 @@ export default class TopicView extends Backbone.View {
   openSendTo(event, open = true) {
     if (event) event.preventDefault()
     ReactDOM.render(
-      <DirectShareUserModal
-        open={open}
-        sourceCourseId={ENV.COURSE_ID}
-        contentShare={{content_type: 'discussion_topic', content_id: this.topic.id}}
-        onDismiss={() => {
-          this.openSendTo(null, false)
-          this.$announcementCog.focus()
-        }}
-      />,
+      <ThemeProvider>
+        <DirectShareUserModal
+          open={open}
+          sourceCourseId={ENV.COURSE_ID}
+          contentShare={{content_type: 'discussion_topic', content_id: this.topic.id}}
+          onDismiss={() => {
+            this.openSendTo(null, false)
+            this.$announcementCog.focus()
+          }}
+        />
+      </ThemeProvider>,
       document.getElementById('direct-share-mount-point')
     )
   }
@@ -284,15 +287,17 @@ export default class TopicView extends Backbone.View {
   openCopyTo(event, open = true) {
     if (event) event.preventDefault()
     ReactDOM.render(
-      <DirectShareCourseTray
-        open={open}
-        sourceCourseId={ENV.COURSE_ID}
-        contentSelection={{discussion_topics: [this.topic.id]}}
-        onDismiss={() => {
-          this.openCopyTo(null, false)
-          this.$announcementCog.focus()
-        }}
-      />,
+      <ThemeProvider>
+        <DirectShareCourseTray
+          open={open}
+          sourceCourseId={ENV.COURSE_ID}
+          contentSelection={{discussion_topics: [this.topic.id]}}
+          onDismiss={() => {
+            this.openCopyTo(null, false)
+            this.$announcementCog.focus()
+          }}
+        />
+      </ThemeProvider>,
       document.getElementById('direct-share-mount-point')
     )
   }

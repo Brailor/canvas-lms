@@ -32,6 +32,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import ContentTypeExternalToolTray from '@canvas/trays/react/ContentTypeExternalToolTray'
 import {ltiState} from '@canvas/lti/jquery/messages'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 
 export default class AssignmentGroupListItemView extends DraggableCollectionView
@@ -472,4 +473,7 @@ export default class AssignmentGroupListItemView extends DraggableCollectionView
       open: tool != null
 
     component = React.createElement(ContentTypeExternalToolTray, props)
-    ReactDOM.render(component, $('#external-tool-mount-point')[0])
+    ReactDOM.render(
+      <ThemeProvider>{component}</ThemeProvider>,
+      $('#external-tool-mount-point')[0]
+    )

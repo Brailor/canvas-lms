@@ -21,6 +21,7 @@ import ReactDOM from 'react-dom'
 import {Alert} from '@instructure/ui-alerts'
 import {Text} from '@instructure/ui-text'
 import {Link} from '@instructure/ui-link'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const container = document.getElementById('content_notice_container')
 if (container && ENV.CONTENT_NOTICES.length > 0) {
@@ -39,5 +40,5 @@ if (container && ENV.CONTENT_NOTICES.length > 0) {
       </Alert>
     )
   })
-  ReactDOM.render(alerts, container)
+  ReactDOM.render(<ThemeProvider>{alerts}</ThemeProvider>, container)
 }

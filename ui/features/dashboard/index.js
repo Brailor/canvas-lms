@@ -23,6 +23,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import DashboardHeader from './react/DashboardHeader'
 import ready from '@instructure/ready'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ready(() => {
   const dashboardHeaderContainer = document.getElementById('dashboard_header_container')
@@ -30,16 +31,18 @@ ready(() => {
     const dashboard_view = ENV.PREFERENCES.dashboard_view
 
     ReactDOM.render(
-      <DashboardHeader
-        dashboard_view={dashboard_view}
-        canEnableElementaryDashboard={!!ENV.CAN_ENABLE_K5_DASHBOARD}
-        isElementaryUser={!!ENV.K5_USER}
-        planner_enabled={ENV.STUDENT_PLANNER_ENABLED}
-        flashError={$.flashError}
-        flashMessage={$.flashMessage}
-        screenReaderFlashMessage={$.screenReaderFlashMessage}
-        env={window.ENV}
-      />,
+      <ThemeProvider>
+        <DashboardHeader
+          dashboard_view={dashboard_view}
+          canEnableElementaryDashboard={!!ENV.CAN_ENABLE_K5_DASHBOARD}
+          isElementaryUser={!!ENV.K5_USER}
+          planner_enabled={ENV.STUDENT_PLANNER_ENABLED}
+          flashError={$.flashError}
+          flashMessage={$.flashMessage}
+          screenReaderFlashMessage={$.screenReaderFlashMessage}
+          env={window.ENV}
+        />
+      </ThemeProvider>,
       dashboardHeaderContainer
     )
   } else {

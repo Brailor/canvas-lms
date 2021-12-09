@@ -34,6 +34,7 @@ import RichContentEditor from '@canvas/rce/RichContentEditor'
 import MoveToDialog from '../react/MoveToDialog'
 import {fetchContent} from './eportfolio_section'
 import sanitizeHtml from 'sanitize-html-with-tinymce'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 import '@canvas/jquery/jquery.ajaxJSON'
 import 'jquery-tree' /* instTree */
 import '@canvas/forms/jquery/jquery.instructure_forms' /* formSubmit, getFormData, formErrors, errorBox */
@@ -124,19 +125,21 @@ function showMoveDialog(source, destinations, triggerElement, dialogLabel, onMov
     modalRoot = document.querySelector('#eportfolios_move_to_modal_root')
   }
   ReactDOM.render(
-    <MoveToDialog
-      source={source}
-      destinations={destinations}
-      appElement={appElement}
-      triggerElement={triggerElement}
-      header={dialogLabel}
-      onClose={function () {
-        setTimeout(() => {
-          ReactDOM.unmountComponentAtNode(modalRoot)
-        })
-      }}
-      onMove={onMove}
-    />,
+    <ThemeProvider>
+      <MoveToDialog
+        source={source}
+        destinations={destinations}
+        appElement={appElement}
+        triggerElement={triggerElement}
+        header={dialogLabel}
+        onClose={function () {
+          setTimeout(() => {
+            ReactDOM.unmountComponentAtNode(modalRoot)
+          })
+        }}
+        onMove={onMove}
+      />
+    </ThemeProvider>,
     modalRoot
   )
 }

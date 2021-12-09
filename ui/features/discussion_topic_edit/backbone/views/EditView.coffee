@@ -43,6 +43,7 @@ import UsageRightsIndicator from '@canvas/files/react/components/UsageRightsIndi
 import setUsageRights from '@canvas/files/util/setUsageRights'
 import * as returnToHelper from '@canvas/util/validateReturnToURL'
 import 'jqueryui/tabs'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 RichContentEditor.preloadRemoteModule()
 
@@ -258,11 +259,17 @@ export default class EditView extends ValidatedFormView
       modalOptions:
         isOpen: false
         openModal: (contents, afterClose) =>
-          ReactDOM.render(contents, @$('#usage_rights_modal')[0])
+          ReactDOM.render(
+            <ThemeProvider>{contents}</ThemeProvider>,
+            @$('#usage_rights_modal')[0]
+          )
         closeModal: () =>
           ReactDOM.unmountComponentAtNode(@$('#usage_rights_modal')[0])
     component = React.createElement(UsageRightsIndicator, props, null)
-    ReactDOM.render(component, @$('#usage_rights_control')[0])
+    ReactDOM.render(
+      <ThemeProvider>{component}</ThemeProvider>,
+      @$('#usage_rights_control')[0]
+    )
 
   renderAssignmentGroupOptions: =>
     @assignmentGroupSelector = new AssignmentGroupSelector
@@ -327,7 +334,7 @@ export default class EditView extends ValidatedFormView
 
   renderStudentTodoAtDate: =>
     @toggleTodoDateInput()
-    ReactDOM.render(React.createElement(DueDateCalendarPicker,
+    element = React.createElement(DueDateCalendarPicker,
       dateType: 'todo_date'
       name: 'todo_date'
       handleUpdate: @handleStudentTodoUpdate
@@ -339,7 +346,11 @@ export default class EditView extends ValidatedFormView
       dateValue: @studentTodoAtDateValue
       labelText: I18n.t('Discussion Topic will show on student to-do list for date')
       labelClasses: 'screenreader-only'
-    ), @$todoDateInput[0])
+    )
+    ReactDOM.render(
+      <ThemeProvider>{element}</ThemeProvider>,
+      @$todoDateInput[0]
+    )
 
   handleStudentTodoUpdate: (newDate) =>
     @studentTodoAtDateValue = newDate

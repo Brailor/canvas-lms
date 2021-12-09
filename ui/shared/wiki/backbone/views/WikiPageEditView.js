@@ -26,6 +26,7 @@ import WikiPageReloadView from './WikiPageReloadView'
 import I18n from 'i18n!pages'
 import DueDateCalendarPicker from '@canvas/due-dates/react/DueDateCalendarPicker'
 import '@canvas/datetime'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 RichContentEditor.preloadRemoteModule()
 
@@ -143,19 +144,21 @@ export default class WikiPageEditView extends ValidatedFormView {
     const elt = this.$studentTodoAtContainer[0]
     if (elt) {
       return ReactDOM.render(
-        <DueDateCalendarPicker
-          dateType="todo_date"
-          name="student_todo_at"
-          handleUpdate={this.handleStudentTodoUpdate}
-          rowKey="student_todo_at_date"
-          labelledBy="student_todo_at_date_label"
-          inputClasses=""
-          disabled={false}
-          isFancyMidnight
-          dateValue={this.studentTodoAtDateValue}
-          labelText="Student Planner Date"
-          labelClasses="screenreader-only"
-        />,
+        <ThemeProvider>
+          <DueDateCalendarPicker
+            dateType="todo_date"
+            name="student_todo_at"
+            handleUpdate={this.handleStudentTodoUpdate}
+            rowKey="student_todo_at_date"
+            labelledBy="student_todo_at_date_label"
+            inputClasses=""
+            disabled={false}
+            isFancyMidnight
+            dateValue={this.studentTodoAtDateValue}
+            labelText="Student Planner Date"
+            labelClasses="screenreader-only"
+          />
+        </ThemeProvider>,
         elt
       )
     }

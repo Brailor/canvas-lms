@@ -20,6 +20,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {View} from '@instructure/ui-view'
 import ready from '@instructure/ready'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 import {AlignmentButton} from '@instructure/outcomes-ui'
 
@@ -27,15 +28,17 @@ ready(() => {
   const container = document.getElementById('canvas_outcomes_alignment_widget')
   if (ENV.canvas_outcomes && ENV.canvas_outcomes.host) {
     ReactDOM.render(
-      <View as="div" borderWidth="small none none none" padding="medium none">
-        <AlignmentButton
-          host={ENV.canvas_outcomes.host}
-          jwt={ENV.canvas_outcomes.jwt}
-          contextUuid={ENV.canvas_outcomes.context_uuid}
-          artifactType={ENV.canvas_outcomes.artifact_type}
-          artifactId={ENV.canvas_outcomes.artifact_id}
-        />
-      </View>,
+      <ThemeProvider>
+        <View as="div" borderWidth="small none none none" padding="medium none">
+          <AlignmentButton
+            host={ENV.canvas_outcomes.host}
+            jwt={ENV.canvas_outcomes.jwt}
+            contextUuid={ENV.canvas_outcomes.context_uuid}
+            artifactType={ENV.canvas_outcomes.artifact_type}
+            artifactId={ENV.canvas_outcomes.artifact_id}
+          />
+        </View>
+      </ThemeProvider>,
       container
     )
   }

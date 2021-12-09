@@ -17,6 +17,8 @@
  */
 
 import ReactDOM from 'react-dom'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
+import React from 'react'
 
 /*
  * This editor is intended to be responsible for interfacing with SlickGrid and
@@ -49,7 +51,7 @@ export default class ReactCellEditor {
      * `createElement()` is required for subclasses to implement.
      */
     const element = this.createElement(props)
-    ReactDOM.render(element, this.container)
+    ReactDOM.render(<ThemeProvider>{element}</ThemeProvider>, this.container)
   }
 
   handleKeyDown(event) {

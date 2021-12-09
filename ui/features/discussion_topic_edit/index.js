@@ -29,6 +29,7 @@ import SectionCollection from '@canvas/sections/backbone/collections/SectionColl
 import splitAssetString from '@canvas/util/splitAssetString'
 import LockManager from '@canvas/blueprint-courses/react/components/LockManager/index'
 import SectionsAutocomplete from './react/SectionsAutocomplete'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const lockManager = new LockManager()
 lockManager.init({itemType: 'discussion_topic', page: 'edit'})
@@ -74,13 +75,15 @@ function renderSectionsAutocomplete(view) {
 
       const sectionsAreDisabled = isGradedDiscussion || isGroupDiscussion
       ReactDOM.render(
-        <SectionsAutocomplete
-          selectedSections={ENV.SELECTED_SECTION_LIST}
-          disabled={sectionsAreDisabled}
-          disableDiscussionOptions={disableDiscussionOptions}
-          enableDiscussionOptions={enableDiscussionOptions}
-          sections={ENV.SECTION_LIST}
-        />,
+        <ThemeProvider>
+          <SectionsAutocomplete
+            selectedSections={ENV.SELECTED_SECTION_LIST}
+            disabled={sectionsAreDisabled}
+            disableDiscussionOptions={disableDiscussionOptions}
+            enableDiscussionOptions={enableDiscussionOptions}
+            sections={ENV.SECTION_LIST}
+          />
+        </ThemeProvider>,
         container
       )
     }

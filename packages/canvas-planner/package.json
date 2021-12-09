@@ -46,6 +46,8 @@
   "dependencies": {
     "@instructure/babel-plugin-themeable-styles": "^7",
     "@instructure/canvas-theme": "^8",
+    "@instructure/canvas-high-contrast-theme": "^8",
+    "@instructure/emotion": "^8",
     "@instructure/js-utils": ">=1",
     "@instructure/ui-date-time-input": "^8",
     "@instructure/ui-a11y-content": "^8",

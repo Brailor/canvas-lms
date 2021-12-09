@@ -33,6 +33,7 @@ import configureIndexMenuStore from '../../react/stores/indexMenuStore'
 import BulkEditIndex from '../../react/bulk_edit/BulkEditIndex'
 import '@canvas/rails-flash-notifications'
 import easy_student_view from '@canvas/easy-student-view'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default class IndexView extends Backbone.View
   @mixin AssignmentKeyBindingsMixin
@@ -98,31 +99,33 @@ export default class IndexView extends Backbone.View
         undefined
 
       if @$settingsMountPoint.length
+        element = React.createElement(IndexMenu, {
+          store: @indexMenuStore,
+          contextType: contextType,
+          contextId: contextId,
+          requestBulkEdit: requestBulkEditFn,
+          setTrigger: @assignmentSettingsView.setTrigger.bind(@assignmentSettingsView)
+          setDisableTrigger: @assignmentSyncSettingsView.setTrigger.bind(@assignmentSyncSettingsView)
+          registerWeightToggle: @assignmentSettingsView.on.bind(@assignmentSettingsView)
+          disableSyncToSis: @assignmentSyncSettingsView.openDisableSync.bind(@assignmentSyncSettingsView)
+          sisName: ENV.SIS_NAME
+          postToSisDefault: ENV.POST_TO_SIS_DEFAULT
+          hasAssignments: ENV.HAS_ASSIGNMENTS,
+          assignmentGroupsCollection: @collection
+        })
         ReactDOM.render(
-          React.createElement(IndexMenu, {
-            store: @indexMenuStore,
-            contextType: contextType,
-            contextId: contextId,
-            requestBulkEdit: requestBulkEditFn,
-            setTrigger: @assignmentSettingsView.setTrigger.bind(@assignmentSettingsView)
-            setDisableTrigger: @assignmentSyncSettingsView.setTrigger.bind(@assignmentSyncSettingsView)
-            registerWeightToggle: @assignmentSettingsView.on.bind(@assignmentSettingsView)
-            disableSyncToSis: @assignmentSyncSettingsView.openDisableSync.bind(@assignmentSyncSettingsView)
-            sisName: ENV.SIS_NAME
-            postToSisDefault: ENV.POST_TO_SIS_DEFAULT
-            hasAssignments: ENV.HAS_ASSIGNMENTS,
-            assignmentGroupsCollection: @collection
-          }),
+          <ThemeProvider>{element}</ThemeProvider>,
           @$settingsMountPoint[0]
         )
 
     if @bulkEditMode && @$bulkEditRoot.length
+      element = React.createElement(BulkEditIndex, {
+        courseId: ENV.COURSE_ID
+        onCancel: @cancelBulkEdit
+        onSave: @handleBulkEditSaved
+      })
       ReactDOM.render(
-        React.createElement(BulkEditIndex, {
-          courseId: ENV.COURSE_ID
-          onCancel: @cancelBulkEdit
-          onSave: @handleBulkEditSaved
-        }),
+        <ThemeProvider>{element}</ThemeProvider>,
         @$bulkEditRoot[0]
       )
 

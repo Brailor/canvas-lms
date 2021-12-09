@@ -33,6 +33,7 @@ import DirectShareCourseTray from '@canvas/direct-sharing/react/components/Direc
 import DirectShareUserModal from '@canvas/direct-sharing/react/components/DirectShareUserModal'
 import '@canvas/jquery/jquery.disableWhileLoading'
 import {ltiState} from '@canvas/lti/jquery/messages'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default class WikiPageIndexView extends PaginatedCollectionView {
   static initClass() {
@@ -268,16 +269,18 @@ export default class WikiPageIndexView extends PaginatedCollectionView {
 
     const {ContentTypeExternalToolTray: ExternalToolTray} = this
     ReactDOM.render(
-      <ExternalToolTray
-        tool={tool}
-        placement="wiki_index_menu"
-        acceptedResourceTypes={['page']}
-        targetResourceType="page"
-        allowItemSelection={false}
-        selectableItems={[]}
-        onDismiss={handleDismiss}
-        open={tool !== null}
-      />,
+      <ThemeProvider>
+        <ExternalToolTray
+          tool={tool}
+          placement="wiki_index_menu"
+          acceptedResourceTypes={['page']}
+          targetResourceType="page"
+          allowItemSelection={false}
+          selectableItems={[]}
+          onDismiss={handleDismiss}
+          open={tool !== null}
+        />
+      </ThemeProvider>,
       this.$externalToolMountPoint[0]
     )
   }
@@ -291,13 +294,15 @@ export default class WikiPageIndexView extends PaginatedCollectionView {
     const pageId = newCopyToItem?.id
     const {DirectShareCourseTray: CourseTray} = this
     ReactDOM.render(
-      <CourseTray
-        open={newCopyToItem !== null}
-        sourceCourseId={ENV.COURSE_ID}
-        contentSelection={{pages: [pageId]}}
-        shouldReturnFocus={false}
-        onDismiss={handleDismiss}
-      />,
+      <ThemeProvider>
+        <CourseTray
+          open={newCopyToItem !== null}
+          sourceCourseId={ENV.COURSE_ID}
+          contentSelection={{pages: [pageId]}}
+          shouldReturnFocus={false}
+          onDismiss={handleDismiss}
+        />
+      </ThemeProvider>,
       this.$copyToMountPoint[0]
     )
   }
@@ -312,13 +317,15 @@ export default class WikiPageIndexView extends PaginatedCollectionView {
     const pageId = newSendToItem?.id
     const {DirectShareUserModal: UserModal} = this
     ReactDOM.render(
-      <UserModal
-        open={newSendToItem !== null}
-        courseId={ENV.COURSE_ID}
-        contentShare={{content_type: 'page', content_id: pageId}}
-        shouldReturnFocus={false}
-        onDismiss={handleDismiss}
-      />,
+      <ThemeProvider>
+        <UserModal
+          open={newSendToItem !== null}
+          courseId={ENV.COURSE_ID}
+          contentShare={{content_type: 'page', content_id: pageId}}
+          shouldReturnFocus={false}
+          onDismiss={handleDismiss}
+        />
+      </ThemeProvider>,
       this.$sendToMountPoint[0]
     )
   }

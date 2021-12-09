@@ -24,6 +24,7 @@ import {ConnectedChildContent as ChildContent} from '../components/ChildContent'
 import FlashNotifications from '@canvas/blueprint-courses/react/flashNotifications'
 import createStore from '@canvas/blueprint-courses/react/store'
 import Router from '@canvas/blueprint-courses/react/router'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default class ChildCourse {
   constructor(root, data) {
@@ -53,14 +54,16 @@ export default class ChildCourse {
   render() {
     const routeTo = isBlueprintShabang() ? this.router.page : noop
     ReactDOM.render(
-      <Provider store={this.store}>
-        <ChildContent
-          routeTo={routeTo}
-          realRef={c => {
-            this.app = c
-          }}
-        />
-      </Provider>,
+      <ThemeProvider>
+        <Provider store={this.store}>
+          <ChildContent
+            routeTo={routeTo}
+            realRef={c => {
+              this.app = c
+            }}
+          />
+        </Provider>
+      </ThemeProvider>,
       this.root
     )
   }

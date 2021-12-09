@@ -18,6 +18,7 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 import Bridge from '../../../bridge'
 import {StoreProvider} from '../shared/StoreContext'
 import formatMessage from '../../../format-message'
@@ -78,28 +79,30 @@ export default function (ed, document) {
     const trayProps = Bridge.trayProps.get(ed)
 
     ReactDOM.render(
-      <StoreProvider {...trayProps}>
-        {contentProps => (
-          <UploadMedia
-            rcsConfig={{
-              contextType: ed.settings.canvas_rce_user_context.type,
-              contextId: ed.settings.canvas_rce_user_context.id,
-              origin: originFromHost(contentProps.host),
-              headers: headerFor(contentProps.jwt)
-            }}
-            languages={Bridge.languages}
-            open
-            liveRegion={() => document.getElementById('flash_screenreader_holder')}
-            onStartUpload={fileProps => handleStartUpload(fileProps)}
-            onUploadComplete={(err, data) =>
-              handleUpload(err, data, contentProps.mediaUploadComplete, uploadBookmark)
-            }
-            onDismiss={handleDismiss}
-            tabs={{record: true, upload: true}}
-            uploadMediaTranslations={Bridge.uploadMediaTranslations}
-          />
-        )}
-      </StoreProvider>,
+      <ThemeProvider>
+        <StoreProvider {...trayProps}>
+          {contentProps => (
+            <UploadMedia
+              rcsConfig={{
+                contextType: ed.settings.canvas_rce_user_context.type,
+                contextId: ed.settings.canvas_rce_user_context.id,
+                origin: originFromHost(contentProps.host),
+                headers: headerFor(contentProps.jwt)
+              }}
+              languages={Bridge.languages}
+              open
+              liveRegion={() => document.getElementById('flash_screenreader_holder')}
+              onStartUpload={fileProps => handleStartUpload(fileProps)}
+              onUploadComplete={(err, data) =>
+                handleUpload(err, data, contentProps.mediaUploadComplete, uploadBookmark)
+              }
+              onDismiss={handleDismiss}
+              tabs={{record: true, upload: true}}
+              uploadMediaTranslations={Bridge.uploadMediaTranslations}
+            />
+          )}
+        </StoreProvider>
+      </ThemeProvider>,
       container
     )
   })

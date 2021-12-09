@@ -36,6 +36,7 @@ import NewGroupDialog from './NewGroupDialog'
 import ManageGroupDialog from './ManageGroupDialog'
 import 'jqueryui/dialog'
 import PropTypes from 'prop-types'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const StudentView = createReactClass({
   displayName: 'StudentView',
@@ -76,16 +77,18 @@ const StudentView = createReactClass({
     }
 
     ReactDOM.render(
-      <ManageGroupDialog
-        userCollection={this.state.userCollection}
-        checked={group.users.map(u => u.id)}
-        groupId={group.id}
-        name={group.name}
-        maxMembership={group.max_membership}
-        updateGroup={this.updateGroup}
-        closeDialog={closeDialog}
-        loadMore={() => this._loadMore(this.state.userCollection)}
-      />,
+      <ThemeProvider>
+        <ManageGroupDialog
+          userCollection={this.state.userCollection}
+          checked={group.users.map(u => u.id)}
+          groupId={group.id}
+          name={group.name}
+          maxMembership={group.max_membership}
+          updateGroup={this.updateGroup}
+          closeDialog={closeDialog}
+          loadMore={() => this._loadMore(this.state.userCollection)}
+        />
+      </ThemeProvider>,
       $dialog[0]
     )
   },
@@ -110,12 +113,14 @@ const StudentView = createReactClass({
     }
 
     ReactDOM.render(
-      <NewGroupDialog
-        userCollection={this.state.userCollection}
-        createGroup={this.createGroup}
-        closeDialog={closeDialog}
-        loadMore={() => this._loadMore(this.state.userCollection)}
-      />,
+      <ThemeProvider>
+        <NewGroupDialog
+          userCollection={this.state.userCollection}
+          createGroup={this.createGroup}
+          closeDialog={closeDialog}
+          loadMore={() => this._loadMore(this.state.userCollection)}
+        />
+      </ThemeProvider>,
       $dialog[0]
     )
   },

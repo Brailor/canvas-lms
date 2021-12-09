@@ -64,6 +64,7 @@ import DirectShareUserModal from '@canvas/direct-sharing/react/components/Direct
 import mathml from 'mathml'
 import {addDeepLinkingListener} from '@canvas/deep-linking/DeepLinking'
 import ExternalToolModalLauncher from '@canvas/external-tools/react/components/ExternalToolModalLauncher'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 function scrollTo($thing, time = 500) {
   if (!$thing || $thing.length === 0) return
@@ -1144,11 +1145,13 @@ modules.initModuleManagement = function (duplicate) {
       if (module_dnd) {
         const contextModules = document.getElementById('context_modules')
         ReactDOM.render(
-          <ModuleFileDrop
-            courseId={ENV.course_id}
-            moduleId={data.context_module.id}
-            contextModules={contextModules}
-          />,
+          <ThemeProvider>
+            <ModuleFileDrop
+              courseId={ENV.course_id}
+              moduleId={data.context_module.id}
+              contextModules={contextModules}
+            />
+          </ThemeProvider>,
           module_dnd
         )
       }
@@ -1347,7 +1350,7 @@ modules.initModuleManagement = function (duplicate) {
     const spinner = <ModuleDuplicationSpinner />
     const $tempElement = $('<div id="temporary-spinner" class="item-group-condensed"></div>')
     $tempElement.insertAfter(duplicatedModuleElement)
-    ReactDOM.render(spinner, $('#temporary-spinner')[0])
+    ReactDOM.render(<ThemeProvider>{spinner}</ThemeProvider>, $('#temporary-spinner')[0])
     $.screenReaderFlashMessage(I18n.t('Duplicating Module, this may take some time'))
     const renderDuplicatedModule = function (response) {
       response.data.ENV_UPDATE.forEach(newAttachmentItem => {
@@ -1368,11 +1371,13 @@ modules.initModuleManagement = function (duplicate) {
           if (module_dnd) {
             const contextModules = document.getElementById('context_modules')
             ReactDOM.render(
-              <ModuleFileDrop
-                courseId={ENV.course_id}
-                moduleId={newModuleId}
-                contextModules={contextModules}
-              />,
+              <ThemeProvider>
+                <ModuleFileDrop
+                  courseId={ENV.course_id}
+                  moduleId={newModuleId}
+                  contextModules={contextModules}
+                />
+              </ThemeProvider>,
               module_dnd
             )
           }
@@ -2046,7 +2051,7 @@ modules.initModuleManagement = function (duplicate) {
       }
 
       const Cloud = <PublishCloud {...props} />
-      ReactDOM.render(Cloud, $el[0])
+      ReactDOM.render(<ThemeProvider>{Cloud}</ThemeProvider>, $el[0])
       return {model: file} // Pretending this is a backbone view
     }
 
@@ -2592,26 +2597,28 @@ $(document).ready(function () {
     }
 
     ReactDOM.render(
-      <ContentTypeExternalToolTray
-        tool={tool}
-        placement="module_index_menu"
-        acceptedResourceTypes={[
-          'assignment',
-          'audio',
-          'discussion_topic',
-          'document',
-          'image',
-          'module',
-          'quiz',
-          'page',
-          'video'
-        ]}
-        targetResourceType="module"
-        allowItemSelection={selectable}
-        selectableItems={moduleData}
-        onDismiss={handleDismiss}
-        open={tool !== null}
-      />,
+      <ThemeProvider>
+        <ContentTypeExternalToolTray
+          tool={tool}
+          placement="module_index_menu"
+          acceptedResourceTypes={[
+            'assignment',
+            'audio',
+            'discussion_topic',
+            'document',
+            'image',
+            'module',
+            'quiz',
+            'page',
+            'video'
+          ]}
+          targetResourceType="module"
+          allowItemSelection={selectable}
+          selectableItems={moduleData}
+          onDismiss={handleDismiss}
+          open={tool !== null}
+        />
+      </ThemeProvider>,
       $('#external-tool-mount-point')[0]
     )
   }
@@ -2629,15 +2636,17 @@ $(document).ready(function () {
     }
 
     ReactDOM.render(
-      <ExternalToolModalLauncher
-        tool={tool}
-        launchType={launchType}
-        isOpen={isOpen}
-        contextType="course"
-        contextId={parseInt(ENV.COURSE_ID, 10)}
-        title={tool.name}
-        onRequestClose={handleDismiss}
-      />,
+      <ThemeProvider>
+        <ExternalToolModalLauncher
+          tool={tool}
+          launchType={launchType}
+          isOpen={isOpen}
+          contextType="course"
+          contextId={parseInt(ENV.COURSE_ID, 10)}
+          title={tool.name}
+          onRequestClose={handleDismiss}
+        />
+      </ThemeProvider>,
       $('#external-tool-mount-point')[0]
     )
   }
@@ -2682,30 +2691,34 @@ $(document).ready(function () {
 
   function renderCopyToTray(open, contentSelection, returnFocusTo) {
     ReactDOM.render(
-      <DirectShareCourseTray
-        open={open}
-        sourceCourseId={ENV.COURSE_ID}
-        contentSelection={contentSelection}
-        onDismiss={() => {
-          renderCopyToTray(false, contentSelection, returnFocusTo)
-          returnFocusTo.focus()
-        }}
-      />,
+      <ThemeProvider>
+        <DirectShareCourseTray
+          open={open}
+          sourceCourseId={ENV.COURSE_ID}
+          contentSelection={contentSelection}
+          onDismiss={() => {
+            renderCopyToTray(false, contentSelection, returnFocusTo)
+            returnFocusTo.focus()
+          }}
+        />
+      </ThemeProvider>,
       document.getElementById('direct-share-mount-point')
     )
   }
 
   function renderSendToTray(open, contentSelection, returnFocusTo) {
     ReactDOM.render(
-      <DirectShareUserModal
-        open={open}
-        sourceCourseId={ENV.COURSE_ID}
-        contentShare={contentSelection}
-        onDismiss={() => {
-          renderSendToTray(false, contentSelection, returnFocusTo)
-          returnFocusTo.focus()
-        }}
-      />,
+      <ThemeProvider>
+        <DirectShareUserModal
+          open={open}
+          sourceCourseId={ENV.COURSE_ID}
+          contentShare={contentSelection}
+          onDismiss={() => {
+            renderSendToTray(false, contentSelection, returnFocusTo)
+            returnFocusTo.focus()
+          }}
+        />
+      </ThemeProvider>,
       document.getElementById('direct-share-mount-point')
     )
   }

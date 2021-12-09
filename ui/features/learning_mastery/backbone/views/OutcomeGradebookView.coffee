@@ -34,6 +34,7 @@ import 'jquery-tinypubsub'
 import '@canvas/rails-flash-notifications'
 import '@canvas/jquery/jquery.instructure_misc_plugins'
 import '@canvas/jquery/jquery.disableWhileLoading'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 Dictionary =
   exceedsMastery:
@@ -304,7 +305,10 @@ export default class OutcomeGradebookView extends View
           disabled: false
 
         component = React.createElement(SectionFilter, props)
-        @sectionFilterMenu = ReactDOM.render(component, mountPoint)
+        @sectionFilterMenu = ReactDOM.render(
+          <ThemeProvider>{component}</ThemeProvider>,
+          mountPoint
+        )
 
     updateCurrentSection: (sectionId) =>
       @learningMastery.updateCurrentSectionId(sectionId)

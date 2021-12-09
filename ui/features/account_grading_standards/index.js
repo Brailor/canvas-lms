@@ -20,13 +20,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import AccountTabContainer from './react/AccountTabContainer'
 import ready from '@instructure/ready'
-import {InstUISettingsProvider} from '@instructure/emotion'
-import canvasTheme from '@instructure/canvas-theme'
-import canvasHighContrastTheme from '@instructure/canvas-high-contrast-theme'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ready(() => {
   ReactDOM.render(
-    <InstUISettingsProvider theme={ENV.use_high_contrast ? canvasHighContrastTheme : canvasTheme}>
+    <ThemeProvider>
       <AccountTabContainer
         {...{
           readOnly: ENV.GRADING_PERIODS_READ_ONLY,
@@ -38,7 +36,7 @@ ready(() => {
           }
         }}
       />
-    </InstUISettingsProvider>,
+    </ThemeProvider>,
     document.getElementById('react_grading_tabs')
   )
 })

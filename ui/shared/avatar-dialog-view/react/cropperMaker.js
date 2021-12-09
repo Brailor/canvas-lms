@@ -19,6 +19,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import CanvasCropper from './cropper'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 // CanvasCropperMaker is the component you'll create if injecting the cropper
 // into existing non-react UI (see UploadFileView.coffee for sample usage)
@@ -46,15 +47,17 @@ class CanvasCropperMaker {
 
   render() {
     ReactDOM.render(
-      <CanvasCropper
-        height={this.height}
-        imgFile={this.imgFile}
-        onImageLoaded={this.onImageLoaded}
-        ref={el => {
-          this.cropper = el
-        }}
-        width={this.width}
-      />,
+      <ThemeProvider>
+        <CanvasCropper
+          height={this.height}
+          imgFile={this.imgFile}
+          onImageLoaded={this.onImageLoaded}
+          ref={el => {
+            this.cropper = el
+          }}
+          width={this.width}
+        />
+      </ThemeProvider>,
       this.root
     )
   }

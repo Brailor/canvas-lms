@@ -24,6 +24,7 @@ import OutcomeFilterView from './react/OutcomeFilterView'
 import OutcomeColumnView from './backbone/views/OutcomeColumnView.coffee'
 import cellTemplate from './jst/outcome_gradebook_cell.handlebars'
 import studentCellTemplate from './jst/outcome_gradebook_student_cell.handlebars'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -458,7 +459,7 @@ const Grid = {
         },
         null
       )
-      ReactDOM.render(menu, node)
+      ReactDOM.render(<ThemeProvider>{menu}</ThemeProvider>, node)
     },
     studentHeaderRowCell(node, _column, grid) {
       $(node).addClass('average-filter')

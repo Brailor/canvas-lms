@@ -24,6 +24,7 @@ import I18n from 'i18n!moderated_grading'
 import '@canvas/rails-flash-notifications'
 import iframeAllowances from '@canvas/external-apps/iframeAllowances'
 import {asJson, getPrefetchedXHR, defaultFetchOptions} from '@instructure/js-utils'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 class AssignmentExternalTools extends React.Component {
   constructor(props) {
@@ -200,7 +201,7 @@ AssignmentExternalTools.defaultProps = {
   assignmentId: undefined
 }
 
-const attach = function(element, placement, courseId, assignmentId) {
+const attach = function (element, placement, courseId, assignmentId) {
   const configTools = (
     <AssignmentExternalTools
       placement={placement}
@@ -208,7 +209,7 @@ const attach = function(element, placement, courseId, assignmentId) {
       assignmentId={assignmentId}
     />
   )
-  ReactDOM.render(configTools, element)
+  ReactDOM.render(<ThemeProvider>{configTools}</ThemeProvider>, element)
 }
 
 const ConfigurationTools = {

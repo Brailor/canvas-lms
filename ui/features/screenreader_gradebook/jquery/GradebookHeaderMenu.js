@@ -36,6 +36,7 @@ import 'jqueryui/dialog'
 import '@canvas/jquery/jquery.instructure_misc_helpers'
 import '@canvas/jquery/jquery.instructure_misc_plugins'
 import 'jquery-kyle-menu'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const isAdmin = function () {
   return ENV.current_user_roles.includes('admin')
@@ -213,7 +214,7 @@ export default class GradebookHeaderMenu {
         },
         students
       })
-      ReactDOM.render(dialog, mountPoint)
+      ReactDOM.render(<ThemeProvider>{dialog}</ThemeProvider>, mountPoint)
     } else {
       const settings = MessageStudentsWhoHelper.settings(assignment, students)
       return messageStudents(settings)

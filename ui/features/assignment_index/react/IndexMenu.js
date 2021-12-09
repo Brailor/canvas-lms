@@ -24,6 +24,7 @@ import Actions from './actions/IndexMenuActions'
 import ReactDOM from 'react-dom'
 import ContentTypeExternalToolTray from '@canvas/trays/react/ContentTypeExternalToolTray'
 import {ltiState} from '@canvas/lti/jquery/messages'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default class IndexMenu extends React.Component {
   static propTypes = {
@@ -167,16 +168,18 @@ export default class IndexMenu extends React.Component {
       }
     ]
     ReactDOM.render(
-      <ContentTypeExternalToolTray
-        tool={tool}
-        placement="assignment_index_menu"
-        acceptedResourceTypes={['assignment']}
-        targetResourceType="assignment"
-        allowItemSelection
-        selectableItems={groupData}
-        onDismiss={handleDismiss}
-        open={tool !== null}
-      />,
+      <ThemeProvider>
+        <ContentTypeExternalToolTray
+          tool={tool}
+          placement="assignment_index_menu"
+          acceptedResourceTypes={['assignment']}
+          targetResourceType="assignment"
+          allowItemSelection
+          selectableItems={groupData}
+          onDismiss={handleDismiss}
+          open={tool !== null}
+        />
+      </ThemeProvider>,
       document.getElementById('external-tool-mount-point')
     )
   }

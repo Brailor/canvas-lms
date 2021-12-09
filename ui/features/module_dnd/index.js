@@ -20,6 +20,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import ModuleFileDrop from '@canvas/context-module-file-drop'
 import ready from '@instructure/ready'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ready(() => {
   const contextModules = document.getElementById('context_modules')
@@ -28,11 +29,13 @@ ready(() => {
   )
   zones.forEach(zone => {
     ReactDOM.render(
-      <ModuleFileDrop
-        courseId={ENV.course_id}
-        moduleId={zone.getAttribute('data-context-module-id')}
-        contextModules={contextModules}
-      />,
+      <ThemeProvider>
+        <ModuleFileDrop
+          courseId={ENV.course_id}
+          moduleId={zone.getAttribute('data-context-module-id')}
+          contextModules={contextModules}
+        />
+      </ThemeProvider>,
       zone
     )
   })

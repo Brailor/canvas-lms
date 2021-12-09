@@ -20,6 +20,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import AssignmentRowCell from './AssignmentRowCell'
 import ReadOnlyCell from './ReadOnlyCell'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 /*
  * This editor is intended to be responsible for interfacing with SlickGrid and
@@ -47,7 +48,7 @@ export default class AssignmentCellEditor {
 
     const Component = props.gradeIsEditable ? AssignmentRowCell : ReadOnlyCell
     const element = React.createElement(Component, props, null)
-    ReactDOM.render(element, this.container)
+    ReactDOM.render(<ThemeProvider>{element}</ThemeProvider>, this.container)
   }
 
   handleKeyDown(event) {

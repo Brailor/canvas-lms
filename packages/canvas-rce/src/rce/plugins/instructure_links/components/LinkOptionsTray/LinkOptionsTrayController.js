@@ -22,6 +22,7 @@ import bridge from '../../../../../bridge'
 import {getLinkContentFromEditor} from '../../../shared/ContentSelection'
 import {getAnchorElement} from '../../../../contentInsertionUtils'
 import LinkOptionsTray from '.'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export const CONTAINER_ID = 'instructure-link-options-tray-container'
 export default class LinkOptionsTrayController {
@@ -113,6 +114,6 @@ export default class LinkOptionsTrayController {
         open={this._shouldOpen}
       />
     )
-    ReactDOM.render(element, this.$container)
+    ReactDOM.render(<ThemeProvider>{element}</ThemeProvider>, this.$container)
   }
 }

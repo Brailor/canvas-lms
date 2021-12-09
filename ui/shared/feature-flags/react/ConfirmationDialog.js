@@ -21,6 +21,7 @@ import ReactDOM from 'react-dom'
 import I18n from 'i18n!ConfirmationDialog'
 import {Button} from '@instructure/ui-buttons'
 import CanvasModal from '@canvas/instui-bindings/react/Modal'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const dialogHolderId = 'confirmation_dialog_holder'
 
@@ -86,16 +87,18 @@ export async function showConfirmationDialog({label, body, confirmText, confirmC
 
   function renderDialog(parent) {
     ReactDOM.render(
-      <ConfirmationDialog
-        open
-        label={label}
-        confirmColor={confirmColor}
-        confirmText={confirmText}
-        onConfirm={confirmationFunction}
-        onReject={rejectFunction}
-      >
-        {body}
-      </ConfirmationDialog>,
+      <ThemeProvider>
+        <ConfirmationDialog
+          open
+          label={label}
+          confirmColor={confirmColor}
+          confirmText={confirmText}
+          onConfirm={confirmationFunction}
+          onReject={rejectFunction}
+        >
+          {body}
+        </ConfirmationDialog>
+      </ThemeProvider>,
       parent
     )
   }

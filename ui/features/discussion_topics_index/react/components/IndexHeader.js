@@ -37,6 +37,7 @@ import {TextInput} from '@instructure/ui-text-input'
 import ReactDOM from 'react-dom'
 import ContentTypeExternalToolTray from '@canvas/trays/react/ContentTypeExternalToolTray'
 import {ltiState} from '@canvas/lti/jquery/messages'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const filters = {
   all: I18n.t('All'),
@@ -148,16 +149,18 @@ export default class IndexHeader extends Component {
       }
     }
     ReactDOM.render(
-      <ContentTypeExternalToolTray
-        tool={tool}
-        placement="discussion_topic_index_menu"
-        acceptedResourceTypes={['discussion_topic']}
-        targetResourceType="discussion_topic"
-        allowItemSelection={false}
-        selectableItems={[]}
-        onDismiss={handleDismiss}
-        open={tool !== null}
-      />,
+      <ThemeProvider>
+        <ContentTypeExternalToolTray
+          tool={tool}
+          placement="discussion_topic_index_menu"
+          acceptedResourceTypes={['discussion_topic']}
+          targetResourceType="discussion_topic"
+          allowItemSelection={false}
+          selectableItems={[]}
+          onDismiss={handleDismiss}
+          open={tool !== null}
+        />
+      </ThemeProvider>,
       document.getElementById('external-tool-mount-point')
     )
   }

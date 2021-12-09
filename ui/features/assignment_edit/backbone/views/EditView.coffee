@@ -54,6 +54,7 @@ import '@canvas/util/toJSON'
 import '@canvas/rails-flash-notifications'
 import '../../../../boot/initializers/activateTooltips.js'
 import {AnnotatedDocumentSelector} from '../../react/EditAssignment'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ###
 xsslint safeString.identifier srOnly
@@ -422,7 +423,10 @@ export default class EditView extends ValidatedFormView
     }
 
     element = React.createElement(AnnotatedDocumentSelector, props)
-    ReactDOM.render(element, @getAnnotatedDocumentContainer())
+    ReactDOM.render(
+      <ThemeProvider>{element}</ThemeProvider>,
+      @getAnnotatedDocumentContainer()
+    )
 
   unmountAnnotatedDocumentSelector: () =>
     ReactDOM.unmountComponentAtNode(@getAnnotatedDocumentContainer())
@@ -465,7 +469,9 @@ export default class EditView extends ValidatedFormView
     if annotatedDocument
       { contextType, contextId } = annotatedDocument
       ReactDOM.render(
-        React.createElement(UsageRightsSelectBox, { contextType, contextId }),
+        <ThemeProvider>
+          {React.createElement(UsageRightsSelectBox, {contextType, contextId})}
+        </ThemeProvider>,
         document.querySelector(USAGE_RIGHTS_CONTAINER)
       )
       $("#{USAGE_RIGHTS_CONTAINER} .UsageRightsSelectBox__container").addClass("edit-view")
@@ -509,7 +515,9 @@ export default class EditView extends ValidatedFormView
     }
 
     ReactDOM.render(
-      React.createElement(DefaultToolForm, props),
+      <ThemeProvider>
+        {React.createElement(DefaultToolForm, props)}
+      </ThemeProvider>,
       document.querySelector('[data-component="DefaultToolForm"]')
     )
 
@@ -585,7 +593,10 @@ export default class EditView extends ValidatedFormView
 
     mountPoint = document.querySelector('#assignment_submission_type_selection_tool_dialog')
     dialog = React.createElement(ExternalToolModalLauncher, props)
-    ReactDOM.render(dialog, mountPoint)
+    ReactDOM.render(
+      <ThemeProvider>{dialog}</ThemeProvider>,
+      mountPoint
+    )
 
   handleExternalContentReady: (data) =>
     if !data.contentItems || data.contentItems.length == 0
@@ -1115,7 +1126,10 @@ export default class EditView extends ValidatedFormView
 
     formFieldGroup = React.createElement(ModeratedGradingFormFieldGroup, props)
     mountPoint = document.querySelector("[data-component='ModeratedGradingFormFieldGroup']")
-    ReactDOM.render(formFieldGroup, mountPoint)
+    ReactDOM.render(
+      <ThemeProvider>{formFieldGroup}</ThemeProvider>,
+      mountPoint
+    )
 
   renderAllowedAttempts: ->
     return if !ENV?.assignment_attempts_enabled
@@ -1125,4 +1139,9 @@ export default class EditView extends ValidatedFormView
       locked: !!@lockedItems.settings
     }
     mountPoint = document.querySelector('#allowed-attempts-target')
-    ReactDOM.render(React.createElement(AllowedAttemptsWithState, props), mountPoint)
+    ReactDOM.render(
+      <ThemeProvider>
+        {React.createElement(AllowedAttemptsWithState, props)}
+      </ThemeProvider>,
+      mountPoint
+    )

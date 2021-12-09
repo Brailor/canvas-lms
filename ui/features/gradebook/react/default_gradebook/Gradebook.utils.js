@@ -23,6 +23,7 @@ import {showConfirmationDialog} from '@canvas/feature-flags/react/ConfirmationDi
 import I18n from 'i18n!gradebook'
 import _ from 'lodash'
 import htmlEscape from 'html-escape'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export function compareAssignmentDueDates(assignment1, assignment2) {
   return assignmentHelper.compareByDueDate(assignment1.object, assignment2.object)
@@ -110,7 +111,7 @@ export function onGridKeyDown(event, obj) {
 export function renderComponent(reactClass, mountPoint, props = {}, children = null) {
   const component = React.createElement(reactClass, props, children)
   // eslint-disable-next-line react/no-render-return-value
-  return ReactDOM.render(component, mountPoint)
+  return ReactDOM.render(<ThemeProvider>{component}</ThemeProvider>, mountPoint)
 }
 
 export async function confirmViewUngradedAsZero({currentValue, onAccepted}) {

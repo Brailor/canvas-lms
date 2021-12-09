@@ -23,6 +23,7 @@ import I18n from 'i18n!StudentGroupDialog'
 import ready from '@instructure/ready'
 import GroupModal from '@canvas/group-modal'
 import Group from '@canvas/groups/backbone/models/Group.coffee'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 function reloadStudentGroup() {
   return window.location.reload()
@@ -30,24 +31,26 @@ function reloadStudentGroup() {
 
 function editGroup(group, open = true) {
   ReactDOM.render(
-    <GroupModal
-      group={{
-        name: group.get('name'),
-        id: group.get('id'),
-        group_category_id: group.get('group_category_id'),
-        join_level: group.get('join_level'),
-        group_limit: group.get('max_membership')
-      }}
-      label={I18n.t('Edit Group')}
-      open={open}
-      nameOnly
-      requestMethod="PUT"
-      onSave={reloadStudentGroup}
-      onDismiss={() => {
-        editGroup(group, false)
-        document.getElementById('edit_group').focus()
-      }}
-    />,
+    <ThemeProvider>
+      <GroupModal
+        group={{
+          name: group.get('name'),
+          id: group.get('id'),
+          group_category_id: group.get('group_category_id'),
+          join_level: group.get('join_level'),
+          group_limit: group.get('max_membership')
+        }}
+        label={I18n.t('Edit Group')}
+        open={open}
+        nameOnly
+        requestMethod="PUT"
+        onSave={reloadStudentGroup}
+        onDismiss={() => {
+          editGroup(group, false)
+          document.getElementById('edit_group').focus()
+        }}
+      />
+    </ThemeProvider>,
     document.getElementById('student-group-dialog-mount-point')
   )
 }

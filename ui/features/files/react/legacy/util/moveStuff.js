@@ -21,6 +21,7 @@ import $ from 'jquery'
 import FileRenameForm from '@canvas/files/react/components/FileRenameForm'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 function moveItem(item, destinationFolder, options = {}) {
   const dfd = $.Deferred()
@@ -32,19 +33,21 @@ function moveItem(item, destinationFolder, options = {}) {
       if (jqXHR.status === 409) {
         // file already exists: prompt and retry
         ReactDOM.render(
-          React.createFactory(FileRenameForm)({
-            onClose() {},
-            closeWithX() {
-              return dfd.reject()
-            },
-            closeOnResolve: true,
-            fileOptions: {name: item.attributes.display_name},
-            onNameConflictResolved: opts =>
-              moveItem(item, destinationFolder, opts).then(
-                data => dfd.resolve(data),
-                () => dfd.reject()
-              )
-          }),
+          <ThemeProvider>
+            {React.createFactory(FileRenameForm)({
+              onClose() {},
+              closeWithX() {
+                return dfd.reject()
+              },
+              closeOnResolve: true,
+              fileOptions: {name: item.attributes.display_name},
+              onNameConflictResolved: opts =>
+                moveItem(item, destinationFolder, opts).then(
+                  data => dfd.resolve(data),
+                  () => dfd.reject()
+                )
+            })}
+          </ThemeProvider>,
           $('<div>').appendTo('body')[0]
         )
       } else {

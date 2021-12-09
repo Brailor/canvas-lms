@@ -26,6 +26,7 @@ import template from '../../jst/groupDetail.handlebars'
 import groupHasSubmissions from '../../groupHasSubmissions'
 import '@canvas/rails-flash-notifications'
 import '@canvas/context-cards/react/StudentContextCardTrigger'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default class GroupDetailView extends View {
   static initClass() {
@@ -73,25 +74,27 @@ export default class GroupDetailView extends View {
   editGroup(e, open = true) {
     if (e) e.preventDefault()
     ReactDOM.render(
-      <GroupModal
-        group={{
-          name: this.model.get('name'),
-          id: this.model.get('id'),
-          group_category_id: this.model.get('group_category_id'),
-          role: this.model.get('role'),
-          join_level: this.model.get('join_level'),
-          group_limit: this.model.get('max_membership'),
-          members_count: this.model.get('members_count')
-        }}
-        label={I18n.t('Edit Group')}
-        open={open}
-        requestMethod="PUT"
-        onSave={() => this.refreshCollection()}
-        onDismiss={() => {
-          this.editGroup(null, false)
-          this.$editGroupLink.focus()
-        }}
-      />,
+      <ThemeProvider>
+        <GroupModal
+          group={{
+            name: this.model.get('name'),
+            id: this.model.get('id'),
+            group_category_id: this.model.get('group_category_id'),
+            role: this.model.get('role'),
+            join_level: this.model.get('join_level'),
+            group_limit: this.model.get('max_membership'),
+            members_count: this.model.get('members_count')
+          }}
+          label={I18n.t('Edit Group')}
+          open={open}
+          requestMethod="PUT"
+          onSave={() => this.refreshCollection()}
+          onDismiss={() => {
+            this.editGroup(null, false)
+            this.$editGroupLink.focus()
+          }}
+        />
+      </ThemeProvider>,
       document.getElementById('group-mount-point')
     )
   }

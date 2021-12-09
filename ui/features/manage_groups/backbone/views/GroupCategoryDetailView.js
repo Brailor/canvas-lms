@@ -27,6 +27,7 @@ import GroupModal from '@canvas/group-modal'
 import GroupCategoryCloneModal from '../../react/GroupCategoryCloneModal'
 import GroupCategoryMessageAllUnassignedModal from '../../react/GroupCategoryMessageAllUnassignedModal'
 import GroupImportModal from '../../react/GroupImportModal'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default class GroupCategoryDetailView extends View {
   static initClass() {
@@ -111,21 +112,23 @@ export default class GroupCategoryDetailView extends View {
   addGroup(e, open = true) {
     if (e) e.preventDefault()
     ReactDOM.render(
-      <GroupModal
-        groupCategory={{id: this.model.get('id')}}
-        group={{
-          role: this.model.get('role'),
-          group_limit: this.model.get('group_limit')
-        }}
-        label={I18n.t('Add Group')}
-        open={open}
-        requestMethod="POST"
-        onSave={() => this.refreshCollection()}
-        onDismiss={() => {
-          this.addGroup(null, false)
-          this.$addGroupButton.focus()
-        }}
-      />,
+      <ThemeProvider>
+        <GroupModal
+          groupCategory={{id: this.model.get('id')}}
+          group={{
+            role: this.model.get('role'),
+            group_limit: this.model.get('group_limit')
+          }}
+          label={I18n.t('Add Group')}
+          open={open}
+          requestMethod="POST"
+          onSave={() => this.refreshCollection()}
+          onDismiss={() => {
+            this.addGroup(null, false)
+            this.$addGroupButton.focus()
+          }}
+        />
+      </ThemeProvider>,
       document.getElementById('group-mount-point')
     )
   }
@@ -138,11 +141,13 @@ export default class GroupCategoryDetailView extends View {
     if (e) e.preventDefault()
     const parent = document.getElementById('group-import-modal-mount-point')
     ReactDOM.render(
-      <GroupImportModal
-        setProgress={this.setProgress.bind(this)}
-        groupCategoryId={this.model.id}
-        parent={parent}
-      />,
+      <ThemeProvider>
+        <GroupImportModal
+          setProgress={this.setProgress.bind(this)}
+          groupCategoryId={this.model.id}
+          parent={parent}
+        />
+      </ThemeProvider>,
       parent
     )
   }
@@ -160,19 +165,21 @@ export default class GroupCategoryDetailView extends View {
   cloneCategory(e, open = true) {
     if (e) e.preventDefault()
     ReactDOM.render(
-      <GroupCategoryCloneModal
-        // implicitly rendered with openedFromCaution: false
-        groupCategory={{
-          id: this.model.get('id'),
-          name: this.model.get('name')
-        }}
-        label={I18n.t('Clone Group Set')}
-        open={open}
-        onDismiss={() => {
-          this.cloneCategory(null, false)
-          $(`#group-category-${this.model.id}-actions`).focus()
-        }}
-      />,
+      <ThemeProvider>
+        <GroupCategoryCloneModal
+          // implicitly rendered with openedFromCaution: false
+          groupCategory={{
+            id: this.model.get('id'),
+            name: this.model.get('name')
+          }}
+          label={I18n.t('Clone Group Set')}
+          open={open}
+          onDismiss={() => {
+            this.cloneCategory(null, false)
+            $(`#group-category-${this.model.id}-actions`).focus()
+          }}
+        />
+      </ThemeProvider>,
       document.getElementById('group-category-clone-mount-point')
     )
   }
@@ -188,15 +195,17 @@ export default class GroupCategoryDetailView extends View {
         .map(user => ({id: user.get('id'), short_name: user.get('short_name')}))
       const dialog = () => {
         ReactDOM.render(
-          <GroupCategoryMessageAllUnassignedModal
-            groupCategory={{name: this.model.get('name')}}
-            recipients={students}
-            open={open}
-            onDismiss={() => {
-              this.messageAllUnassigned(null, false)
-              this.$messageAllUnassignedLink.focus()
-            }}
-          />,
+          <ThemeProvider>
+            <GroupCategoryMessageAllUnassignedModal
+              groupCategory={{name: this.model.get('name')}}
+              recipients={students}
+              open={open}
+              onDismiss={() => {
+                this.messageAllUnassigned(null, false)
+                this.$messageAllUnassignedLink.focus()
+              }}
+            />
+          </ThemeProvider>,
           document.getElementById('group-category-message-all-unassigned-mount-point')
         )
       }

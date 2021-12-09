@@ -20,6 +20,7 @@ import I18n from 'i18n!renderDatepickerTime'
 import tz from '@canvas/timezone'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const STRINGS = {
   get timeLabel() {
@@ -99,16 +100,18 @@ function renderDatepickerTime($input) {
   const containingDiv = document.createElement('div')
 
   ReactDOM.render(
-    <div className="ui-datepicker-time ui-corner-bottom">
-      {label}{' '}
-      <span dir="ltr">
-        {hourInput}:{minuteInput}
-      </span>{' '}
-      {meridianSelect}
-      <button type="button" className="btn btn-mini ui-datepicker-ok">
-        {STRINGS.doneButton}
-      </button>
-    </div>,
+    <ThemeProvider>
+      <div className="ui-datepicker-time ui-corner-bottom">
+        {label}{' '}
+        <span dir="ltr">
+          {hourInput}:{minuteInput}
+        </span>{' '}
+        {meridianSelect}
+        <button type="button" className="btn btn-mini ui-datepicker-ok">
+          {STRINGS.doneButton}
+        </button>
+      </div>
+    </ThemeProvider>,
     containingDiv
   )
   return containingDiv.innerHTML

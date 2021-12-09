@@ -20,6 +20,7 @@ import $ from 'jquery'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import StudentContextTray from './GraphQLStudentContextTray'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const handleClickEvent = event => {
   const studentId = $(event.currentTarget).attr('data-student_id')
@@ -41,13 +42,15 @@ const handleClickEvent = event => {
     }
 
     ReactDOM.render(
-      <StudentContextTray
-        key={`student_context_card_${courseId}_${studentId}`}
-        courseId={courseId}
-        studentId={studentId}
-        returnFocusTo={returnFocusToHandler}
-        externalTools={ENV.student_context_card_tools}
-      />,
+      <ThemeProvider>
+        <StudentContextTray
+          key={`student_context_card_${courseId}_${studentId}`}
+          courseId={courseId}
+          studentId={studentId}
+          returnFocusTo={returnFocusToHandler}
+          externalTools={ENV.student_context_card_tools}
+        />
+      </ThemeProvider>,
       container
     )
   }

@@ -35,6 +35,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {decodeQueryString} from 'query-string-encoding'
 import ConversationStatusFilter from './react/ConversationStatusFilter'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const ConversationsRouter = Backbone.Router.extend({
   routes: {
@@ -198,7 +199,7 @@ const ConversationsRouter = Backbone.Router.extend({
       $(trigger).focus()
       return
     }
-    const messages = this.batchUpdate(action, function(m) {
+    const messages = this.batchUpdate(action, function (m) {
       const newState = action === 'mark_as_read' ? 'read' : 'archived'
       m.set('workflow_state', newState)
       this.header.onArchivedStateChange(m)
@@ -220,8 +221,7 @@ const ConversationsRouter = Backbone.Router.extend({
   onDelete(focusNext, trigger) {
     const confirmMsg = I18n.t(
       {
-        one:
-          'Are you sure you want to delete your copy of this conversation? This action cannot be undone.',
+        one: 'Are you sure you want to delete your copy of this conversation? This action cannot be undone.',
         other:
           'Are you sure you want to delete your copy of these conversations? This action cannot be undone.'
       },
@@ -525,12 +525,14 @@ const ConversationsRouter = Backbone.Router.extend({
     this.header = new InboxHeaderView({el: $('header.panel'), courses: this.courses})
     this.header.render()
     ReactDOM.render(
-      <ConversationStatusFilter
-        router={this}
-        filters={filters}
-        defaultFilter={defaultFilter}
-        initialFilter={initialFilter}
-      />,
+      <ThemeProvider>
+        <ConversationStatusFilter
+          router={this}
+          filters={filters}
+          defaultFilter={defaultFilter}
+          initialFilter={initialFilter}
+        />
+      </ThemeProvider>,
       document.getElementById('conversation_filter')
     )
   },

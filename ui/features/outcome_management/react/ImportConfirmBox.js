@@ -25,6 +25,7 @@ import {View} from '@instructure/ui-view'
 import {Text} from '@instructure/ui-text'
 import {Button} from '@instructure/ui-buttons'
 import {FocusRegionManager} from '@instructure/ui-a11y-utils'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const ImportConfirmBox = ({count, onImportHandler, onCloseHandler}) => {
   const containerRef = useRef()
@@ -140,15 +141,17 @@ export const showImportConfirmBox = ({count, onImportHandler, onCloseHandler}) =
   parent.setAttribute('class', 'flashalert-message')
   getBoxContainer().appendChild(parent)
   ReactDOM.render(
-    <ImportConfirmBox
-      count={count}
-      onImportHandler={onImportHandler}
-      onCloseHandler={() => {
-        onCloseHandler()
-        ReactDOM.unmountComponentAtNode(parent)
-        parent.remove()
-      }}
-    />,
+    <ThemeProvider>
+      <ImportConfirmBox
+        count={count}
+        onImportHandler={onImportHandler}
+        onCloseHandler={() => {
+          onCloseHandler()
+          ReactDOM.unmountComponentAtNode(parent)
+          parent.remove()
+        }}
+      />
+    </ThemeProvider>,
     parent
   )
 }

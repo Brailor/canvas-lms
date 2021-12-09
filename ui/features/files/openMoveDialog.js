@@ -21,6 +21,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import MoveDialog from './react/components/MoveDialog'
 import filesEnv from '@canvas/files/react/modules/filesEnv'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 import $ from 'jquery'
 
 function openMoveDialog(
@@ -47,12 +48,14 @@ function openMoveDialog(
   }
 
   ReactDOM.render(
-    <MoveDialog
-      thingsToMove={thingsToMove}
-      rootFoldersToShow={filesEnv.showingAllContexts ? filesEnv.rootFolders : [rootFolderToShow]}
-      onClose={handleClose}
-      onMove={handleMove}
-    />,
+    <ThemeProvider>
+      <MoveDialog
+        thingsToMove={thingsToMove}
+        rootFoldersToShow={filesEnv.showingAllContexts ? filesEnv.rootFolders : [rootFolderToShow]}
+        onClose={handleClose}
+        onMove={handleMove}
+      />
+    </ThemeProvider>,
     $moveDialog[0]
   )
 }

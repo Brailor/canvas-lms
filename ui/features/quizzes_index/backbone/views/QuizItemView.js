@@ -33,6 +33,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import DirectShareCourseTray from '@canvas/direct-sharing/react/components/DirectShareCourseTray'
 import DirectShareUserModal from '@canvas/direct-sharing/react/components/DirectShareUserModal'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default class ItemView extends Backbone.View {
   static initClass() {
@@ -199,15 +200,17 @@ export default class ItemView extends Backbone.View {
     const isOldQuiz = this.model.get('quiz_type') !== 'quizzes.next'
     const contentSelection = isOldQuiz ? {quizzes: [quizId]} : {assignments: [quizId]}
     ReactDOM.render(
-      <DirectShareCourseTray
-        open={open}
-        sourceCourseId={ENV.COURSE_ID}
-        contentSelection={contentSelection}
-        onDismiss={() => {
-          this.renderCopyToTray(false)
-          return setTimeout(() => this.$settingsButton.focus(), 100)
-        }}
-      />,
+      <ThemeProvider>
+        <DirectShareCourseTray
+          open={open}
+          sourceCourseId={ENV.COURSE_ID}
+          contentSelection={contentSelection}
+          onDismiss={() => {
+            this.renderCopyToTray(false)
+            return setTimeout(() => this.$settingsButton.focus(), 100)
+          }}
+        />
+      </ThemeProvider>,
       document.getElementById('direct-share-mount-point')
     )
   }
@@ -222,15 +225,17 @@ export default class ItemView extends Backbone.View {
     const isOldQuiz = this.model.get('quiz_type') !== 'quizzes.next'
     const contentType = isOldQuiz ? 'quiz' : 'assignment'
     ReactDOM.render(
-      <DirectShareUserModal
-        open={open}
-        sourceCourseId={ENV.COURSE_ID}
-        contentShare={{content_type: contentType, content_id: quizId}}
-        onDismiss={() => {
-          this.renderSendToTray(false)
-          return setTimeout(() => this.$settingsButton.focus(), 100)
-        }}
-      />,
+      <ThemeProvider>
+        <DirectShareUserModal
+          open={open}
+          sourceCourseId={ENV.COURSE_ID}
+          contentShare={{content_type: contentType, content_id: quizId}}
+          onDismiss={() => {
+            this.renderSendToTray(false)
+            return setTimeout(() => this.$settingsButton.focus(), 100)
+          }}
+        />
+      </ThemeProvider>,
       document.getElementById('direct-share-mount-point')
     )
   }

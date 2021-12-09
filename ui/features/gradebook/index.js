@@ -19,6 +19,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import GradebookData from './react/default_gradebook/GradebookData'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 import('@canvas/context-cards/react/StudentContextCardTrigger')
 
@@ -43,4 +44,4 @@ const props = {
 }
 
 const component = React.createElement(GradebookData, props)
-ReactDOM.render(component, mountPoint)
+ReactDOM.render(<ThemeProvider>{component}</ThemeProvider>, mountPoint)

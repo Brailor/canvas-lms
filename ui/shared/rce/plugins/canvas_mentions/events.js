@@ -28,6 +28,7 @@ import {
 } from './constants'
 import MentionsUI from './components/MentionAutoComplete/MentionsUI'
 import broadcastMessage, {inputChangeMessage, navigationMessage} from './broadcastMessage'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 // track the currently selected user
 let currentMentionsSelection
@@ -106,12 +107,14 @@ export const onSetContent = e => {
       elm.id = MENTION_MENU_ID
       editor.getContainer().parentNode.appendChild(elm)
       ReactDom.render(
-        <MentionsUI
-          rceRef={editor.getBody()}
-          onFocusedUserChange={onFocusedUserChange}
-          onExited={onMentionsExit}
-          editor={editor}
-        />,
+        <ThemeProvider>
+          <MentionsUI
+            rceRef={editor.getBody()}
+            onFocusedUserChange={onFocusedUserChange}
+            onExited={onMentionsExit}
+            editor={editor}
+          />
+        </ThemeProvider>,
         elm
       )
     }

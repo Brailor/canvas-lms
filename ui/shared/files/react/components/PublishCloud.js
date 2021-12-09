@@ -23,12 +23,13 @@ import $ from 'jquery'
 import I18n from 'i18n!publish_cloud'
 import PublishCloud from './LegacyPublishCloud'
 import 'jqueryui/dialog'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 // Function Summary
 // Create a blank dialog window via jQuery, then dump the RestrictedDialogForm into that
 // dialog window. This allows us to do react things inside of this all ready rendered
 // jQueryUI widget
-PublishCloud.openRestrictedDialog = function() {
+PublishCloud.openRestrictedDialog = function () {
   const $dialog = $('<div>').dialog({
     title: I18n.t('Editing permissions for: %{name}', {name: this.props.model.displayName()}),
     width: 800,
@@ -41,19 +42,21 @@ PublishCloud.openRestrictedDialog = function() {
 
   import('./RestrictedDialogForm').then(({default: RestrictedDialogForm}) => {
     ReactDOM.render(
-      <RestrictedDialogForm
-        usageRightsRequiredForContext={this.props.usageRightsRequiredForContext}
-        models={[this.props.model]}
-        closeDialog={() => {
-          $dialog.dialog('close')
-        }}
-      />,
+      <ThemeProvider>
+        <RestrictedDialogForm
+          usageRightsRequiredForContext={this.props.usageRightsRequiredForContext}
+          models={[this.props.model]}
+          closeDialog={() => {
+            $dialog.dialog('close')
+          }}
+        />
+      </ThemeProvider>,
       $dialog[0]
     )
   })
 }
 
-PublishCloud.render = function() {
+PublishCloud.render = function () {
   const fileName = (this.props.model && this.props.model.displayName()) || I18n.t('This file')
   if (this.props.userCanEditFilesForContext) {
     if (this.state.published && this.state.restricted) {

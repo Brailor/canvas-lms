@@ -23,18 +23,21 @@ import ReceivedContentView from './react/ReceivedContentView'
 import ErrorBoundary from '@canvas/error-boundary'
 import GenericErrorPage from '@canvas/generic-error-page'
 import errorShipUrl from '@canvas/images/ErrorShip.svg'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const container = document.getElementById('content')
 ReactDOM.render(
-  <ErrorBoundary
-    errorComponent={
-      <GenericErrorPage
-        imageUrl={errorShipUrl}
-        errorCategory={I18n.t('Content Shares Received View Error Page')}
-      />
-    }
-  >
-    <ReceivedContentView />
-  </ErrorBoundary>,
+  <ThemeProvider>
+    <ErrorBoundary
+      errorComponent={
+        <GenericErrorPage
+          imageUrl={errorShipUrl}
+          errorCategory={I18n.t('Content Shares Received View Error Page')}
+        />
+      }
+    >
+      <ReceivedContentView />
+    </ErrorBoundary>
+  </ThemeProvider>,
   container
 )

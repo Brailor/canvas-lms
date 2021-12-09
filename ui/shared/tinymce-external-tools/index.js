@@ -23,6 +23,7 @@ import ExternalToolsHelper from './ExternalToolsHelper'
 import iframeAllowances from '@canvas/external-apps/iframeAllowances'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const TRANSLATIONS = {
   get more_external_tools() {
@@ -44,14 +45,16 @@ const ExternalToolsPlugin = {
       const dialogContainer = document.createElement('div')
       document.body.appendChild(dialogContainer)
       ReactDOM.render(
-        <ExternalToolDialog
-          win={window}
-          editor={ed}
-          contextAssetString={ENV.context_asset_string}
-          iframeAllowances={iframeAllowances()}
-          resourceSelectionUrl={$('#context_external_tool_resource_selection_url').attr('href')}
-          deepLinkingOrigin={ENV.DEEP_LINKING_POST_MESSAGE_ORIGIN}
-        />,
+        <ThemeProvider>
+          <ExternalToolDialog
+            win={window}
+            editor={ed}
+            contextAssetString={ENV.context_asset_string}
+            iframeAllowances={iframeAllowances()}
+            resourceSelectionUrl={$('#context_external_tool_resource_selection_url').attr('href')}
+            deepLinkingOrigin={ENV.DEEP_LINKING_POST_MESSAGE_ORIGIN}
+          />
+        </ThemeProvider>,
         dialogContainer,
         function () {
           dialog = this

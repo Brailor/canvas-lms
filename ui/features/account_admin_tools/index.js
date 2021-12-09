@@ -36,9 +36,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import BouncedEmailsView from './react/BouncedEmailsView'
 import ready from '@instructure/ready'
-import {InstUISettingsProvider} from '@instructure/emotion'
-import canvasTheme from '@instructure/canvas-theme'
-import canvasHighContrastTheme from '@instructure/canvas-high-contrast-theme'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 // This is used by admin tools to display search results
 const restoreModel = new CourseRestoreModel({account_id: ENV.ACCOUNT_ID})
@@ -95,9 +93,9 @@ ready(() => {
   const bouncedEmailsMountPoint = document.getElementById('bouncedEmailsPane')
   if (bouncedEmailsMountPoint) {
     ReactDOM.render(
-      <InstUISettingsProvider theme={ENV.use_high_contrast ? canvasHighContrastTheme : canvasTheme}>
+      <ThemeProvider>
         <BouncedEmailsView accountId={ENV.ACCOUNT_ID} />, bouncedEmailsMountPoint
-      </InstUISettingsProvider>
+      </ThemeProvider>
     )
   }
 })

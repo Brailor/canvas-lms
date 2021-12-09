@@ -40,6 +40,7 @@ import 'jqueryui/tooltip'
 import '../../../../boot/initializers/activateTooltips.js'
 import '@canvas/rails-flash-notifications'
 import {shimGetterShorthand} from '@canvas/util/legacyCoffeesScriptHelpers'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default class AssignmentListItemView extends Backbone.View
   @mixin AssignmentKeyBindingsMixin
@@ -322,13 +323,17 @@ export default class AssignmentListItemView extends Backbone.View
     renderModal = (open) =>
       mountPoint = document.getElementById('send-to-mount-point')
       return unless mountPoint
-      ReactDOM.render(React.createElement(DirectShareUserModal, {
+      element = React.createElement(DirectShareUserModal, {
         open: open
         courseId: ENV.COURSE_ID || ENV.COURSE.id
         contentShare: {content_type: 'assignment', content_id: @model.id}
         shouldReturnFocus: false
         onDismiss: dismissModal
-      }), mountPoint)
+      })
+      ReactDOM.render(
+        <ThemeProvider>{element}</ThemeProvider>,
+        mountPoint
+      )
 
     dismissModal = () =>
       renderModal(false)
@@ -344,13 +349,17 @@ export default class AssignmentListItemView extends Backbone.View
     renderTray = (open) =>
       mountPoint = document.getElementById('copy-to-mount-point')
       return unless mountPoint
-      ReactDOM.render(React.createElement(DirectShareCourseTray, {
+      element = React.createElement(DirectShareCourseTray, {
         open: open
         sourceCourseId: ENV.COURSE_ID || ENV.COURSE.id
         contentSelection: {assignments: [@model.id]}
         shouldReturnFocus: false
         onDismiss: dismissTray
-      }), mountPoint)
+      })
+      ReactDOM.render(
+        <ThemeProvider>{element}</ThemeProvider>,
+        mountPoint
+      )
 
     dismissTray = () =>
       renderTray(false)

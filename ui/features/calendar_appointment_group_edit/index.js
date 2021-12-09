@@ -19,10 +19,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import EditPage from './react/EditPage'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ReactDOM.render(
-  <EditPage
-    appointment_group_id={ENV.APPOINTMENT_GROUP_ID && ENV.APPOINTMENT_GROUP_ID.toString()}
-  />,
+  <ThemeProvider>
+    <EditPage
+      appointment_group_id={ENV.APPOINTMENT_GROUP_ID && ENV.APPOINTMENT_GROUP_ID.toString()}
+    />
+  </ThemeProvider>,
   document.getElementById('content')
 )

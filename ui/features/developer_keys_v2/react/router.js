@@ -23,6 +23,7 @@ import qs from 'qs'
 import DeveloperKeysApp from './App'
 import actions from './actions/developerKeysActions'
 import storeCreator from './store/store'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const store = storeCreator()
 
@@ -56,12 +57,14 @@ function renderShowDeveloperKeys(ctx) {
     const view = () => {
       const currentState = store.getState()
       ReactDOM.render(
-        <DeveloperKeysApp
-          applicationState={currentState}
-          actions={actions}
-          store={store}
-          ctx={ctx}
-        />,
+        <ThemeProvider>
+          <DeveloperKeysApp
+            applicationState={currentState}
+            actions={actions}
+            store={store}
+            ctx={ctx}
+          />
+        </ThemeProvider>,
         document.getElementById('reactContent')
       )
     }

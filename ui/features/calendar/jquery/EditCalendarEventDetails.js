@@ -33,6 +33,7 @@ import fcUtil from '@canvas/calendar/jquery/fcUtil.coffee'
 import CalendarConferenceWidget from '@canvas/calendar-conferences/react/CalendarConferenceWidget'
 import filterConferenceTypes from '@canvas/calendar-conferences/filterConferenceTypes'
 import getConferenceType from '@canvas/calendar-conferences/getConferenceType'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default class EditCalendarEventDetails {
   constructor(selector, event, contextChangeCB, closeCB) {
@@ -102,12 +103,14 @@ export default class EditCalendarEventDetails {
     } else {
       conferenceNode.closest('tr').className = ''
       ReactDOM.render(
-        <CalendarConferenceWidget
-          context={this.currentContextInfo.asset_string}
-          conference={this.conference}
-          setConference={setConference}
-          conferenceTypes={activeConferenceTypes}
-        />,
+        <ThemeProvider>
+          <CalendarConferenceWidget
+            context={this.currentContextInfo.asset_string}
+            conference={this.conference}
+            setConference={setConference}
+            conferenceTypes={activeConferenceTypes}
+          />
+        </ThemeProvider>,
         conferenceNode
       )
     }

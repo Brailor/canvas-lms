@@ -20,6 +20,7 @@ import axios from '@canvas/axios'
 import I18n from 'i18n!module_sequence_footer'
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 import SpeedGraderLink from '@canvas/speed-grader-link'
 import StudentGroupFilter from '@canvas/student-group-filter'
@@ -75,13 +76,15 @@ function renderModuleSequenceFooter() {
     const $container = document.getElementById('speed_grader_link_container')
 
     ReactDOM.render(
-      <ModuleSequenceFooter
-        courseId={ENV.COURSE_ID}
-        filterSpeedGraderByStudentGroup={ENV.SETTINGS.filter_speed_grader_by_student_group}
-        groupCategories={ENV.group_categories || []}
-        selectedStudentGroupId={ENV.selected_student_group_id}
-        speedGraderUrl={ENV.speed_grader_url}
-      />,
+      <ThemeProvider>
+        <ModuleSequenceFooter
+          courseId={ENV.COURSE_ID}
+          filterSpeedGraderByStudentGroup={ENV.SETTINGS.filter_speed_grader_by_student_group}
+          groupCategories={ENV.group_categories || []}
+          selectedStudentGroupId={ENV.selected_student_group_id}
+          speedGraderUrl={ENV.speed_grader_url}
+        />
+      </ThemeProvider>,
       $container
     )
   }

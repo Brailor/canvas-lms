@@ -40,8 +40,8 @@ import ReactDOM from 'react-dom'
 import FileBrowser from '@canvas/rce/FileBrowser'
 import {ProgressCircle} from '@instructure/ui-progress'
 import {Alert} from '@instructure/ui-alerts'
-import Attachment from '../react/Attachment'
 import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
+import Attachment from '../react/Attachment'
 
 let submissionAttachmentIndex = -1
 
@@ -402,7 +402,10 @@ $(document).ready(function () {
     const fileEl = $('#uploaded_files')
     if (fileEl.is(':hidden')) {
       $.screenReaderFlashMessage(I18n.t('File tree expanded'))
-      ReactDOM.render(fileBrowser, document.getElementById('uploaded_files'))
+      ReactDOM.render(
+        <ThemeProvider>{fileBrowser}</ThemeProvider>,
+        document.getElementById('uploaded_files')
+      )
     } else {
       $.screenReaderFlashMessage(I18n.t('File tree collapsed'))
     }

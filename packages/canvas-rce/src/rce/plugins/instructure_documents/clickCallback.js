@@ -18,9 +18,10 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 import formatMessage from '../../../format-message'
 
-export default function(ed, document) {
+export default function (ed, document) {
   return import('../shared/Upload/UploadFile').then(({UploadFile}) => {
     let container = document.querySelector('.canvas-rce-upload-container')
     if (!container) {
@@ -36,13 +37,15 @@ export default function(ed, document) {
 
     // acccept=undefined -> can upload anything
     ReactDOM.render(
-      <UploadFile
-        accept={undefined}
-        editor={ed}
-        label={formatMessage('Upload File')}
-        panels={['COMPUTER']}
-        onDismiss={handleDismiss}
-      />,
+      <ThemeProvider>
+        <UploadFile
+          accept={undefined}
+          editor={ed}
+          label={formatMessage('Upload File')}
+          panels={['COMPUTER']}
+          onDismiss={handleDismiss}
+        />
+      </ThemeProvider>,
       container
     )
   })

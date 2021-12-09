@@ -22,6 +22,7 @@ import {parse} from 'url'
 import ready from '@instructure/ready'
 import CanvasMediaPlayer from './react/CanvasMediaPlayer'
 import closedCaptionLanguages from '@canvas/util/closedCaptionLanguages'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ready(() => {
   // get the media_id from something like
@@ -74,12 +75,14 @@ ready(() => {
   })
 
   ReactDOM.render(
-    <CanvasMediaPlayer
-      media_id={media_id}
-      media_sources={href_source || media_object.media_sources}
-      media_tracks={mediaTracks}
-      type={is_video ? 'video' : 'audio'}
-    />,
+    <ThemeProvider>
+      <CanvasMediaPlayer
+        media_id={media_id}
+        media_sources={href_source || media_object.media_sources}
+        media_tracks={mediaTracks}
+        type={is_video ? 'video' : 'audio'}
+      />
+    </ThemeProvider>,
     document.getElementById('player_container')
   )
 })

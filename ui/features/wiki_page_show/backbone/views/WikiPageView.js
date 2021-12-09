@@ -34,6 +34,7 @@ import '@canvas/modules/jquery/prerequisites_lookup'
 import '../../jquery/content_locks'
 import DirectShareUserModal from '@canvas/direct-sharing/react/components/DirectShareUserModal'
 import DirectShareCourseTray from '@canvas/direct-sharing/react/components/DirectShareCourseTray'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default class WikiPageView extends Backbone.View {
   static initClass() {
@@ -223,15 +224,17 @@ export default class WikiPageView extends Backbone.View {
   openSendTo(ev, open = true) {
     if (ev) ev.preventDefault()
     ReactDOM.render(
-      <DirectShareUserModal
-        open={open}
-        sourceCourseId={this.course_id}
-        contentShare={{content_type: 'page', content_id: this.model.id}}
-        onDismiss={() => {
-          this.openSendTo(null, false)
-          this.$gearMenu.focus()
-        }}
-      />,
+      <ThemeProvider>
+        <DirectShareUserModal
+          open={open}
+          sourceCourseId={this.course_id}
+          contentShare={{content_type: 'page', content_id: this.model.id}}
+          onDismiss={() => {
+            this.openSendTo(null, false)
+            this.$gearMenu.focus()
+          }}
+        />
+      </ThemeProvider>,
       document.getElementById('direct-share-mount-point')
     )
   }
@@ -239,15 +242,17 @@ export default class WikiPageView extends Backbone.View {
   openCopyTo(ev, open = true) {
     if (ev) ev.preventDefault()
     ReactDOM.render(
-      <DirectShareCourseTray
-        open={open}
-        sourceCourseId={this.course_id}
-        contentSelection={{pages: [this.model.id]}}
-        onDismiss={() => {
-          this.openCopyTo(null, false)
-          this.$gearMenu.focus()
-        }}
-      />,
+      <ThemeProvider>
+        <DirectShareCourseTray
+          open={open}
+          sourceCourseId={this.course_id}
+          contentSelection={{pages: [this.model.id]}}
+          onDismiss={() => {
+            this.openCopyTo(null, false)
+            this.$gearMenu.focus()
+          }}
+        />
+      </ThemeProvider>,
       document.getElementById('direct-share-mount-point')
     )
   }

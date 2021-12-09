@@ -23,6 +23,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {Checkbox} from '@instructure/ui-checkbox'
 import {ScreenReaderContent} from '@instructure/ui-a11y-content'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default class MessageView extends View {
   initialize(...args) {
@@ -41,15 +42,17 @@ export default class MessageView extends View {
   renderSelectCheckbox() {
     const subject = this.model.get('subject') || I18n.t('No Subject')
     ReactDOM.render(
-      <Checkbox
-        label={
-          <ScreenReaderContent>
-            {I18n.t('Select Conversation %{subject}', {subject})}
-          </ScreenReaderContent>
-        }
-        checked={!!this.model.get('selected')}
-        onChange={() => this.model.set('selected', !this.model.get('selected'))}
-      />,
+      <ThemeProvider>
+        <Checkbox
+          label={
+            <ScreenReaderContent>
+              {I18n.t('Select Conversation %{subject}', {subject})}
+            </ScreenReaderContent>
+          }
+          checked={!!this.model.get('selected')}
+          onChange={() => this.model.set('selected', !this.model.get('selected'))}
+        />
+      </ThemeProvider>,
       this.$selectCheckbox[0]
     )
   }

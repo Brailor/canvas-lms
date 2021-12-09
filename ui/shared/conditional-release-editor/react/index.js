@@ -22,6 +22,7 @@ import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
 import I18n from 'i18n!conditional_release'
 import '@canvas/forms/jquery/jquery.instructure_forms'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const SAVE_TIMEOUT = 15000
 
@@ -134,9 +135,9 @@ class Editor extends React.Component {
   }
 }
 
-const attach = function(element, type, env) {
+const attach = function (element, type, env) {
   const editor = <Editor env={env} type={type} />
-  return ReactDOM.render(editor, element)
+  return ReactDOM.render(<ThemeProvider>{editor}</ThemeProvider>, element)
 }
 
 const ConditionalRelease = {

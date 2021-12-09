@@ -36,6 +36,7 @@ import RestrictedDialogForm from '@canvas/files/react/components/RestrictedDialo
 import '@canvas/rails-flash-notifications'
 import ContentTypeExternalToolTray from '@canvas/trays/react/ContentTypeExternalToolTray'
 import {ltiState} from '@canvas/lti/jquery/messages'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default class Toolbar extends React.Component {
   static propTypes = {
@@ -102,11 +103,13 @@ export default class Toolbar extends React.Component {
     })
 
     ReactDOM.render(
-      <RestrictedDialogForm
-        models={this.props.selectedItems}
-        usageRightsRequiredForContext={this.props.usageRightsRequiredForContext}
-        closeDialog={() => $dialog.dialog('close')}
-      />,
+      <ThemeProvider>
+        <RestrictedDialogForm
+          models={this.props.selectedItems}
+          usageRightsRequiredForContext={this.props.usageRightsRequiredForContext}
+          closeDialog={() => $dialog.dialog('close')}
+        />
+      </ThemeProvider>,
       $dialog[0]
     )
   }
@@ -190,16 +193,18 @@ export default class Toolbar extends React.Component {
       }
     }
     ReactDOM.render(
-      <ContentTypeExternalToolTray
-        tool={tool}
-        placement="file_index_menu"
-        acceptedResourceTypes={['audio', 'document', 'image', 'video']}
-        targetResourceType="document" // maybe this isn't what we want but it's my best guess
-        allowItemSelection={false}
-        selectableItems={[]}
-        onDismiss={handleDismiss}
-        open={tool !== null}
-      />,
+      <ThemeProvider>
+        <ContentTypeExternalToolTray
+          tool={tool}
+          placement="file_index_menu"
+          acceptedResourceTypes={['audio', 'document', 'image', 'video']}
+          targetResourceType="document" // maybe this isn't what we want but it's my best guess
+          allowItemSelection={false}
+          selectableItems={[]}
+          onDismiss={handleDismiss}
+          open={tool !== null}
+        />
+      </ThemeProvider>,
       document.getElementById('external-tool-mount-point')
     )
   }

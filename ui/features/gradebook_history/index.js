@@ -20,13 +20,16 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import GradebookHistoryApp from './react/GradebookHistoryApp'
 import ready from '@instructure/ready'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ready(() => {
   ReactDOM.render(
-    <GradebookHistoryApp
-      courseUrl={ENV.COURSE_URL}
-      learningMasteryEnabled={ENV.OUTCOME_GRADEBOOK_ENABLED}
-    />,
+    <ThemeProvider>
+      <GradebookHistoryApp
+        courseUrl={ENV.COURSE_URL}
+        learningMasteryEnabled={ENV.OUTCOME_GRADEBOOK_ENABLED}
+      />
+    </ThemeProvider>,
     document.getElementById('content')
   )
 })

@@ -25,6 +25,7 @@ import Cache from '../../cache'
 import AssignmentGroup from '@canvas/assignments/backbone/models/AssignmentGroup.coffee'
 import {RadioInputGroup, RadioInput} from '@instructure/ui-radio-input'
 import {ScreenReaderContent} from '@instructure/ui-a11y-content'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default class ToggleShowByView extends Backbone.View {
   initialize(...args) {
@@ -117,17 +118,19 @@ export default class ToggleShowByView extends Backbone.View {
 
   renderToggle() {
     ReactDOM.render(
-      <RadioInputGroup
-        description={<ScreenReaderContent>{I18n.t('Show By')}</ScreenReaderContent>}
-        size="medium"
-        name="show_by"
-        variant="toggle"
-        defaultValue={this.showByDate() ? 'date' : 'type'}
-        onChange={(e, val) => this.toggleShowBy(val)}
-      >
-        <RadioInput id="show_by_date" label={I18n.t('Show by Date')} value="date" context="off" />
-        <RadioInput id="show_by_type" label={I18n.t('Show by Type')} value="type" context="off" />
-      </RadioInputGroup>,
+      <ThemeProvider>
+        <RadioInputGroup
+          description={<ScreenReaderContent>{I18n.t('Show By')}</ScreenReaderContent>}
+          size="medium"
+          name="show_by"
+          variant="toggle"
+          defaultValue={this.showByDate() ? 'date' : 'type'}
+          onChange={(e, val) => this.toggleShowBy(val)}
+        >
+          <RadioInput id="show_by_date" label={I18n.t('Show by Date')} value="date" context="off" />
+          <RadioInput id="show_by_type" label={I18n.t('Show by Type')} value="type" context="off" />
+        </RadioInputGroup>
+      </ThemeProvider>,
       this.el
     )
   }

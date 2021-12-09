@@ -23,6 +23,7 @@ import ReactDOM from 'react-dom'
 import Navigation from './react/Navigation'
 import MobileNavigation from './react/MobileNavigation'
 import ready from '@instructure/ready'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 // #
 // Handle user toggling of nav width
@@ -57,19 +58,23 @@ ready(() => {
     const mobileNavComponent = React.createRef()
 
     ReactDOM.render(
-      <Navigation
-        ref={DesktopNavComponent}
-        onDataReceived={() => mobileNavComponent.current?.forceUpdate()}
-      />,
+      <ThemeProvider>
+        <Navigation
+          ref={DesktopNavComponent}
+          onDataReceived={() => mobileNavComponent.current?.forceUpdate()}
+        />
+      </ThemeProvider>,
       globalNavTrayContainer,
       () => {
         const mobileContextNavContainer = document.getElementById('mobileContextNavContainer')
         if (mobileContextNavContainer) {
           ReactDOM.render(
-            <MobileNavigation
-              ref={mobileNavComponent}
-              DesktopNavComponent={DesktopNavComponent.current}
-            />,
+            <ThemeProvider>
+              <MobileNavigation
+                ref={mobileNavComponent}
+                DesktopNavComponent={DesktopNavComponent.current}
+              />
+            </ThemeProvider>,
             mobileContextNavContainer
           )
         }

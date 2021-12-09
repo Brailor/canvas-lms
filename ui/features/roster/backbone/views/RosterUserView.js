@@ -30,6 +30,7 @@ import {Avatar} from '@instructure/ui-avatar'
 import {nanoid} from 'nanoid'
 import 'jquery-kyle-menu'
 import '@canvas/jquery/jquery.disableWhileLoading'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 let editSectionsDialog = null
 let editRolesDialog = null
@@ -305,15 +306,17 @@ export default class RosterUserView extends Backbone.View {
 
   afterRender() {
     ReactDOM.render(
-      <a href={`users/${this.model.id}`}>
-        <Avatar
-          name={this.model.attributes.name}
-          src={this.model.attributes.avatar_url}
-          size="small"
-          alt={this.model.attributes.name}
-        />
-        <span className="screenreader-only">{this.model.attributes.name}</span>
-      </a>,
+      <ThemeProvider>
+        <a href={`users/${this.model.id}`}>
+          <Avatar
+            name={this.model.attributes.name}
+            src={this.model.attributes.avatar_url}
+            size="small"
+            alt={this.model.attributes.name}
+          />
+          <span className="screenreader-only">{this.model.attributes.name}</span>
+        </a>
+      </ThemeProvider>,
       this.$el.find(`#${this.model.attributes.avatarId}`)[0]
     )
   }

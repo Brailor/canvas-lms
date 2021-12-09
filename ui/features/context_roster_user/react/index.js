@@ -19,14 +19,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import StudentLastAttended from './StudentLastAttended'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default function initLastAttended(rootElement, courseID, studentID, lastAttendedDate) {
   ReactDOM.render(
-    <StudentLastAttended
-      defaultDate={lastAttendedDate}
-      courseID={courseID}
-      studentID={studentID}
-    />,
+    <ThemeProvider>
+      <StudentLastAttended
+        defaultDate={lastAttendedDate}
+        courseID={courseID}
+        studentID={studentID}
+      />
+    </ThemeProvider>,
     rootElement
   )
 }

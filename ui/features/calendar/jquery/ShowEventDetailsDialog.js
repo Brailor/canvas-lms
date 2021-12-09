@@ -38,9 +38,10 @@ import '@canvas/jquery/jquery.instructure_misc_helpers'
 import '@canvas/jquery/jquery.instructure_misc_plugins'
 import Conference from '@canvas/calendar-conferences/react/Conference'
 import getConferenceType from '@canvas/calendar-conferences/getConferenceType'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const destroyArguments = fn =>
-  function() {
+  function () {
     return fn.apply(this, [])
   }
 
@@ -407,10 +408,15 @@ export default class ShowEventDetailsDialog {
     if (params.webConference) {
       const conferenceNode = this.popover.el.find('.conferencing')[0]
       ReactDOM.render(
-        <Conference
-          conference={params.webConference}
-          conferenceType={getConferenceType(ENV.conferences.conference_types, params.webConference)}
-        />,
+        <ThemeProvider>
+          <Conference
+            conference={params.webConference}
+            conferenceType={getConferenceType(
+              ENV.conferences.conference_types,
+              params.webConference
+            )}
+          />
+        </ThemeProvider>,
         conferenceNode
       )
     }
@@ -426,9 +432,7 @@ export default class ShowEventDetailsDialog {
   }
 
   openShowPage = jsEvent => {
-    const pieces = $(jsEvent.target)
-      .attr('href')
-      .split('#')
+    const pieces = $(jsEvent.target).attr('href').split('#')
     pieces[0] += `?${$.param({return_to: window.location.href})}`
     window.location.href = pieces.join('#')
   }

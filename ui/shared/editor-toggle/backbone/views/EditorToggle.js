@@ -24,6 +24,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import SwitchEditorControl from '../../react/SwitchEditorControl'
 import RichContentEditor from '@canvas/rce/RichContentEditor'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 RichContentEditor.preloadRemoteModule()
 
@@ -199,7 +200,7 @@ Object.assign(EditorToggle.prototype, Backbone.Events, {
   createSwitchViews() {
     const component = <SwitchEditorControl textarea={this.textArea} />
     const $container = $("<div class='switch-views'></div>")
-    ReactDOM.render(component, $container[0])
+    ReactDOM.render(<ThemeProvider>{component}</ThemeProvider>, $container[0])
     return $container
   },
 

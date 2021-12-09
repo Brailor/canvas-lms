@@ -696,9 +696,11 @@ $(document).ready(function () {
     $('#select_context_content_dialog .module_item_option').hide()
     if ($(this).val() === 'attachment') {
       fileSelectBox = ReactDOM.render(
-        React.createFactory(FileSelectBox)({
-          contextString: ENV.context_asset_string
-        }),
+        <ThemeProvider>
+          {React.createFactory(FileSelectBox)({
+            contextString: ENV.context_asset_string
+          })}
+        </ThemeProvider>,
         $('#module_item_select_file')[0]
       )
       fileSelectBox.refresh()

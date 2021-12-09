@@ -37,6 +37,7 @@ import SpeedGraderLink from '@canvas/speed-grader-link'
 import DirectShareUserModal from '@canvas/direct-sharing/react/components/DirectShareUserModal'
 import DirectShareCourseTray from '@canvas/direct-sharing/react/components/DirectShareCourseTray'
 import {setupSubmitHandler} from '@canvas/assignments/jquery/reuploadSubmissionsHelper'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const lockManager = new LockManager()
 lockManager.init({itemType: 'assignment', page: 'show'})
@@ -80,11 +81,13 @@ function renderSpeedGraderLink() {
 
   if ($mountPoint) {
     ReactDOM.render(
-      <SpeedGraderLink
-        disabled={disabled}
-        href={ENV.speed_grader_url}
-        disabledTip={I18n.t('Must select a student group first')}
-      />,
+      <ThemeProvider>
+        <SpeedGraderLink
+          disabled={disabled}
+          href={ENV.speed_grader_url}
+          disabledTip={I18n.t('Must select a student group first')}
+        />
+      </ThemeProvider>,
       $mountPoint
     )
   }
@@ -95,12 +98,14 @@ function renderStudentGroupFilter() {
 
   if ($mountPoint) {
     ReactDOM.render(
-      <StudentGroupFilter
-        categories={ENV.group_categories}
-        label={I18n.t('Select Group to Grade')}
-        onChange={onStudentGroupSelected}
-        value={ENV.selected_student_group_id}
-      />,
+      <ThemeProvider>
+        <StudentGroupFilter
+          categories={ENV.group_categories}
+          label={I18n.t('Select Group to Grade')}
+          onChange={onStudentGroupSelected}
+          value={ENV.selected_student_group_id}
+        />
+      </ThemeProvider>,
       $mountPoint
     )
   }
@@ -175,15 +180,17 @@ $(() =>
 function openSendTo(event, open = true) {
   if (event) event.preventDefault()
   ReactDOM.render(
-    <DirectShareUserModal
-      open={open}
-      sourceCourseId={ENV.COURSE_ID}
-      contentShare={{content_type: 'assignment', content_id: ENV.ASSIGNMENT_ID}}
-      onDismiss={() => {
-        openSendTo(null, false)
-        $('.al-trigger').focus()
-      }}
-    />,
+    <ThemeProvider>
+      <DirectShareUserModal
+        open={open}
+        sourceCourseId={ENV.COURSE_ID}
+        contentShare={{content_type: 'assignment', content_id: ENV.ASSIGNMENT_ID}}
+        onDismiss={() => {
+          openSendTo(null, false)
+          $('.al-trigger').focus()
+        }}
+      />
+    </ThemeProvider>,
     document.getElementById('direct-share-mount-point')
   )
 }
@@ -191,15 +198,17 @@ function openSendTo(event, open = true) {
 function openCopyTo(event, open = true) {
   if (event) event.preventDefault()
   ReactDOM.render(
-    <DirectShareCourseTray
-      open={open}
-      sourceCourseId={ENV.COURSE_ID}
-      contentSelection={{assignments: [ENV.ASSIGNMENT_ID]}}
-      onDismiss={() => {
-        openCopyTo(null, false)
-        $('.al-trigger').focus()
-      }}
-    />,
+    <ThemeProvider>
+      <DirectShareCourseTray
+        open={open}
+        sourceCourseId={ENV.COURSE_ID}
+        contentSelection={{assignments: [ENV.ASSIGNMENT_ID]}}
+        onDismiss={() => {
+          openCopyTo(null, false)
+          $('.al-trigger').focus()
+        }}
+      />
+    </ThemeProvider>,
     document.getElementById('direct-share-mount-point')
   )
 }

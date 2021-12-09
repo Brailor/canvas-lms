@@ -28,6 +28,7 @@ import StudentGroupStore from '../../react/StudentGroupStore'
 import GradingPeriodsAPI from '@canvas/grading/jquery/gradingPeriodsApi'
 import tz from '@canvas/timezone'
 import '@canvas/forms/jquery/jquery.instructure_forms' # errorBox
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default class DueDateOverrideView extends Backbone.View
   @mixin ValidatedMixin
@@ -56,7 +57,10 @@ export default class DueDateOverrideView extends Backbone.View
       importantDates: @model.assignment.get("important_dates")
     })
 
-    ReactDOM.render(DueDatesElement, div)
+    ReactDOM.render(
+      <ThemeProvider>{DueDatesElement}</ThemeProvider>,
+      div
+    )
 
   gradingPeriods: GradingPeriodsAPI.deserializePeriods(ENV.active_grading_periods)
 

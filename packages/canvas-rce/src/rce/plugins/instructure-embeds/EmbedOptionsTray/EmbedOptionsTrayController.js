@@ -21,6 +21,7 @@ import ReactDOM from 'react-dom'
 
 import {getContentFromEditor} from '../../shared/ContentSelection'
 import EmbedOptionsTray from '.'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export const CONTAINER_ID = 'instructure-embed-options-tray-container'
 
@@ -97,6 +98,6 @@ export default class EmbedOptionsTrayController {
         open={this._shouldOpen}
       />
     )
-    ReactDOM.render(element, this.$container)
+    ReactDOM.render(<ThemeProvider>{element}</ThemeProvider>, this.$container)
   }
 }

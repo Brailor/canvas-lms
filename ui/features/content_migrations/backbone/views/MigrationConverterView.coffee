@@ -25,6 +25,7 @@ import '@canvas/jquery/jquery.disableWhileLoading'
 import {Alert} from '@instructure/ui-alerts'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 # This is an abstract class that is inherited
 # from by other MigrationConverter views
@@ -149,4 +150,7 @@ export default class MigrationConverterView extends ValidatedFormView
         hasShadow: false,
         margin: '0 0 medium 0'
       })
-    ReactDOM.render(alert, @$overwriteWarning[0])
+    ReactDOM.render(
+      <ThemeProvider>{alert}</ThemeProvider>,
+      @$overwriteWarning[0]
+    )

@@ -22,6 +22,7 @@ import ReactDOM from 'react-dom'
 import bridge from '../../../../bridge'
 import {asVideoElement, findVideoPlayerIframe} from '../../shared/ContentSelection'
 import VideoOptionsTray from '.'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export const CONTAINER_ID = 'instructure-video-options-tray-container'
 
@@ -182,6 +183,6 @@ export default class TrayController {
         trayProps={trayProps}
       />
     )
-    ReactDOM.render(element, this.$container)
+    ReactDOM.render(<ThemeProvider>{element}</ThemeProvider>, this.$container)
   }
 }

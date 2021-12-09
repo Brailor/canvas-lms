@@ -20,6 +20,7 @@ import 'formdata-polyfill' // Need to support FormData.has for IE
 import React from 'react'
 import ReactDOM from 'react-dom'
 import ThemeEditor from './react/ThemeEditor'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 // framebust out so we don't ever get theme editor inside theme editor
 if (window.top.location !== self.location) {
@@ -27,16 +28,18 @@ if (window.top.location !== self.location) {
 }
 
 ReactDOM.render(
-  <ThemeEditor
-    {...{
-      brandConfig: window.ENV.brandConfig,
-      hasUnsavedChanges: window.ENV.hasUnsavedChanges,
-      variableSchema: window.ENV.variableSchema,
-      sharedBrandConfigs: window.ENV.sharedBrandConfigs,
-      allowGlobalIncludes: window.ENV.allowGlobalIncludes,
-      accountID: window.ENV.account_id,
-      useHighContrast: window.ENV.use_high_contrast
-    }}
-  />,
+  <ThemeProvider>
+    <ThemeEditor
+      {...{
+        brandConfig: window.ENV.brandConfig,
+        hasUnsavedChanges: window.ENV.hasUnsavedChanges,
+        variableSchema: window.ENV.variableSchema,
+        sharedBrandConfigs: window.ENV.sharedBrandConfigs,
+        allowGlobalIncludes: window.ENV.allowGlobalIncludes,
+        accountID: window.ENV.account_id,
+        useHighContrast: window.ENV.use_high_contrast
+      }}
+    />
+  </ThemeProvider>,
   document.body
 )

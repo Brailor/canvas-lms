@@ -36,6 +36,7 @@ import $ from 'jquery'
 import {asText, getPrefetchedXHR} from '@instructure/js-utils'
 import '@canvas/jquery/jquery.disableWhileLoading'
 import {CreateCourseModal} from '@canvas/create-course-modal/react/CreateCourseModal'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const [show, hide] = ['block', 'none'].map(displayVal => id => {
   const el = document.getElementById(id)
@@ -273,15 +274,17 @@ function showTodoList() {
           if (startButton && modalContainer && ENV.FEATURES?.create_course_subaccount_picker) {
             startButton.addEventListener('click', () => {
               ReactDOM.render(
-                <CreateCourseModal
-                  isModalOpen
-                  setModalOpen={isOpen => {
-                    if (!isOpen) ReactDOM.unmountComponentAtNode(modalContainer)
-                  }}
-                  permissions={ENV.CREATE_COURSES_PERMISSIONS.PERMISSION}
-                  restrictToMCCAccount={ENV.CREATE_COURSES_PERMISSIONS.RESTRICT_TO_MCC_ACCOUNT}
-                  isK5User={false} // can't be k5 user if classic dashboard is showing
-                />,
+                <ThemeProvider>
+                  <CreateCourseModal
+                    isModalOpen
+                    setModalOpen={isOpen => {
+                      if (!isOpen) ReactDOM.unmountComponentAtNode(modalContainer)
+                    }}
+                    permissions={ENV.CREATE_COURSES_PERMISSIONS.PERMISSION}
+                    restrictToMCCAccount={ENV.CREATE_COURSES_PERMISSIONS.RESTRICT_TO_MCC_ACCOUNT}
+                    isK5User={false} // can't be k5 user if classic dashboard is showing
+                  />
+                </ThemeProvider>,
                 modalContainer
               )
             })

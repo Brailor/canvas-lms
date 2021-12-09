@@ -27,6 +27,7 @@ import forceScreenreaderToReparse from 'force-screenreader-to-reparse'
 import 'jquery-kyle-menu'
 import '@canvas/jquery/jquery.instructure_misc_helpers'
 import 'jquery-tinypubsub'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 class VisibleContextManager {
   constructor(contexts, selectedContexts, $holder) {
@@ -163,54 +164,52 @@ export default function sidebar(contexts, selectedContexts, dataSource) {
 
   const visibleContexts = new VisibleContextManager(contexts, selectedContexts, $holder)
 
-  $holder.on('click keyclick', '.context-list-toggle-box', function(event) {
+  $holder.on('click keyclick', '.context-list-toggle-box', function (event) {
     const parent = $(this).closest('.context_list_context')
     visibleContexts.toggle($(parent).data('context'))
   })
 
-  $holder.on('click keyclick', '.ContextList__MoreBtn', function(event) {
+  $holder.on('click keyclick', '.ContextList__MoreBtn', function (event) {
     const positions = {
       top: $(this).offset().top - $(window).scrollTop(),
       left: $(this).offset().left - $(window).scrollLeft()
     }
 
-    const assetString = $(this)
-      .closest('li')
-      .data('context')
+    const assetString = $(this).closest('li').data('context')
 
     // ensures previously picked color clears
     ReactDOM.unmountComponentAtNode($('#color_picker_holder')[0])
 
     ReactDOM.render(
-      <ColorPicker
-        isOpen
-        positions={positions}
-        assetString={assetString}
-        afterClose={() => forceScreenreaderToReparse($('#application')[0])}
-        afterUpdateColor={color => {
-          color = `#${color}`
-          const $existingStyles = $('#calendar_color_style_overrides')
-          const $newStyles = $('<style>')
-          $newStyles.text(
-            `.group_${assetString},
+      <ThemeProvider>
+        <ColorPicker
+          isOpen
+          positions={positions}
+          assetString={assetString}
+          afterClose={() => forceScreenreaderToReparse($('#application')[0])}
+          afterUpdateColor={color => {
+            color = `#${color}`
+            const $existingStyles = $('#calendar_color_style_overrides')
+            const $newStyles = $('<style>')
+            $newStyles.text(
+              `.group_${assetString},
             .group_${assetString}:hover,
             .group_${assetString}:focus{
               color: ${color};
               border-color: ${color};
               background-color: ${color};
             }`
-          )
-          $existingStyles.append($newStyles)
-        }}
-      />,
+            )
+            $existingStyles.append($newStyles)
+          }}
+        />
+      </ThemeProvider>,
       $('#color_picker_holder')[0]
     )
   })
 
   $skipLink.on('click', e => {
     e.preventDefault()
-    $('#content')
-      .attr('tabindex', -1)
-      .focus()
+    $('#content').attr('tabindex', -1).focus()
   })
 }

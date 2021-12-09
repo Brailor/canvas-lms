@@ -24,6 +24,7 @@ import I18n from 'i18n!moderated_grading'
 import '@canvas/rails-flash-notifications'
 import iframeAllowances from '@canvas/external-apps/iframeAllowances'
 import OriginalityReportVisibilityPicker from './OriginalityReportVisibilityPicker'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 class AssignmentConfigurationTools extends React.Component {
   static displayName = 'AssignmentConfigurationTools'
@@ -70,7 +71,7 @@ class AssignmentConfigurationTools extends React.Component {
       type: 'GET',
       url: toolsUrl,
       data,
-      success: $.proxy(function(data) {
+      success: $.proxy(function (data) {
         let prevToolLaunch
         if (this.props.selectedTool && this.props.selectedToolType) {
           for (let i = 0; i < data.length; i++) {
@@ -262,7 +263,7 @@ class AssignmentConfigurationTools extends React.Component {
   }
 }
 
-const attach = function(
+const attach = function (
   element,
   courseId,
   secureParams,
@@ -279,7 +280,7 @@ const attach = function(
       visibilitySetting={visibilitySetting}
     />
   )
-  return ReactDOM.render(configTools, element)
+  return ReactDOM.render(<ThemeProvider>{configTools}</ThemeProvider>, element)
 }
 
 const ConfigurationTools = {

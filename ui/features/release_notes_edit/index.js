@@ -20,13 +20,16 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import ReleaseNotesEdit from './react'
 import ready from '@instructure/ready'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ready(() => {
   ReactDOM.render(
-    <ReleaseNotesEdit
-      envs={window.ENV.release_notes_envs}
-      langs={window.ENV.release_notes_langs}
-    />,
+    <ThemeProvider>
+      <ReleaseNotesEdit
+        envs={window.ENV.release_notes_envs}
+        langs={window.ENV.release_notes_langs}
+      />
+    </ThemeProvider>,
     document.getElementById('content')
   )
 })

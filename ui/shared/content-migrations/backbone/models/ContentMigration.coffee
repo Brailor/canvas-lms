@@ -24,46 +24,47 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {ProgressBar} from '@instructure/ui-progress'
 import '@canvas/forms/jquery/jquery.instructure_forms'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default class ContentMigration extends Backbone.Model
   urlRoot: => "/api/v1/courses/#{@get('course_id')}/content_migrations"
   @dynamicDefaults = {}
 
   # Creates a dynamic default for this models attributes. This means that
-  # the default values for this model (instance) will be whatever it was 
+  # the default values for this model (instance) will be whatever it was
   # set to originally.
-  #   id: 
+  #   id:
   #      model = new ContentMigration foo: 'bar', cat: 'Fluffy'
   #      model.set('pill', adderall) # don't do drugs...
-  #      
-  #      model.dynamicDefaults = {foo: 'bar', cat: 'Fluffy'} 
+  #
+  #      model.dynamicDefaults = {foo: 'bar', cat: 'Fluffy'}
   # @api public backbone override
 
-  initialize:(attributes) -> 
+  initialize:(attributes) ->
     super
     @dynamicDefaults = attributes
 
-  # Clears all attributes on the model and reset's the model to it's 
-  # origional state when initialized. Uses the dynamicDefaults to 
+  # Clears all attributes on the model and reset's the model to it's
+  # origional state when initialized. Uses the dynamicDefaults to
   # determin which properties were used.
   #
   # @api public
 
-  resetModel: -> 
+  resetModel: ->
     @clear()
     @resetDynamicDefaultCollections()
     @set @dynamicDefaults
 
   # Loop through all defaults and reset any collections to be blank that
-  # might exist. 
+  # might exist.
   #
   # @api private
 
-  resetDynamicDefaultCollections: -> 
+  resetDynamicDefaultCollections: ->
     _.each @dynamicDefaults, (value, key, list) ->
       if value instanceof Backbone.Collection
         collection = value
-        
+
         # Force models into an new array since we modify collections
         # models in the .each which effects the loop since
         # collection.models is pass by reference.
@@ -112,23 +113,23 @@ export default class ContentMigration extends Backbone.Model
     dObject
 
   # These models will have many SubDayModels via a collection. This model has attributes
-  # that must go with the request. 
+  # that must go with the request.
   #
   # @api private backbone override
 
-  toJSON: -> 
+  toJSON: ->
     json = super
     @addDaySubsitutions(json)
     @translateDateAdjustmentParams(json)
     json
 
-  # Add day substituions to a json object if this model has a daySubCollection. 
+  # Add day substituions to a json object if this model has a daySubCollection.
   # remember json is pass by reference so changes are reflected on the origional
   # json object
-  # 
+  #
   # @api private
 
-  addDaySubsitutions: (json) => 
+  addDaySubsitutions: (json) =>
     collection = @daySubCollection
     json.date_shift_options ||= {}
     json.date_shift_options.day_substitutions = collection.toJSON() if collection
@@ -152,11 +153,15 @@ export default class ContentMigration extends Backbone.Model
     if event.lengthComputable
       mountPoint = document.getElementById('migration_upload_progress_bar')
       if mountPoint
-        ReactDOM.render(React.createElement(ProgressBar, {
+        element = React.createElement(ProgressBar, {
           screenReaderLabel: I18n.t('Uploading progress')
           valueMax: event.total
           valueNow: event.loaded
           renderValue: @progressValue
           formatScreenReaderValue: @progressValue
           tabindex: '0'
-        }), mountPoint)
+        })
+        ReactDOM.render(
+          <ThemeProvider>{element}</ThemeProvider>,
+          mountPoint
+        )

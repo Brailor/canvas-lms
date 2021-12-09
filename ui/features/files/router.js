@@ -24,36 +24,41 @@ import filesEnv from '@canvas/files/react/modules/filesEnv'
 import FilesApp from './react/components/FilesApp'
 import ShowFolder from './react/components/ShowFolder'
 import SearchResults from './react/components/SearchResults'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 /**
  * Route Handlers
  */
 function renderShowFolder(ctx) {
   ReactDOM.render(
-    <FilesApp
-      query={ctx.query}
-      params={ctx.params}
-      splat={ctx.splat}
-      pathname={ctx.pathname}
-      contextAssetString={window.ENV.context_asset_string}
-    >
-      <ShowFolder />
-    </FilesApp>,
+    <ThemeProvider>
+      <FilesApp
+        query={ctx.query}
+        params={ctx.params}
+        splat={ctx.splat}
+        pathname={ctx.pathname}
+        contextAssetString={window.ENV.context_asset_string}
+      >
+        <ShowFolder />
+      </FilesApp>
+    </ThemeProvider>,
     document.getElementById('content')
   )
 }
 
 function renderSearchResults(ctx) {
   ReactDOM.render(
-    <FilesApp
-      query={ctx.query}
-      params={ctx.params}
-      splat={ctx.splat}
-      pathname={ctx.pathname}
-      contextAssetString={window.ENV.context_asset_string}
-    >
-      <SearchResults />
-    </FilesApp>,
+    <ThemeProvider>
+      <FilesApp
+        query={ctx.query}
+        params={ctx.params}
+        splat={ctx.splat}
+        pathname={ctx.pathname}
+        contextAssetString={window.ENV.context_asset_string}
+      >
+        <SearchResults />
+      </FilesApp>
+    </ThemeProvider>,
     document.getElementById('content')
   )
 }

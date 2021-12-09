@@ -23,6 +23,7 @@ import DashboardCard from './react/DashboardCard'
 import axios from '@canvas/axios'
 import {asJson, getPrefetchedXHR} from '@instructure/js-utils'
 import buildURL from 'axios/lib/helpers/buildURL'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 let promiseToGetDashboardCards
 
@@ -45,7 +46,10 @@ export function createDashboardCards(dashboardCards, cardComponent = DashboardCa
 
 function renderIntoDOM(dashboardCards) {
   const dashboardContainer = document.getElementById('DashboardCard_Container')
-  ReactDOM.render(createDashboardCards(dashboardCards), dashboardContainer)
+  ReactDOM.render(
+    <ThemeProvider>{createDashboardCards(dashboardCards)}</ThemeProvider>,
+    dashboardContainer
+  )
 }
 
 export default function loadCardDashboard(renderFn = renderIntoDOM, observedUser) {

@@ -21,6 +21,7 @@ import ReactDOM from 'react-dom'
 import Rubric from '@canvas/rubrics/react/Rubric'
 import {fillAssessment} from '@canvas/rubrics/react/helpers'
 import ready from '@instructure/ready'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const findRubric = id => {
   if (ENV.rubrics) {
@@ -42,13 +43,15 @@ ready(() => {
     const rubric = findRubric(rubricElement.dataset.rubricId)
     const assessment = findRubricAssessment(rubricElement.dataset.rubricAssessmentId)
     ReactDOM.render(
-      <Rubric
-        rubric={rubric}
-        rubricAssessment={fillAssessment(rubric, assessment || {})}
-        rubricAssociation={assessment.rubric_association}
-        customRatings={ENV.outcome_proficiency ? ENV.outcome_proficiency.ratings : []}
-        flexWidth={ENV.gradebook_non_scoring_rubrics_enabled}
-      />,
+      <ThemeProvider>
+        <Rubric
+          rubric={rubric}
+          rubricAssessment={fillAssessment(rubric, assessment || {})}
+          rubricAssociation={assessment.rubric_association}
+          customRatings={ENV.outcome_proficiency ? ENV.outcome_proficiency.ratings : []}
+          flexWidth={ENV.gradebook_non_scoring_rubrics_enabled}
+        />
+      </ThemeProvider>,
       rubricElement
     )
   })

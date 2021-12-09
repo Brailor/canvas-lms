@@ -19,15 +19,18 @@
 import ready from '@instructure/ready'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 import AdminSplit from './react/index'
 
 ready(() => {
   ReactDOM.render(
-    <AdminSplit
-      user={ENV.ADMIN_SPLIT_USER}
-      splitUrl={ENV.ADMIN_SPLIT_URL}
-      splitUsers={ENV.ADMIN_SPLIT_USERS}
-    />,
+    <ThemeProvider>
+      <AdminSplit
+        user={ENV.ADMIN_SPLIT_USER}
+        splitUrl={ENV.ADMIN_SPLIT_URL}
+        splitUsers={ENV.ADMIN_SPLIT_USERS}
+      />
+    </ThemeProvider>,
     document.getElementById('admin_split')
   )
 })

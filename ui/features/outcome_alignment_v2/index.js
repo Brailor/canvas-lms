@@ -21,16 +21,19 @@ import ready from '@instructure/ready'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import OutcomeAlignmentDeleteLink from './react/OutcomeAlignmentDeleteLink'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ready(() => {
   $('li.alignment').each((_, li) => {
     const $div = $(li).find('div.links')[0]
 
     ReactDOM.render(
-      <OutcomeAlignmentDeleteLink
-        has_rubric_association={$(li).data('has-rubric-association')}
-        url={$(li).data('url')}
-      />,
+      <ThemeProvider>
+        <OutcomeAlignmentDeleteLink
+          has_rubric_association={$(li).data('has-rubric-association')}
+          url={$(li).data('url')}
+        />
+      </ThemeProvider>,
       $div
     )
   })

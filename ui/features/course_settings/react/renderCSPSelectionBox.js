@@ -20,14 +20,17 @@ import axios from '@canvas/axios'
 import ReactDOM from 'react-dom'
 import React from 'react'
 import CSPSelectionBox from './components/CSPSelectionBox'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export function renderCSPSelectionBox(containerElement) {
   ReactDOM.render(
-    <CSPSelectionBox
-      courseId={ENV.COURSE_ID}
-      canManage={ENV.PERMISSIONS.manage_account_settings}
-      apiLibrary={axios}
-    />,
+    <ThemeProvider>
+      <CSPSelectionBox
+        courseId={ENV.COURSE_ID}
+        canManage={ENV.PERMISSIONS.manage_account_settings}
+        apiLibrary={axios}
+      />
+    </ThemeProvider>,
     containerElement
   )
 }

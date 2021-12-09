@@ -34,6 +34,7 @@ import coupleTimeFields from '@canvas/calendar/jquery/coupleTimeFields'
 import datePickerFormat from '@canvas/datetime/datePickerFormat'
 import CalendarConferenceWidget from '@canvas/calendar-conferences/react/CalendarConferenceWidget'
 import filterConferenceTypes from '@canvas/calendar-conferences/filterConferenceTypes'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 RichContentEditor.preloadRemoteModule()
 
@@ -161,12 +162,14 @@ export default class EditCalendarEventView extends Backbone.View {
     } else {
       conferenceNode.closest('fieldset').className = ''
       ReactDOM.render(
-        <CalendarConferenceWidget
-          context={this.model.get('context_code')}
-          conference={this.model.get('web_conference')}
-          setConference={this.setConference}
-          conferenceTypes={activeConferenceTypes}
-        />,
+        <ThemeProvider>
+          <CalendarConferenceWidget
+            context={this.model.get('context_code')}
+            conference={this.model.get('web_conference')}
+            setConference={this.setConference}
+            conferenceTypes={activeConferenceTypes}
+          />
+        </ThemeProvider>,
         conferenceNode
       )
     }

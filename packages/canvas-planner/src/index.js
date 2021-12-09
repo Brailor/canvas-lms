@@ -21,6 +21,7 @@ import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
 import moment from 'moment-timezone'
 import {Spinner} from '@instructure/ui-spinner'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 import i18n from './i18n'
 import configureStore from './store/configureStore'
 import {
@@ -284,7 +285,7 @@ export function createPlannerApp() {
 }
 
 function renderApp(element) {
-  ReactDOM.render(createPlannerApp(), element)
+  ReactDOM.render(<ThemeProvider>{createPlannerApp()}</ThemeProvider>, element)
 }
 
 // This method allows you to render the header items into a separate DOM node
@@ -293,21 +294,23 @@ function renderHeader(element, auxElement) {
 
   // Using this pattern because default params don't merge objects
   ReactDOM.render(
-    <DynamicUiProvider manager={dynamicUiManager}>
-      <Provider store={store}>
-        <Suspense fallback={loading()}>
-          <PlannerHeader
-            stickyZIndex={initializedOptions.stickyZIndex}
-            stickyButtonId={initializedOptions.plannerNewActivityButtonId}
-            timeZone={initializedOptions.env.TIMEZONE}
-            locale={initializedOptions.env.MOMENT_LOCALE}
-            ariaHideElement={ariaHideElement}
-            auxElement={auxElement}
-          />
-        </Suspense>
-      </Provider>
-    </DynamicUiProvider>,
-    element
+    <ThemeProvider>
+      <DynamicUiProvider manager={dynamicUiManager}>
+        <Provider store={store}>
+          <Suspense fallback={loading()}>
+            <PlannerHeader
+              stickyZIndex={initializedOptions.stickyZIndex}
+              stickyButtonId={initializedOptions.plannerNewActivityButtonId}
+              timeZone={initializedOptions.env.TIMEZONE}
+              locale={initializedOptions.env.MOMENT_LOCALE}
+              ariaHideElement={ariaHideElement}
+              auxElement={auxElement}
+            />
+          </Suspense>
+        </Provider>
+      </DynamicUiProvider>
+      element
+    </ThemeProvider>
   )
 }
 
@@ -319,17 +322,19 @@ export function renderToDoSidebar(element) {
   const env = initializedOptions.env
 
   ReactDOM.render(
-    <Provider store={store}>
-      <Suspense fallback={loading()}>
-        <ToDoSidebar
-          courses={env.STUDENT_PLANNER_COURSES}
-          timeZone={env.TIMEZONE}
-          locale={env.MOMENT_LOCALE}
-          changeDashboardView={initializedOptions.changeDashboardView}
-          forCourse={initializedOptions.forCourse}
-        />
-      </Suspense>
-    </Provider>,
+    <ThemeProvider>
+      <Provider store={store}>
+        <Suspense fallback={loading()}>
+          <ToDoSidebar
+            courses={env.STUDENT_PLANNER_COURSES}
+            timeZone={env.TIMEZONE}
+            locale={env.MOMENT_LOCALE}
+            changeDashboardView={initializedOptions.changeDashboardView}
+            forCourse={initializedOptions.forCourse}
+          />
+        </Suspense>
+      </Provider>
+    </ThemeProvider>,
     element
   )
 }

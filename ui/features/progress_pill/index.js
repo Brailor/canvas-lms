@@ -22,6 +22,7 @@ import ReactDOM from 'react-dom'
 import {Tooltip} from '@instructure/ui-tooltip'
 import {IconUploadLine, IconWarningLine} from '@instructure/ui-icons'
 import ready from '@instructure/ready'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ready(() => {
   const presenter = document.querySelectorAll('.assignment_presenter_for_submission')
@@ -40,7 +41,12 @@ ready(() => {
   for (let i = 0; i < progressElements.length; i++) {
     const icon = progressIcon(presenter[i])
     if (icon !== null) {
-      ReactDOM.render(<Tooltip renderTip={icon[1]}>{icon[0]}</Tooltip>, progressElements[i])
+      ReactDOM.render(
+        <ThemeProvider>
+          <Tooltip renderTip={icon[1]}>{icon[0]}</Tooltip>
+        </ThemeProvider>,
+        progressElements[i]
+      )
     }
   }
 })

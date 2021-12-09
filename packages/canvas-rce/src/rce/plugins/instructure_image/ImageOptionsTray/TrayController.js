@@ -23,6 +23,7 @@ import bridge from '../../../../bridge'
 import {asImageEmbed} from '../../shared/ContentSelection'
 import {renderLink} from '../../../contentRendering'
 import ImageOptionsTray from '.'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export const CONTAINER_ID = 'instructure-image-options-tray-container'
 
@@ -136,6 +137,6 @@ export default class TrayController {
         open={this._shouldOpen}
       />
     )
-    ReactDOM.render(element, this.$container)
+    ReactDOM.render(<ThemeProvider>{element}</ThemeProvider>, this.$container)
   }
 }

@@ -24,28 +24,31 @@ import GenericErrorPage from '@canvas/generic-error-page'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import StudentViewQuery from './components/StudentViewQuery'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const client = createClient()
 
 export default function renderAssignmentsApp(env, elt) {
   ReactDOM.render(
-    <ApolloProvider client={client}>
-      <ErrorBoundary
-        errorComponent={
-          <GenericErrorPage
-            imageUrl={errorShipUrl}
-            errorCategory="Assignments 2 Student Error Page"
-          />
-        }
-      >
-        <AlertManager>
-          <StudentViewQuery
-            assignmentLid={ENV.ASSIGNMENT_ID.toString()}
-            submissionID={ENV.SUBMISSION_ID?.toString()}
-          />
-        </AlertManager>
-      </ErrorBoundary>
-    </ApolloProvider>,
+    <ThemeProvider>
+      <ApolloProvider client={client}>
+        <ErrorBoundary
+          errorComponent={
+            <GenericErrorPage
+              imageUrl={errorShipUrl}
+              errorCategory="Assignments 2 Student Error Page"
+            />
+          }
+        >
+          <AlertManager>
+            <StudentViewQuery
+              assignmentLid={ENV.ASSIGNMENT_ID.toString()}
+              submissionID={ENV.SUBMISSION_ID?.toString()}
+            />
+          </AlertManager>
+        </ErrorBoundary>
+      </ApolloProvider>
+    </ThemeProvider>,
     elt
   )
 }

@@ -21,6 +21,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import IndividualStudentMastery from '@canvas/grade-summary/react/IndividualStudentMastery/index'
 import template from '../../jst/individual_student_view.handlebars'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default class IndividualStudentView extends Backbone.View {
   static initClass() {
@@ -46,7 +47,10 @@ export default class IndividualStudentView extends Backbone.View {
         outcomeProficiency={ENV.outcome_proficiency}
       />
     )
-    return (this.reactView = ReactDOM.render(masteryElement, $('.individualStudentView').get(0)))
+    return (this.reactView = ReactDOM.render(
+      <ThemeProvider>{masteryElement}</ThemeProvider>,
+      $('.individualStudentView').get(0)
+    ))
   }
 
   updateToggles(anyExpanded, anyContracted) {
