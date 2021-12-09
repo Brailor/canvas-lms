@@ -21,12 +21,15 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import GeneratePairingCode from '@canvas/generate-pairing-code'
 import ready from '@instructure/ready'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ready(() => {
   const container = document.querySelector('#pairing-code')
   if (container) {
     ReactDOM.render(
-      <GeneratePairingCode userId={ENV.USER_ID} name={ENV.CONTEXT_USER_DISPLAY_NAME} />,
+      <ThemeProvider>
+        <GeneratePairingCode userId={ENV.USER_ID} name={ENV.CONTEXT_USER_DISPLAY_NAME} />
+      </ThemeProvider>,
       container
     )
   }

@@ -25,6 +25,7 @@ import Modal from '@canvas/instui-bindings/react/InstuiModal'
 import {Button} from '@instructure/ui-buttons'
 import {Flex} from '@instructure/ui-flex'
 import {Spinner} from '@instructure/ui-spinner'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export function showConfirmDelete(props) {
   const parent = document.createElement('div')
@@ -35,7 +36,9 @@ export function showConfirmDelete(props) {
   }
 
   ReactDOM.render(
-    <ConfirmDeleteModal {...props} parent={parent} ref={showConfirmDeleteRef} />,
+    <ThemeProvider>
+      <ConfirmDeleteModal {...props} parent={parent} ref={showConfirmDeleteRef} />
+    </ThemeProvider>,
     parent
   )
 }

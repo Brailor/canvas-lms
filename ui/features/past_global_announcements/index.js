@@ -20,7 +20,13 @@ import $ from 'jquery'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PastGlobalAnnouncements from './react/PastGlobalAnnouncements'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 $(() => {
-  ReactDOM.render(<PastGlobalAnnouncements />, $('<div/>').appendTo('#content')[0])
+  ReactDOM.render(
+    <ThemeProvider>
+      <PastGlobalAnnouncements />
+    </ThemeProvider>,
+    $('<div/>').appendTo('#content')[0]
+  )
 })

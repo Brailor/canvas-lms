@@ -20,6 +20,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {Pill} from '@instructure/ui-pill'
 import I18n from 'i18n!gradingStatusPill'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 function forEachNode(nodeList, fn) {
   for (let i = 0; i < nodeList.length; i += 1) {
@@ -34,15 +35,30 @@ export default {
     const excusedMountPoints = document.querySelectorAll('.submission-excused-pill')
 
     forEachNode(missMountPoints, mountPoint => {
-      ReactDOM.render(<Pill variant="danger" text={I18n.t('missing')} />, mountPoint)
+      ReactDOM.render(
+        <ThemeProvider>
+          <Pill variant="danger" text={I18n.t('missing')} />
+        </ThemeProvider>,
+        mountPoint
+      )
     })
 
     forEachNode(lateMountPoints, mountPoint => {
-      ReactDOM.render(<Pill variant="danger" text={I18n.t('late')} />, mountPoint)
+      ReactDOM.render(
+        <ThemeProvider>
+          <Pill variant="danger" text={I18n.t('late')} />
+        </ThemeProvider>,
+        mountPoint
+      )
     })
 
     forEachNode(excusedMountPoints, mountPoint => {
-      ReactDOM.render(<Pill variant="danger" text={I18n.t('excused')} />, mountPoint)
+      ReactDOM.render(
+        <ThemeProvider>
+          <Pill variant="danger" text={I18n.t('excused')} />
+        </ThemeProvider>,
+        mountPoint
+      )
     })
   }
 }

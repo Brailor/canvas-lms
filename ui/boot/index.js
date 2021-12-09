@@ -65,31 +65,6 @@ if (process.env.NODE_ENV !== 'production') {
   setupConsoleMessageFilter()
   if (process.env.DEPRECATION_SENTRY_DSN) setupSentry()
 }
-// setup the inst-ui default theme
-// override the fontFamily to include "Lato Extended", which we prefer
-// to load over plain Lato (see LS-1559)
-if (ENV.use_high_contrast) {
-  // canvasHighContrastTheme.use({
-  //   overrides: {
-  //     typography: {
-  //       fontFamily: 'LatoWeb, "Lato Extended", Lato, "Helvetica Neue", Helvetica, Arial, sans-serif'
-  //     }
-  //   }
-  // })
-} else {
-  const brandvars = window.CANVAS_ACTIVE_BRAND_VARIABLES || {}
-
-  // Set CSS transitions to 0ms in Selenium and JS tests
-
-  //   overrides: {
-  //     ...transitionOverride,
-  //     ...brandvars,
-  //     typography: {
-  //       fontFamily: 'LatoWeb, "Lato Extended", Lato, "Helvetica Neue", Helvetica, Arial, sans-serif'
-  //     }
-  //   }
-  // })
-}
 
 /* #__PURE__ */ if (process.env.NODE_ENV === 'test' || window.INST.environment === 'test') {
   // This is for the `wait_for_ajax_requests` method in selenium

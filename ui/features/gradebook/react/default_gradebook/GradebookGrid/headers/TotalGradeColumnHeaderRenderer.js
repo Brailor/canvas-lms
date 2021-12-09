@@ -19,6 +19,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import TotalGradeColumnHeader from './TotalGradeColumnHeader'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 function getProps(column, gradebook, gridSupport, options) {
   const columnId = 'total_grade'
@@ -87,7 +88,12 @@ export default class TotalGradeColumnHeaderRenderer {
 
   render(column, $container, gridSupport, options) {
     const props = getProps(column, this.gradebook, gridSupport, options)
-    ReactDOM.render(<TotalGradeColumnHeader {...props} />, $container)
+    ReactDOM.render(
+      <ThemeProvider>
+        <TotalGradeColumnHeader {...props} />
+      </ThemeProvider>,
+      $container
+    )
   }
 
   destroy(_column, $container, _gridSupport) {

@@ -22,6 +22,8 @@ import mejs from './index'
 import $ from 'jquery'
 
 import CopyToClipboard from '@canvas/copy-to-clipboard'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 
@@ -56,7 +58,9 @@ export default class UploadMediaTrackForm {
       })
 
     ReactDOM.render(
-      <CopyToClipboard interaction="readonly" name="video_url" value={video_url} />,
+      <ThemeProvider>
+        <CopyToClipboard interaction="readonly" name="video_url" value={video_url} />
+      </ThemeProvider>,
       document.getElementById('media-track-video-url-container')
     )
   }
@@ -102,7 +106,7 @@ export default class UploadMediaTrackForm {
     const file = this.$dialog.find('input[name="content"]')[0].files[0]
     if (file) {
       const reader = new FileReader()
-      reader.onload = function(e) {
+      reader.onload = function (e) {
         const content = e.target.result
         return dfd.resolve(content)
       }

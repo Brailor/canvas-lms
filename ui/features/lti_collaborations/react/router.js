@@ -27,6 +27,7 @@ import actions from './actions'
 import store from './store'
 import {isValidDeepLinkingEvent} from '@canvas/deep-linking/DeepLinking'
 import processSingleContentItem from '@canvas/deep-linking/processors/processSingleContentItem'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const attachListeners = () => {
   // LTI 1.3 deep linking handler
@@ -70,7 +71,9 @@ function renderShowCollaborations(ctx) {
   const view = () => {
     const state = store.getState()
     ReactDOM.render(
-      <CollaborationsApp applicationState={state} actions={actions} />,
+      <ThemeProvider>
+        <CollaborationsApp applicationState={state} actions={actions} />
+      </ThemeProvider>,
       document.getElementById('content')
     )
   }
@@ -81,7 +84,9 @@ function renderShowCollaborations(ctx) {
 function renderLaunchTool(ctx) {
   const view = () => {
     ReactDOM.render(
-      <CollaborationsToolLaunch launchUrl={ctx.path.replace('/lti_collaborations', '')} />,
+      <ThemeProvider>
+        <CollaborationsToolLaunch launchUrl={ctx.path.replace('/lti_collaborations', '')} />
+      </ThemeProvider>,
       document.getElementById('content')
     )
   }

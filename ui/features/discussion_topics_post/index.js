@@ -21,10 +21,13 @@ import ready from '@instructure/ready'
 import $ from 'jquery'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ready(() => {
   ReactDOM.render(
-    <DiscussionTopicsPost discussionTopicId={ENV.discussion_topic_id} />,
+    <ThemeProvider>
+      <DiscussionTopicsPost discussionTopicId={ENV.discussion_topic_id} />
+    </ThemeProvider>,
     $('<div/>').appendTo('#content')[0]
   )
 })

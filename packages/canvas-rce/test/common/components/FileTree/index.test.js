@@ -22,6 +22,7 @@ import FileTree from '../../../../src/common/components/FileTree/index'
 import sd from 'skin-deep'
 import ReactDOM from 'react-dom'
 import sinon from 'sinon'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 describe('FileTree/index', () => {
   let files, folders, folder, onToggle, onSelect, props
@@ -82,7 +83,12 @@ describe('FileTree/index', () => {
 
       div = document.createElement('div')
       document.body.appendChild(div)
-      component = ReactDOM.render(<FileTree {...props} />, div)
+      component = ReactDOM.render(
+        <ThemeProvider>
+          <FileTree {...props} />
+        </ThemeProvider>,
+        div
+      )
       buttons = div.querySelectorAll('button')
     })
 

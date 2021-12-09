@@ -21,6 +21,7 @@ import ReactDOM from 'react-dom'
 import {isGraded, isPostable} from '@canvas/grading/SubmissionHelper'
 import {optionsForGradingType} from '../../../shared/EnterGradesAsSetting'
 import AssignmentColumnHeader from './AssignmentColumnHeader'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 function getSubmission(student, assignmentId) {
   const submission = student[`assignment_${assignmentId}`]
@@ -192,7 +193,12 @@ export default class AssignmentColumnHeaderRenderer {
 
   render(column, $container, _gridSupport, options) {
     const props = getProps(column, this.gradebook, options)
-    ReactDOM.render(<AssignmentColumnHeader {...props} />, $container)
+    ReactDOM.render(
+      <ThemeProvider>
+        <AssignmentColumnHeader {...props} />
+      </ThemeProvider>,
+      $container
+    )
   }
 
   destroy(column, $container, _gridSupport) {

@@ -35,15 +35,19 @@ import EntriesView from './backbone/views/EntriesView'
 import SectionsTooltip from '@canvas/sections-tooltip'
 import DiscussionTopicKeyboardShortcutModal from './react/DiscussionTopicKeyboardShortcutModal'
 import ready from '@instructure/ready'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 import('@canvas/rubrics/jquery/rubricEditBinding')
-if (ENV.STUDENT_CONTEXT_CARDS_ENABLED) import('@canvas/context-cards/react/StudentContextCardTrigger')
+if (ENV.STUDENT_CONTEXT_CARDS_ENABLED)
+  import('@canvas/context-cards/react/StudentContextCardTrigger')
 
 if (ENV.MASTER_COURSE_DATA) {
-  import('@canvas/blueprint-courses/react/components/LockManager/index').then(({default: LockManager}) => {
-    const lockManager = new LockManager()
-    lockManager.init({itemType: 'discussion_topic', page: 'show'})
-  })
+  import('@canvas/blueprint-courses/react/components/LockManager/index').then(
+    ({default: LockManager}) => {
+      const lockManager = new LockManager()
+      lockManager.init({itemType: 'discussion_topic', page: 'show'})
+    }
+  )
 }
 
 const descendants = 5
@@ -65,7 +69,9 @@ ready(() => {
 
   if (!window.ENV.disable_keyboard_shortcuts) {
     ReactDOM.render(
-      <DiscussionTopicKeyboardShortcutModal />,
+      <ThemeProvider>
+        <DiscussionTopicKeyboardShortcutModal />
+      </ThemeProvider>,
       document.getElementById('keyboard-shortcut-modal')
     )
   }
@@ -80,10 +86,12 @@ ready(() => {
     !ENV.DISCUSSION.IS_GROUP
   ) {
     ReactDOM.render(
-      <SectionsTooltip
-        totalUserCount={ENV.TOTAL_USER_COUNT}
-        sections={ENV.DISCUSSION.TOPIC.COURSE_SECTIONS}
-      />,
+      <ThemeProvider>
+        <SectionsTooltip
+          totalUserCount={ENV.TOTAL_USER_COUNT}
+          sections={ENV.DISCUSSION.TOPIC.COURSE_SECTIONS}
+        />
+      </ThemeProvider>,
       container
     )
   }

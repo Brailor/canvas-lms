@@ -21,10 +21,16 @@ import ReactDOM from 'react-dom'
 
 import {renderGameIntoDom} from './react/gameEntry'
 import NotFoundArtwork from './react/NotFoundArtwork'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export const renderNotFoundApp = domElementId => {
   const AppRootElement = document.getElementById(domElementId)
-  ReactDOM.render(<NotFoundArtwork />, AppRootElement)
+  ReactDOM.render(
+    <ThemeProvider>
+      <NotFoundArtwork />
+    </ThemeProvider>,
+    AppRootElement
+  )
 }
 
 export const handleGameStartClick = event => {

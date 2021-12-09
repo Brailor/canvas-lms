@@ -27,6 +27,7 @@ import FindAppointment from './react/scheduler/components/FindAppointment'
 import CalendarHeader from './backbone/views/CalendarHeader.coffee'
 import drawSidebar from './jquery/sidebar'
 import EventDataSource from '@canvas/calendar/jquery/EventDataSource'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 import UndatedEventsList from './jquery/UndatedEventsList'
 import configureSchedulerStore from './react/scheduler/store/configureStore'
 import 'jquery-kyle-menu'
@@ -59,8 +60,10 @@ const calendar = new Calendar(
         )
         if (courses.length > 0) {
           ReactDOM.render(
-            <FindAppointment courses={courses} store={schedulerStore} />,
-            $('#select-course-component')[0]
+            <ThemeProvider>
+              <FindAppointment courses={courses} store={schedulerStore} />
+            </ThemeProvider>,
+            $('select-course-component')[0]
           )
         }
       }
@@ -76,9 +79,7 @@ let keyboardUser = true
 
 $('.calendar-button').on('mousedown', e => {
   keyboardUser = false
-  $(e.target)
-    .find('.accessibility-warning')
-    .addClass('screenreader-only')
+  $(e.target).find('.accessibility-warning').addClass('screenreader-only')
 })
 
 $(document).on('keydown', e => {
@@ -90,16 +91,12 @@ $(document).on('keydown', e => {
 
 $('.calendar-button').on('focus', e => {
   if (keyboardUser) {
-    $(e.target)
-      .find('.accessibility-warning')
-      .removeClass('screenreader-only')
+    $(e.target).find('.accessibility-warning').removeClass('screenreader-only')
   }
 })
 
 $('.calendar-button').on('focusout', e =>
-  $(e.target)
-    .find('.accessibility-warning')
-    .addClass('screenreader-only')
+  $(e.target).find('.accessibility-warning').addClass('screenreader-only')
 )
 
 $('.rs-section .accessibility-warning').on('focus', e =>

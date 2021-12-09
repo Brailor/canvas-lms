@@ -20,7 +20,13 @@ import $ from 'jquery'
 import NotificationSettings from './react/index'
 import React from 'react'
 import ReactDom from 'react-dom'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 $(() => {
-  ReactDom.render(<NotificationSettings />, $('#content')[0])
+  ReactDom.render(
+    <ThemeProvider>
+      <NotificationSettings />
+    </ThemeProvider>,
+    $('content')[0]
+  )
 })

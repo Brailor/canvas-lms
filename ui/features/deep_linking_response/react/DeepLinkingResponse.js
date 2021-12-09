@@ -22,6 +22,7 @@ import ReactDOM from 'react-dom'
 import {Text} from '@instructure/ui-text'
 import {Spinner} from '@instructure/ui-spinner'
 import {Flex} from '@instructure/ui-flex'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export class RetrievingContent extends React.Component {
   static messageType = 'LtiDeepLinkingResponse'
@@ -79,6 +80,11 @@ export class RetrievingContent extends React.Component {
 
 export default class DeepLinkingResponse {
   static mount() {
-    ReactDOM.render(<RetrievingContent />, document.getElementById('deepLinkingContent'))
+    ReactDOM.render(
+      <ThemeProvider>
+        <RetrievingContent />
+      </ThemeProvider>,
+      document.getElementById('deepLinkingContent')
+    )
   }
 }

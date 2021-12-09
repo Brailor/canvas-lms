@@ -25,6 +25,7 @@ import ReactDOM from 'react-dom'
 import GeneratePairingCode from '@canvas/generate-pairing-code'
 import ready from '@instructure/ready'
 import FeatureFlags from '@canvas/feature-flags'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ready(() => {
   const hiddenFlags = []
@@ -33,13 +34,20 @@ ready(() => {
   }
 
   ReactDOM.render(
-    <FeatureFlags hiddenFlags={hiddenFlags} disableDefaults />,
+    <ThemeProvider>
+      <FeatureFlags hiddenFlags={hiddenFlags} disableDefaults />
+    </ThemeProvider>,
     // There is only one of these
     document.querySelector('.feature-flag-wrapper')
   )
 
   const container = document.querySelector('#pairing-code')
   if (container) {
-    ReactDOM.render(<GeneratePairingCode userId={ENV.current_user.id} />, container)
+    ReactDOM.render(
+      <ThemeProvider>
+        <GeneratePairingCode userId={ENV.current_user.id} />
+      </ThemeProvider>,
+      container
+    )
   }
 })

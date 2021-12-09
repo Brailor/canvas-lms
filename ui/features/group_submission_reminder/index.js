@@ -23,6 +23,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {Alert} from '@instructure/ui-alerts'
 import ready from '@instructure/ready'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default function GroupSubmissionAlert({groupType}) {
   return (
@@ -41,7 +42,9 @@ GroupSubmissionAlert.propTypes = {
 ready(() => {
   $('.group_submission_alert').each((idx, alertContainer) => {
     ReactDOM.render(
-      <GroupSubmissionAlert groupType={alertContainer.getAttribute('data-group-type')} />,
+      <ThemeProvider>
+        <GroupSubmissionAlert groupType={alertContainer.getAttribute('data-group-type')} />
+      </ThemeProvider>,
       alertContainer
     )
   })

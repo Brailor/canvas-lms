@@ -22,6 +22,7 @@ import ExternalToolDialog from '../ExternalToolDialog'
 import {ApplyTheme} from '@instructure/ui-themeable'
 import {Transition} from '@instructure/ui-motion'
 import {send} from '@canvas/rce/RceCommandShim'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 // jest.mock('../../deep_linking/ContentItemProcessor')
 jest.mock('@canvas/rce/RceCommandShim')
@@ -105,9 +106,11 @@ function getInstance(_container, overrides) {
       ref: resolve
     }
     ReactDOM.render(
-      <ApplyTheme theme={{[Transition.theme]: {duration: '0ms'}}}>
-        <ExternalToolDialog {...props} />
-      </ApplyTheme>,
+      <ThemeProvider>
+        <ApplyTheme theme={{[Transition.theme]: {duration: '0ms'}}}>
+          <ExternalToolDialog {...props} />
+        </ApplyTheme>
+      </ThemeProvider>,
       _container
     )
   })

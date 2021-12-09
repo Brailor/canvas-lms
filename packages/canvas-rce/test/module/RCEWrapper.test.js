@@ -18,6 +18,8 @@
 
 import assert from 'assert'
 import sinon from 'sinon'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
+
 import Bridge from '../../src/bridge'
 import * as indicateModule from '../../src/common/indicate'
 import * as contentInsertion from '../../src/rce/contentInsertion'
@@ -1329,7 +1331,9 @@ describe('RCEWrapper', () => {
 
     it('renders them all if no max is set', done => {
       ReactDOM.render(
-        <RCEWrapper {...defaultProps()} tinymce={fakeTinyMCE} />,
+        <ThemeProvider>
+          <RCEWrapper {...defaultProps()} tinymce={fakeTinyMCE} />
+        </ThemeProvider>,
         document.getElementById('here'),
         () => {
           assert.strictEqual(document.querySelectorAll('.rce-wrapper').length, 3)
@@ -1340,7 +1344,9 @@ describe('RCEWrapper', () => {
 
     it('renders them all if maxInitRenderedRCEs is <0', done => {
       ReactDOM.render(
-        <RCEWrapper {...defaultProps()} tinymce={fakeTinyMCE} maxInitRenderedRCEs={-1} />,
+        <ThemeProvider>
+          <RCEWrapper {...defaultProps()} tinymce={fakeTinyMCE} maxInitRenderedRCEs={-1} />
+        </ThemeProvider>,
         document.getElementById('here'),
         () => {
           assert.strictEqual(document.querySelectorAll('.rce-wrapper').length, 3)
@@ -1351,7 +1357,9 @@ describe('RCEWrapper', () => {
 
     it('limits them to maxInitRenderedRCEs value', done => {
       ReactDOM.render(
-        <RCEWrapper {...defaultProps()} tinymce={fakeTinyMCE} maxInitRenderedRCEs={2} />,
+        <ThemeProvider>
+          <RCEWrapper {...defaultProps()} tinymce={fakeTinyMCE} maxInitRenderedRCEs={2} />
+        </ThemeProvider>,
         document.getElementById('here'),
         () => {
           assert.strictEqual(document.querySelectorAll('.rce-wrapper').length, 2)
@@ -1364,7 +1372,9 @@ describe('RCEWrapper', () => {
       delete global.IntersectionObserver
 
       ReactDOM.render(
-        <RCEWrapper {...defaultProps()} tinymce={fakeTinyMCE} maxInitRenderedRCEs={2} />,
+        <ThemeProvider>
+          <RCEWrapper {...defaultProps()} tinymce={fakeTinyMCE} maxInitRenderedRCEs={2} />
+        </ThemeProvider>,
         document.getElementById('here'),
         () => {
           assert.strictEqual(document.querySelectorAll('.rce-wrapper').length, 3)

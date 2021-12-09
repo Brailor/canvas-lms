@@ -18,6 +18,8 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
+
 import Bridge from '../../../bridge'
 
 export default function (ed, document) {
@@ -38,6 +40,11 @@ export default function (ed, document) {
       Bridge.insertEmbedCode(embedCode)
     }
 
-    ReactDOM.render(<Embed onSubmit={handleEmbedCode} onDismiss={handleDismiss} />, container)
+    ReactDOM.render(
+      <ThemeProvider>
+        <Embed onSubmit={handleEmbedCode} onDismiss={handleDismiss} />
+      </ThemeProvider>,
+      container
+    )
   })
 }

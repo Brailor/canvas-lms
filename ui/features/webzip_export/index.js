@@ -21,7 +21,13 @@ import ready from '@instructure/ready'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import WebZipExportApp from './react/App'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ready(() => {
-  ReactDOM.render(<WebZipExportApp />, $('#course-webzip-export-app')[0])
+  ReactDOM.render(
+    <ThemeProvider>
+      <WebZipExportApp />
+    </ThemeProvider>,
+    $('course-webzip-export-app')[0]
+  )
 })

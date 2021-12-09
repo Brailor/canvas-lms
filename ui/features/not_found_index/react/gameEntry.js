@@ -20,14 +20,25 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import OfficialNotFoundGame from './frogger/OfficialNotFoundGame'
 import SpaceInvaders from './space_invaders/SpaceInvaders'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export const renderGameApp = domElement => {
   const AppRootElement = document.getElementById(domElement)
   const rng = Math.random()
   if (rng < 0.25) {
-    ReactDOM.render(<OfficialNotFoundGame />, AppRootElement)
+    ReactDOM.render(
+      <ThemeProvider>
+        <OfficialNotFoundGame />
+      </ThemeProvider>,
+      AppRootElement
+    )
   } else {
-    ReactDOM.render(<SpaceInvaders />, AppRootElement)
+    ReactDOM.render(
+      <ThemeProvider>
+        <SpaceInvaders />
+      </ThemeProvider>,
+      AppRootElement
+    )
   }
 }
 

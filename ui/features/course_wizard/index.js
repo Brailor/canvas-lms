@@ -19,6 +19,7 @@
 import $ from 'jquery'
 import React, {Suspense} from 'react'
 import ReactDOM from 'react-dom'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const CourseWizard = React.lazy(() => import('./react/CourseWizard'))
 
@@ -28,9 +29,11 @@ const CourseWizard = React.lazy(() => import('./react/CourseWizard'))
  */
 function renderWizard(showWizard) {
   ReactDOM.render(
-    <Suspense fallback={<div />}>
-      {showWizard && <CourseWizard onHideWizard={() => renderWizard(false)} />}
-    </Suspense>,
+    <ThemeProvider>
+      <Suspense fallback={<div />}>
+        {showWizard && <CourseWizard onHideWizard={() => renderWizard(false)} />}
+      </Suspense>
+    </ThemeProvider>,
     document.getElementById('wizard_box')
   )
 }

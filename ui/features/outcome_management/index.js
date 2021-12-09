@@ -20,7 +20,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import ready from '@instructure/ready'
 import OutcomeManagement from './react/OutcomeManagement'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ready(() => {
-  ReactDOM.render(<OutcomeManagement />, document.getElementById('outcome_management'))
+  ReactDOM.render(
+    <ThemeProvider>
+      <OutcomeManagement />
+    </ThemeProvider>,
+    document.getElementById('outcome_management')
+  )
 })

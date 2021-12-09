@@ -23,6 +23,7 @@ import {Provider} from 'react-redux'
 // TODO: we probably want this one eventually
 // import { subscribeFlashNotifications } from '../shared/reduxNotifications'
 import {ConnectedPermissionsIndex} from './components/PermissionsIndex'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 import createStore from './store'
 
@@ -35,9 +36,11 @@ export default function createPermissionsIndex(root, data = {}) {
 
   function render() {
     ReactDOM.render(
-      <Provider store={store}>
-        <ConnectedPermissionsIndex />
-      </Provider>,
+      <ThemeProvider>
+        <Provider store={store}>
+          <ConnectedPermissionsIndex />
+        </Provider>
+      </ThemeProvider>,
       root
     )
   }

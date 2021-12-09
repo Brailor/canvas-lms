@@ -23,6 +23,7 @@ import $ from 'jquery'
 import I18n from 'i18n!modules'
 import PostGradesDialog from './PostGradesDialog'
 import classnames from 'classnames'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 // The PostGradesApp mounts a single "Sync Grades" button, which pops up
 // the PostGradesDialog when clicked.
@@ -69,7 +70,12 @@ class PostGradesApp extends React.Component {
     }
 
     store.reset()
-    ReactDOM.render(<PostGradesDialog store={store} closeDialog={closeDialog} />, $dialog[0])
+    ReactDOM.render(
+      <ThemeProvider>
+        <PostGradesDialog store={store} closeDialog={closeDialog} />
+      </ThemeProvider>,
+      $dialog[0]
+    )
   }
 
   componentDidMount() {

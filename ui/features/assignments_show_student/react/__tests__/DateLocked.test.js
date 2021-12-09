@@ -18,6 +18,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {render} from '@testing-library/react'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
+
 import $ from 'jquery'
 
 import DateLocked from '../DateLocked'
@@ -36,7 +38,12 @@ afterEach(() => {
 })
 
 it('renders normally', () => {
-  ReactDOM.render(<DateLocked date="TEST" type="assignment" />, document.getElementById('fixtures'))
+  ReactDOM.render(
+    <ThemeProvider>
+      <DateLocked date="TEST" type="assignment" />
+    </ThemeProvider>,
+    document.getElementById('fixtures')
+  )
   const element = $('[data-test-id="assignments-2-date-locked"]')
   expect(element).toHaveLength(1)
 })

@@ -19,6 +19,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import AssignmentGroupColumnHeader from './AssignmentGroupColumnHeader'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 function getProps(column, gradebook, options) {
   const columnId = column.id
@@ -72,7 +73,12 @@ export default class AssignmentGroupColumnHeaderRenderer {
 
   render(column, $container, _gridSupport, options) {
     const props = getProps(column, this.gradebook, options)
-    ReactDOM.render(<AssignmentGroupColumnHeader {...props} />, $container)
+    ReactDOM.render(
+      <ThemeProvider>
+        <AssignmentGroupColumnHeader {...props} />
+      </ThemeProvider>,
+      $container
+    )
   }
 
   destroy(column, $container, _gridSupport) {

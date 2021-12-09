@@ -20,7 +20,13 @@ import {CanvasInboxApp} from './react/index'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import ready from '@instructure/ready'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ready(() => {
-  ReactDOM.render(<CanvasInboxApp />, document.getElementById('content'))
+  ReactDOM.render(
+    <ThemeProvider>
+      <CanvasInboxApp />
+    </ThemeProvider>,
+    document.getElementById('content')
+  )
 })

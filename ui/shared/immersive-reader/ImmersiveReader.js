@@ -25,6 +25,7 @@ import {showFlashError} from '@canvas/alerts/react/FlashAlert'
 import {defaultFetchOptions} from '@instructure/js-utils'
 import {CookiePolicy} from '@microsoft/immersive-reader-sdk'
 import WithBreakpoints from 'with-breakpoints'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 /**
  * This comes from https://github.com/microsoft/immersive-reader-sdk/blob/master/assets/icon.svg
@@ -91,5 +92,10 @@ export function ImmersiveReaderButton({content, readerSDK, breakpoints}) {
 const ImmersiveReaderButtonWithBreakpoints = WithBreakpoints(ImmersiveReaderButton)
 
 export function initializeReaderButton(mountPoint, content) {
-  ReactDOM.render(<ImmersiveReaderButtonWithBreakpoints content={content} />, mountPoint)
+  ReactDOM.render(
+    <ThemeProvider>
+      <ImmersiveReaderButtonWithBreakpoints content={content} />
+    </ThemeProvider>,
+    mountPoint
+  )
 }

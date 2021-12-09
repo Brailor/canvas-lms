@@ -24,6 +24,7 @@ import '@canvas/jquery/jquery.ajaxJSON'
 import OutcomeGradebookView from '../backbone/views/OutcomeGradebookView.coffee'
 import GradebookMenu from '@canvas/gradebook-menu'
 import Paginator from '@canvas/instui-bindings/react/Paginator'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 function normalizeSections(options) {
   const sections = options.sections || []
@@ -71,7 +72,9 @@ export default class LearningMastery {
   renderPagination(page = 0, pageCount = 0) {
     const loadPage = this.view.loadPage.bind(this.view)
     ReactDOM.render(
-      <Paginator page={page} pageCount={pageCount} loadPage={loadPage} />,
+      <ThemeProvider>
+        <Paginator page={page} pageCount={pageCount} loadPage={loadPage} />
+      </ThemeProvider>,
       document.getElementById('outcome-gradebook-paginator')
     )
   }
@@ -111,7 +114,12 @@ export default class LearningMastery {
       learningMasteryEnabled: true,
       variant: 'DefaultGradebookLearningMastery'
     }
-    ReactDOM.render(<GradebookMenu {...props} />, $container)
+    ReactDOM.render(
+      <ThemeProvider>
+        <GradebookMenu {...props} />
+      </ThemeProvider>,
+      $container
+    )
   }
 
   _setCurrentSectionId(sectionId) {

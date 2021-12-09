@@ -23,6 +23,7 @@ import initialize from './config/initializer'
 import Layout from './react/components/app'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const extend = _.extend
 let container
@@ -41,7 +42,7 @@ const exports = {}
  * @param  {Object} options
  *         A set of options to override.
  */
-const configure = function(options) {
+const configure = function (options) {
   extend(config, options)
 }
 
@@ -57,23 +58,35 @@ const configure = function(options) {
  * @return {Promise}
  *         Fulfilled when the app has been started and rendered.
  */
-const mount = function(node, options) {
+const mount = function (node, options) {
   configure(options)
   container = node
 
-  return initialize().then(function() {
-    ReactDOM.render(<Layout />, container)
+  return initialize().then(function () {
+    ReactDOM.render(
+      <ThemeProvider>
+        <Layout />
+      </ThemeProvider>,
+      container
+    )
     return controller.start(update)
   })
 }
 
 const isMounted = () => !!container
 
-const update = (props) => { ReactDOM.render(<Layout {...props} />, container) }
+const update = props => {
+  ReactDOM.render(
+    <ThemeProvider>
+      <Layout {...props} />
+    </ThemeProvider>,
+    container
+  )
+}
 
 const reload = () => controller.load()
 
-const unmount = function() {
+const unmount = function () {
   if (isMounted()) {
     controller.stop()
     ReactDOM.unmountComponentAtNode(container)

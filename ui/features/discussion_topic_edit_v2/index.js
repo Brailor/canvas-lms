@@ -20,7 +20,13 @@ import $ from 'jquery'
 import DiscussionTopicEdit from './react/DiscussionTopicEdit'
 import React from 'react'
 import ReactDom from 'react-dom'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 $(() => {
-  ReactDom.render(<DiscussionTopicEdit />, $('#content')[0])
+  ReactDom.render(
+    <ThemeProvider>
+      <DiscussionTopicEdit />
+    </ThemeProvider>,
+    $('content')[0]
+  )
 })

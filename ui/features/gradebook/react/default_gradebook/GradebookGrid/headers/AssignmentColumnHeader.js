@@ -26,6 +26,7 @@ import {IconMoreSolid, IconOffLine} from '@instructure/ui-icons'
 import {Grid} from '@instructure/ui-grid'
 import {Menu} from '@instructure/ui-menu'
 import I18n from 'i18n!gradebook'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 import {isPostable} from '@canvas/grading/SubmissionHelper'
 import AsyncComponents from '../../AsyncComponents'
@@ -291,7 +292,12 @@ export default class AssignmentColumnHeader extends ColumnHeader {
             this.focusAtEnd()
           }
         }
-        ReactDOM.render(<MessageStudentsWhoDialog {...props} />, mountPoint)
+        ReactDOM.render(
+          <ThemeProvider>
+            <MessageStudentsWhoDialog {...props} />
+          </ThemeProvider>,
+          mountPoint
+        )
       }
     } else {
       const MessageStudentsWhoDialog = await AsyncComponents.loadMessageStudentsWhoDialog()

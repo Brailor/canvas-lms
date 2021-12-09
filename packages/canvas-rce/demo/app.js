@@ -20,6 +20,7 @@ import React, {useEffect, useRef, useState} from 'react'
 import ReactDOM from 'react-dom'
 import RCE from '../src/rce/RCE'
 import DemoOptions from './DemoOptions'
+import ThemeProvider from "@canvas/instui-bindings/react/ThemeProvider"
 import {Button} from '@instructure/ui-buttons'
 import {View} from '@instructure/ui-view'
 import '@instructure/canvas-theme'
@@ -278,4 +279,9 @@ function refreshCanvasToken(canvas_origin, initialToken) {
   }
 }
 
-ReactDOM.render(<Demo />, document.getElementById('demo'))
+ReactDOM.render(
+  <ThemeProvider>
+    <Demo />
+  </ThemeProvider>,
+  document.getElementById('demo')
+)

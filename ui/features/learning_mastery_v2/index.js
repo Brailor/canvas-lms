@@ -20,10 +20,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import ready from '@instructure/ready'
 import LearningMastery from './react'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ready(() => {
   ReactDOM.render(
-    <LearningMastery courseId={ENV.GRADEBOOK_OPTIONS.context_id} />,
+    <ThemeProvider>
+      <LearningMastery courseId={ENV.GRADEBOOK_OPTIONS.context_id} />
+    </ThemeProvider>,
     document.getElementById('learning_mastery_gradebook')
   )
 })

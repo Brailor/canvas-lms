@@ -19,9 +19,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import CanvasMediaRecorder from './react/components/MediaRecorder'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 // We have this simple code in a seperate file so that we can take advantage
 // of code splitting
 export default function renderCanvasMediaRecorder(element, onSaveFile) {
-  ReactDOM.render(<CanvasMediaRecorder onSaveFile={onSaveFile} />, element)
+  ReactDOM.render(
+    <ThemeProvider>
+      <CanvasMediaRecorder onSaveFile={onSaveFile} />
+    </ThemeProvider>,
+    element
+  )
 }

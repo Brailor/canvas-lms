@@ -19,9 +19,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Confetti from './Confetti'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export {Confetti}
 
 export default function renderConfettiApp(env, elt) {
-  ReactDOM.render(<Confetti />, elt)
+  ReactDOM.render(
+    <ThemeProvider>
+      <Confetti />
+    </ThemeProvider>,
+    elt
+  )
 }

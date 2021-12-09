@@ -25,6 +25,7 @@ import {Modal} from '@instructure/ui-modal'
 import {Button, CloseButton} from '@instructure/ui-buttons'
 import {Heading} from '@instructure/ui-heading'
 import {Alert} from '@instructure/ui-alerts'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export function showConfirmUnfavorite(props) {
   const parent = document.createElement('div')
@@ -36,9 +37,12 @@ export function showConfirmUnfavorite(props) {
   }
 
   ReactDOM.render(
-    <ConfirmUnfavoriteCourseModal {...props} parent={parent} ref={showConfirmUnfavoriteRef} />,
+    <ThemeProvider>
+      <ConfirmUnfavoriteCourseModal {...props} parent={parent} ref={showConfirmUnfavoriteRef} />
+    </ThemeProvider>,
     parent
   )
+
   return parent
 }
 
@@ -52,16 +56,18 @@ export function showNoFavoritesAlert() {
   document.querySelector('.ic-DashboardCard__box').appendChild(parent)
 
   ReactDOM.render(
-    <Alert
-      variant="info"
-      closeButtonLabel="Close"
-      label={I18n.t('No courses favorited')}
-      margin="small"
-    >
-      {I18n.t(`You have no courses favorited. Reloading this page will show all
+    <ThemeProvider>
+      <Alert
+        variant="info"
+        closeButtonLabel="Close"
+        label={I18n.t('No courses favorited')}
+        margin="small"
+      >
+        {I18n.t(`You have no courses favorited. Reloading this page will show all
       your active courses. To add favorites, go to `)}{' '}
-      <a href="/courses">{I18n.t('All Courses.')}</a>
-    </Alert>,
+        <a href="/courses">{I18n.t('All Courses.')}</a>
+      </Alert>
+    </ThemeProvider>,
     parent
   )
   return parent

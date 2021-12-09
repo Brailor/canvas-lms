@@ -21,6 +21,7 @@ import ReactDOM from 'react-dom'
 import {connect, Provider} from 'react-redux'
 import BreakdownGraphs from './components/breakdown-graphs'
 import BreakdownDetails from './components/breakdown-details'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const Graphs = connect(state => ({
   assignment: state.assignment,
@@ -51,9 +52,11 @@ export default class CRSApp {
     }
 
     ReactDOM.render(
-      <Provider store={this.store}>
-        <Graphs {...actions} />
-      </Provider>,
+      <ThemeProvider>
+        <Provider store={this.store}>
+          <Graphs {...actions} />
+        </Provider>
+      </ThemeProvider>,
       root
     )
   }
@@ -66,9 +69,11 @@ export default class CRSApp {
     }
 
     ReactDOM.render(
-      <Provider store={this.store}>
-        <Details {...detailActions} />
-      </Provider>,
+      <ThemeProvider>
+        <Provider store={this.store}>
+          <Details {...detailActions} />
+        </Provider>
+      </ThemeProvider>,
       root
     )
   }

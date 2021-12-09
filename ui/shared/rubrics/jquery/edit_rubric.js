@@ -26,6 +26,7 @@ import $ from 'jquery'
 import _ from 'underscore'
 import htmlEscape from 'html-escape'
 import numberHelper from '@canvas/i18n/numberHelper'
+import ThemeProvider from "@canvas/instui-bindings/react/ThemeProvider"
 import '@canvas/outcomes/find_outcome'
 import '@canvas/jquery/jquery.ajaxJSON'
 import '@canvas/forms/jquery/jquery.instructure_forms' /* formSubmit, fillFormData, getFormData */
@@ -1666,10 +1667,8 @@ if (
 ) {
   $('h1').hide()
   const contextId = ENV.context_asset_string.split('_')[1]
-  ReactDOM.render(
-    <RubricManagement accountId={contextId} />,
-    document.getElementById('rubric_management')
-  )
+  ReactDOM.render(<ThemeProvider><RubricManagement accountId={contextId} /></ThemeProvider>, document.getElementById('rubric_management'))
+  
 }
 
 const getEditRubricPrompt = useMasteryScale => {

@@ -19,8 +19,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import CollectionView from './react/CollectionView'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ReactDOM.render(
-  <CollectionView {...window.ENV.brandConfigStuff} />,
+  <ThemeProvider>
+    <CollectionView {...window.ENV.brandConfigStuff} />
+  </ThemeProvider>,
   document.getElementById('content')
 )

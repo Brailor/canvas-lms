@@ -28,6 +28,7 @@ import splitAssetString from '@canvas/util/splitAssetString'
 import FilesystemObject from '@canvas/files/backbone/models/FilesystemObject.coffee'
 import BaseUploader from '@canvas/files/react/modules/BaseUploader'
 import UploadQueue from '@canvas/files/react/modules/UploadQueue'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 import _ from 'underscore'
 import htmlEscape from 'html-escape'
 import {uploadFile} from '@canvas/upload-file'
@@ -871,15 +872,19 @@ function renderFileUploadForm() {
   $('#module_attachment_upload_form').show()
   $('#module_attachment_upload_progress').hide()
   upload_form = ReactDOM.render(
-    <UploadForm {...folderProps} />,
-    $('#module_attachment_upload_form')[0]
+    <ThemeProvider>
+      <UploadForm {...folderProps} />
+    </ThemeProvider>,
+    $('module_attachment_upload_form')[0]
   )
 }
 
 function renderCurrentUploads() {
   ReactDOM.render(
-    <CurrentUploads onUploadChange={handleUploadOnChange} />,
-    $('#module_attachment_upload_progress')[0]
+    <ThemeProvider>
+      <CurrentUploads onUploadChange={handleUploadOnChange} />
+    </ThemeProvider>,
+    $('module_attachment_upload_progress')[0]
   )
 }
 

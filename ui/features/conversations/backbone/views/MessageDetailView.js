@@ -27,6 +27,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {Avatar} from '@instructure/ui-avatar'
 import {nanoid} from 'nanoid'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default class MessageDetailView extends View {
   static initClass() {
@@ -73,9 +74,15 @@ export default class MessageDetailView extends View {
         const childView = new MessageItemView({model: message}).render()
         $template.find('.message-content').append(childView.$el)
         ReactDOM.render(
-          <Avatar name={message.attributes.author.name} src={message.attributes.author.avatar_url} />,
-          $template.find(`#${message.attributes.avatarContainerId}`)[0]
+          <ThemeProvider>
+            <Avatar
+              name={message.attributes.author.name}
+              src={message.attributes.author.avatar_url}
+            />
+          </ThemeProvider>,
+          template.find(`#${message.attributes.avatarContainerId}`)[0]
         )
+
         this.listenTo(childView, 'reply', () =>
           this.trigger('reply', message, `.message-item-view[data-id=${message.id}] .reply-btn`)
         )

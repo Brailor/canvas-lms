@@ -18,6 +18,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import $ from 'jquery'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 import MissingPrereqs from '../MissingPrereqs'
 
@@ -35,7 +36,12 @@ afterEach(() => {
 })
 
 it('renders normally', () => {
-  ReactDOM.render(<MissingPrereqs moduleUrl="TEST" />, document.getElementById('fixtures'))
+  ReactDOM.render(
+    <ThemeProvider>
+      <MissingPrereqs moduleUrl="TEST" />
+    </ThemeProvider>,
+    document.getElementById('fixtures')
+  )
   const element = $('[data-test-id="assignments-2-pre-req-title"]')
   expect(element).toHaveLength(1)
 })

@@ -18,6 +18,7 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 import TotalGradeOverrideColumnHeader from './TotalGradeOverrideColumnHeader'
 
@@ -34,7 +35,12 @@ export default class TotalGradeOverrideColumnHeaderRenderer {
 
   render(column, $container, _gridSupport, options) {
     const props = getProps(options)
-    ReactDOM.render(<TotalGradeOverrideColumnHeader {...props} />, $container)
+    ReactDOM.render(
+      <ThemeProvider>
+        <TotalGradeOverrideColumnHeader {...props} />
+      </ThemeProvider>,
+      $container
+    )
   }
 
   destroy(_column, $container, _gridSupport) {

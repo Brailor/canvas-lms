@@ -27,9 +27,10 @@ import '@canvas/jquery/jquery.instructure_misc_plugins'
 import '@canvas/loading-image'
 import '@canvas/rails-flash-notifications'
 import '@canvas/link-enrollment'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 $(document).ready(() => {
-  $('.show_user_services_checkbox').change(function() {
+  $('.show_user_services_checkbox').change(function () {
     $.ajaxJSON(
       $('.profile_url').attr('href'),
       'PUT',
@@ -39,7 +40,7 @@ $(document).ready(() => {
     )
   })
 
-  $('.unconclude_enrollment_link').click(function(event) {
+  $('.unconclude_enrollment_link').click(function (event) {
     event.preventDefault()
     const $enrollment = $(this).parents('.enrollment')
     $.ajaxJSON($(this).attr('href'), 'POST', {}, data => {
@@ -49,7 +50,7 @@ $(document).ready(() => {
     })
   })
 
-  $('.conclude_enrollment_link').click(function(event) {
+  $('.conclude_enrollment_link').click(function (event) {
     event.preventDefault()
     $(this)
       .parents('.enrollment')
@@ -68,7 +69,7 @@ $(document).ready(() => {
       })
   })
 
-  $('.elevate_enrollment_link,.restrict_enrollment_link').click(function(event) {
+  $('.elevate_enrollment_link,.restrict_enrollment_link').click(function (event) {
     const limit = $(this).hasClass('restrict_enrollment_link') ? '1' : '0'
     const $user = $(this).parents('.tr')
     $user.loadingImage()
@@ -90,7 +91,7 @@ $(document).ready(() => {
     event.preventDefault()
   })
 
-  $('.delete_enrollment_link').click(function(event) {
+  $('.delete_enrollment_link').click(function (event) {
     event.preventDefault()
     $(this)
       .parents('.enrollment')
@@ -101,14 +102,12 @@ $(document).ready(() => {
         ),
         url: $(this).attr('href'),
         success(data) {
-          $(this)
-            .closest('.enrollment')
-            .hide()
+          $(this).closest('.enrollment').hide()
         }
       })
   })
 
-  $('.more_user_information_link').click(function(event) {
+  $('.more_user_information_link').click(function (event) {
     event.preventDefault()
     $('.more_user_information').slideDown()
     $(this).hide()
@@ -122,7 +121,9 @@ $(document).ready(() => {
   const container = document.querySelector('#pairing-code')
   if (container != null) {
     ReactDOM.render(
-      <GeneratePairingCode userId={ENV.USER_ID} name={ENV.CONTEXT_USER_DISPLAY_NAME} />,
+      <ThemeProvider>
+        <GeneratePairingCode userId={ENV.USER_ID} name={ENV.CONTEXT_USER_DISPLAY_NAME} />
+      </ThemeProvider>,
       container
     )
   }

@@ -28,51 +28,56 @@ import FeatureFlags from '@canvas/feature-flags'
 import ready from '@instructure/ready'
 import MicrosoftSyncAccountSettings from '@canvas/integrations/react/accounts/microsoft_sync/MicrosoftSyncAccountSettings'
 import CourseCreationSettings from './react/course_creation_settings/CourseCreationSettings'
-import {InstUISettingsProvider} from '@instructure/emotion'
-import canvasTheme from '@instructure/canvas-theme'
-import canvasHighContrastTheme from '@instructure/canvas-high-contrast-theme'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ready(() => {
   ReactDOM.render(
-    <InstUISettingsProvider theme={ENV.use_high_contrast ? canvasHighContrastTheme : canvasTheme}>
+    <ThemeProvider>
       <FeatureFlags />
-    </InstUISettingsProvider>,
+    </ThemeProvider>,
     document.getElementById('tab-features')
   )
 
   if (document.getElementById('custom_help_link_settings')) {
     ReactDOM.render(
-      <InstUISettingsProvider theme={ENV.use_high_contrast ? canvasHighContrastTheme : canvasTheme}>
-        <CustomHelpLinkSettings
-          {...{
-            name: window.ENV.help_link_name,
-            icon: window.ENV.help_link_icon,
-            links: window.ENV.CUSTOM_HELP_LINKS,
-            defaultLinks: window.ENV.DEFAULT_HELP_LINKS
-          }}
-        />
-      </InstUISettingsProvider>,
+      <CustomHelpLinkSettings
+        {...{
+          name: window.ENV.help_link_name,
+          icon: window.ENV.help_link_icon,
+          links: window.ENV.CUSTOM_HELP_LINKS,
+          defaultLinks: window.ENV.DEFAULT_HELP_LINKS
+        }}
+      />,
       document.getElementById('custom_help_link_settings')
     )
   }
 
   if (document.getElementById('tab-security')) {
     ReactDOM.render(
-      <View as="div" margin="large" padding="large" textAlign="center">
-        <Spinner size="large" renderTitle={I18n.t('Loading')} />
-      </View>,
+      <ThemeProvider>
+        <View as="div" margin="large" padding="large" textAlign="center">
+          <Spinner size="large" renderTitle={I18n.t('Loading')} />
+        </View>
+      </ThemeProvider>,
       document.getElementById('tab-security')
     )
   }
 
   if (document.getElementById('tab-integrations')) {
-    ReactDOM.render(<MicrosoftSyncAccountSettings />, document.getElementById('tab-integrations'))
+    ReactDOM.render(
+      <ThemeProvider>
+        <MicrosoftSyncAccountSettings />
+      </ThemeProvider>,
+      document.getElementById('tab-integrations')
+    )
   }
 
   const courseCreationSettingsContainer = document.getElementById('course_creation_settings')
   if (courseCreationSettingsContainer) {
     ReactDOM.render(
-      <CourseCreationSettings currentValues={ENV.COURSE_CREATION_SETTINGS} />,
+      <ThemeProvider>
+        <CourseCreationSettings currentValues={ENV.COURSE_CREATION_SETTINGS} />
+      </ThemeProvider>,
       courseCreationSettingsContainer
     )
   }

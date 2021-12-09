@@ -23,6 +23,7 @@ import $ from 'jquery'
 import _ from 'lodash-underscore'
 import 'jquery-qtip'
 import ScreenReaderContent from '@canvas/quiz-legacy-client-apps/react/components/screen_reader_content'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const omit = _.omit
 const merge = _.extend
@@ -162,7 +163,7 @@ class Popup extends React.Component {
      * This is the DOM node at which the content component will be mounted
      * at.
      */
-    container: null,
+    container: null
   }
 
   static defaultProps = {
@@ -196,7 +197,9 @@ class Popup extends React.Component {
     const Content = this.props.content
 
     ReactDOM.render(
-      <Content ref={this.contentRef} {...this.getContentProps(this.props)} />,
+      <ThemeProvider>
+        <Content ref={this.contentRef} {...this.getContentProps(this.props)} />
+      </ThemeProvider>,
       $container[0]
     )
 
@@ -224,7 +227,9 @@ class Popup extends React.Component {
       const Content = this.props.content
 
       ReactDOM.render(
-        <Content ref={this.contentRef} {...this.getContentProps(this.props)} />,
+        <ThemeProvider>
+          <Content ref={this.contentRef} {...this.getContentProps(this.props)} />
+        </ThemeProvider>,
         this.state.container,
         this.contentDidUpdate.bind(this)
       )
@@ -245,7 +250,12 @@ class Popup extends React.Component {
     const Content = this.props.content
 
     return (
-      <div className="inline" ref={node => { this.node = node }}>
+      <div
+        className="inline"
+        ref={node => {
+          this.node = node
+        }}
+      >
         {this.props.children}
         {this.props.screenReaderSupport && (
           <ScreenReaderContent

@@ -25,12 +25,15 @@ import {Spinner} from '@instructure/ui-spinner'
 import {View} from '@instructure/ui-view'
 import AnnouncementRow from '@canvas/announcements/react/components/AnnouncementRow'
 import ready from '@instructure/ready'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 if (ENV.SHOW_ANNOUNCEMENTS) {
   ready(() => {
     const container = document.querySelector('#announcements_on_home_page')
     ReactDOM.render(
-      <Spinner renderTitle={I18n.t('Loading Announcements')} size="small" />,
+      <ThemeProvider>
+        <Spinner renderTitle={I18n.t('Loading Announcements')} size="small" />
+      </ThemeProvider>,
       container
     )
 
@@ -50,14 +53,16 @@ if (ENV.SHOW_ANNOUNCEMENTS) {
       .get(url, {params})
       .then(response => {
         ReactDOM.render(
-          <View display="block" margin="0 0 medium">
-            <Heading level="h3" margin="0 0 small">
-              {I18n.t('Recent Announcements')}
-            </Heading>
-            {response.data.map(announcement => (
-              <AnnouncementRow key={announcement.id} announcement={announcement} />
-            ))}
-          </View>,
+          <ThemeProvider>
+            <View display="block" margin="0 0 medium">
+              <Heading level="h3" margin="0 0 small">
+                {I18n.t('Recent Announcements')}
+              </Heading>
+              {response.data.map(announcement => (
+                <AnnouncementRow key={announcement.id} announcement={announcement} />
+              ))}
+            </View>
+          </ThemeProvider>,
           container
         )
       })

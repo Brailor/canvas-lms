@@ -19,8 +19,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import CourseTabContainer from './react/CourseTabContainer'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ReactDOM.render(
-  <CourseTabContainer hasGradingPeriods={ENV.HAS_GRADING_PERIODS} />,
+  <ThemeProvider>
+    <CourseTabContainer hasGradingPeriods={ENV.HAS_GRADING_PERIODS} />
+  </ThemeProvider>,
   document.getElementById('react_grading_tabs')
 )

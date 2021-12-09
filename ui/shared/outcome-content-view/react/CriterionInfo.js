@@ -24,6 +24,7 @@ import {Heading} from '@instructure/ui-heading'
 import {IconQuestionLine} from '@instructure/ui-icons'
 import {Modal} from '@instructure/ui-modal'
 import I18n from 'i18n!outcomesCriterionInfo'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const spiel = () =>
   I18n.t(`
@@ -93,5 +94,10 @@ export default class CriterionInfo extends React.Component {
 }
 
 export const addCriterionInfoButton = element => {
-  ReactDOM.render(<CriterionInfo />, element)
+  ReactDOM.render(
+    <ThemeProvider>
+      <CriterionInfo />
+    </ThemeProvider>,
+    element
+  )
 }

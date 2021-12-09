@@ -21,6 +21,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {getAssignmentColumnId} from '../Gradebook.utils'
 import AsyncComponents from '../AsyncComponents'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 function getSubmission(student, assignmentId) {
   const submission = student[`assignment_${assignmentId}`] || {
@@ -92,7 +93,9 @@ export default class PostPolicies {
       tray = ref
     }
     ReactDOM.render(
-      <AssignmentPostingPolicyTray ref={bindAssignmentPolicyTray} />,
+      <ThemeProvider>
+        <AssignmentPostingPolicyTray ref={bindAssignmentPolicyTray} />
+      </ThemeProvider>,
       $assignmentPolicyContainer
     )
 
@@ -126,7 +129,12 @@ export default class PostPolicies {
     const bindHideTray = ref => {
       tray = ref
     }
-    ReactDOM.render(<HideAssignmentGradesTray ref={bindHideTray} />, $hideContainer)
+    ReactDOM.render(
+      <ThemeProvider>
+        <HideAssignmentGradesTray ref={bindHideTray} />
+      </ThemeProvider>,
+      $hideContainer
+    )
 
     tray.show({
       assignment: {
@@ -158,7 +166,12 @@ export default class PostPolicies {
     const bindPostTray = ref => {
       tray = ref
     }
-    ReactDOM.render(<PostAssignmentGradesTray ref={bindPostTray} />, $postContainer)
+    ReactDOM.render(
+      <ThemeProvider>
+        <PostAssignmentGradesTray ref={bindPostTray} />
+      </ThemeProvider>,
+      $postContainer
+    )
 
     tray.show({
       assignment: {

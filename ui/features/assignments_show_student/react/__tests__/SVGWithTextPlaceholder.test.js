@@ -18,6 +18,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import $ from 'jquery'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 import SVGWithTextPlaceholder from '../SVGWithTextPlaceholder'
 
@@ -37,9 +38,12 @@ describe('SVGWithTextPlaceholder', () => {
 
   it('renders correctly with required props', () => {
     ReactDOM.render(
-      <SVGWithTextPlaceholder url="www.test.com" text="coolest test ever" />,
+      <ThemeProvider>
+        <SVGWithTextPlaceholder url="www.test.com" text="coolest test ever" />
+      </ThemeProvider>,
       document.getElementById('fixtures')
     )
+
     const textContainer = $('#fixtures:contains("coolest test ever")')
     const imgContainer = $("img[src$='www.test.com']")
     expect(textContainer).toHaveLength(1)
@@ -48,27 +52,36 @@ describe('SVGWithTextPlaceholder', () => {
 
   it('renders if empty is provided to the text prop', () => {
     ReactDOM.render(
-      <SVGWithTextPlaceholder url="www.test.com" text="" />,
+      <ThemeProvider>
+        <SVGWithTextPlaceholder url="www.test.com" text="" />
+      </ThemeProvider>,
       document.getElementById('fixtures')
     )
+
     const imgContainer = $("img[src$='www.test.com']")
     expect(imgContainer).toHaveLength(1)
   })
 
   it('renders with null in img prop', () => {
     ReactDOM.render(
-      <SVGWithTextPlaceholder text="coolest test ever" url="" />,
+      <ThemeProvider>
+        <SVGWithTextPlaceholder text="coolest test ever" url="" />
+      </ThemeProvider>,
       document.getElementById('fixtures')
     )
+
     const textContainer = $('#fixtures:contains("coolest test ever")')
     expect(textContainer).toHaveLength(1)
   })
 
   it('renders when no props provided', () => {
     ReactDOM.render(
-      <SVGWithTextPlaceholder text="coolest test ever" url="" />,
+      <ThemeProvider>
+        <SVGWithTextPlaceholder text="coolest test ever" url="" />
+      </ThemeProvider>,
       document.getElementById('fixtures')
     )
+
     const imgContainer = $('img')
     expect(imgContainer).toHaveLength(1)
   })

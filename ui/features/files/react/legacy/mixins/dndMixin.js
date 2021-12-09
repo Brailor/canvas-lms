@@ -22,6 +22,8 @@ import DragFeedback from '../../components/DragFeedback'
 import moveStuff from '../util/moveStuff'
 import $ from 'jquery'
 import _ from 'underscore'
+import ThemeProvider from "@canvas/instui-bindings/react/ThemeProvider"
+
 
 export default {
   itemsToDrag() {
@@ -32,10 +34,8 @@ export default {
       this.dragHolder = $('<div>').appendTo(document.body)
     }
     // This should be in JSX, but /o\
-    ReactDOM.render(
-      <DragFeedback pageX={pageX} pageY={pageY} itemsToDrag={this.itemsToDrag()} />,
-      this.dragHolder[0]
-    )
+    ReactDOM.render(<ThemeProvider><DragFeedback pageX={pageX} pageY={pageY} itemsToDrag={this.itemsToDrag()} /></ThemeProvider>, this.dragHolder[0])
+    
   },
 
   removeDragFeedback() {

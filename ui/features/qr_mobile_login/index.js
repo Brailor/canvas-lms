@@ -20,6 +20,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import ready from '@instructure/ready'
 import {QRMobileLogin} from './react/QRMobileLogin'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ready(() => {
   let container
@@ -31,6 +32,11 @@ ready(() => {
   container = document.querySelector('#qr_login_container')
 
   if (container) {
-    ReactDOM.render(<QRMobileLogin withWarning />, container)
+    ReactDOM.render(
+      <ThemeProvider>
+        <QRMobileLogin withWarning />
+      </ThemeProvider>,
+      container
+    )
   }
 })

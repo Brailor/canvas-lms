@@ -21,10 +21,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import FileNotFound from './react/FileNotFound'
 import ready from '@instructure/ready'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ready(() => {
   ReactDOM.render(
-    <FileNotFound contextCode={window.ENV.context_asset_string} />,
-    $('#sendMessageForm')[0]
+    <ThemeProvider>
+      <FileNotFound contextCode={window.ENV.context_asset_string} />
+    </ThemeProvider>,
+    $('sendMessageForm')[0]
   )
 })

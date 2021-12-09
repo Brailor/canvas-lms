@@ -20,10 +20,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import ActAsModal from './react/index'
 import ready from '@instructure/ready'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ready(() => {
   ReactDOM.render(
-    <ActAsModal user={ENV.act_as_user_data.user} />,
+    <ThemeProvider>
+      <ActAsModal user={ENV.act_as_user_data.user} />
+    </ThemeProvider>,
     document.getElementById('act_as_modal')
   )
 })

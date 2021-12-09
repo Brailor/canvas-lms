@@ -19,6 +19,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {getProps} from './StudentColumnHeaderRenderer.utils'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default class StudentColumnHeaderRenderer {
   constructor(gradebook, element, columnName) {
@@ -30,7 +31,12 @@ export default class StudentColumnHeaderRenderer {
   render(_column, $container, _gridSupport, options) {
     const Element = this.element
     const props = getProps(this.gradebook, options, this.columnName)
-    ReactDOM.render(<Element {...props} />, $container)
+    ReactDOM.render(
+      <ThemeProvider>
+        <Element {...props} />
+      </ThemeProvider>,
+      $container
+    )
   }
 
   destroy(_column, $container, _gridSupport) {

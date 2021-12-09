@@ -20,7 +20,13 @@ import $ from 'jquery'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PronounsInput from './react/PronounsInput'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 $(() => {
-  ReactDOM.render(<PronounsInput />, $('<div/>').appendTo('#personal_pronouns_options')[0])
+  ReactDOM.render(
+    <ThemeProvider>
+      <PronounsInput />
+    </ThemeProvider>,
+    $('<div/>').appendTo('#personal_pronouns_options')[0]
+  )
 })

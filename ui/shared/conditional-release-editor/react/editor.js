@@ -25,6 +25,7 @@ import EditorView from './editor-view'
 import createRootReducer from './reducer'
 import * as actions from './actions'
 import initActors from './actors'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 class ConditionalReleaseEditor {
   constructor(options = {}) {
@@ -60,9 +61,11 @@ class ConditionalReleaseEditor {
   attach(targetDomNode, targetRoot = null) {
     targetRoot = targetRoot || targetDomNode
     ReactDom.render(
-      <Provider store={this.store}>
-        <EditorView appElement={targetRoot} />
-      </Provider>,
+      <ThemeProvider>
+        <Provider store={this.store}>
+          <EditorView appElement={targetRoot} />
+        </Provider>
+      </ThemeProvider>,
       targetDomNode
     )
   }

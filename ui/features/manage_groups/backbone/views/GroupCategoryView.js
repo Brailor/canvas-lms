@@ -29,6 +29,7 @@ import '@canvas/jquery/jquery.disableWhileLoading'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import GroupCategoryProgress from '../../react/GroupCategoryProgress'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 let _previousSearchTerm = ''
 export default class GroupCategoryView extends View {
@@ -148,7 +149,9 @@ export default class GroupCategoryView extends View {
     const container = document.getElementById('group-category-progress')
     if (container != null) {
       ReactDOM.render(
-        <GroupCategoryProgress progressPercent={this.model.progressModel.attributes.completion} />,
+        <ThemeProvider>
+          <GroupCategoryProgress progressPercent={this.model.progressModel.attributes.completion} />
+        </ThemeProvider>,
         container
       )
     }

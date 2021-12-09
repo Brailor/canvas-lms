@@ -22,6 +22,7 @@ import ReactDOM from 'react-dom'
 import HideAssignmentGradesTray from '@canvas/hide-assignment-grades-tray'
 import PostAssignmentGradesTray from '@canvas/post-assignment-grades-tray'
 import SpeedGraderHelpers from '../../jquery/speed_grader_helpers'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 function submissionsPostedAtUpdater({submissionsMap, updateSubmission, afterUpdateSubmission}) {
   return function ({postedAt, userIds}) {
@@ -48,13 +49,23 @@ export default class PostPolicies {
     const bindHideTray = ref => {
       this._hideAssignmentGradesTray = ref
     }
-    ReactDOM.render(<HideAssignmentGradesTray ref={bindHideTray} />, $hideContainer)
+    ReactDOM.render(
+      <ThemeProvider>
+        <HideAssignmentGradesTray ref={bindHideTray} />
+      </ThemeProvider>,
+      $hideContainer
+    )
 
     const $postContainer = document.getElementById('post-assignment-grades-tray')
     const bindPostTray = ref => {
       this._postAssignmentGradesTray = ref
     }
-    ReactDOM.render(<PostAssignmentGradesTray ref={bindPostTray} />, $postContainer)
+    ReactDOM.render(
+      <ThemeProvider>
+        <PostAssignmentGradesTray ref={bindPostTray} />
+      </ThemeProvider>,
+      $postContainer
+    )
   }
 
   destroy() {

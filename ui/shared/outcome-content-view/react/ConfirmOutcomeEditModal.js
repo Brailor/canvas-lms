@@ -21,6 +21,7 @@ import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import {func, shape, bool} from 'prop-types'
 import {Button} from '@instructure/ui-buttons'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 import Modal from '@canvas/instui-bindings/react/InstuiModal'
 
@@ -43,7 +44,9 @@ export function showConfirmOutcomeEdit(props) {
   }
 
   ReactDOM.render(
-    <ConfirmOutcomeEditModal {...props} parent={() => parent} ref={showConfirmOutcomeEditRef} />,
+    <ThemeProvider>
+      <ConfirmOutcomeEditModal {...props} parent={() => parent} ref={showConfirmOutcomeEditRef} />
+    </ThemeProvider>,
     parent
   )
 }

@@ -24,13 +24,14 @@ import TutorialTray from './react/trays/TutorialTray'
 import getProperTray from './react/util/getProperTray'
 import createTutorialStore from './react/util/createTutorialStore'
 import splitAssetString from '@canvas/util/splitAssetString'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const initializeNewUserTutorials = () => {
   if (
     window.ENV.NEW_USER_TUTORIALS &&
     window.ENV.NEW_USER_TUTORIALS.is_enabled &&
-    (window.ENV.context_asset_string &&
-      splitAssetString(window.ENV.context_asset_string)[0] === 'courses')
+    window.ENV.context_asset_string &&
+    splitAssetString(window.ENV.context_asset_string)[0] === 'courses'
   ) {
     const API_URL = '/api/v1/users/self/new_user_tutorial_statuses'
     axios.get(API_URL).then(response => {
@@ -52,19 +53,23 @@ const initializeNewUserTutorials = () => {
       const renderTray = () => {
         const Tray = trayObj.component
         ReactDOM.render(
-          <TutorialTray store={store} returnFocusToFunc={getReturnFocus} label={trayObj.label}>
-            <Tray />
-          </TutorialTray>,
+          <ThemeProvider>
+            <TutorialTray store={store} returnFocusToFunc={getReturnFocus} label={trayObj.label}>
+              <Tray />
+            </TutorialTray>
+          </ThemeProvider>,
           document.querySelector('.NewUserTutorialTray__Container')
         )
       }
       ReactDOM.render(
-        <NewUserTutorialToggleButton
-          ref={c => {
-            onPageToggleButton = c
-          }}
-          store={store}
-        />,
+        <ThemeProvider>
+          <NewUserTutorialToggleButton
+            ref={c => {
+              onPageToggleButton = c
+            }}
+            store={store}
+          />
+        </ThemeProvider>,
         document.querySelector('.TutorialToggleHolder'),
         () => renderTray()
       )

@@ -24,9 +24,7 @@ import router from './react/router'
 import configureStore from './react/store/configureStore'
 import initialState from './react/store/initialState'
 import ready from '@instructure/ready'
-import {InstUISettingsProvider} from '@instructure/emotion'
-import canvasTheme from '@instructure/canvas-theme'
-import canvasHighContrastTheme from '@instructure/canvas-high-contrast-theme'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 // eg: '/accounts/xxx' for anything like '/accounts/xxx/whatever`
 initialState.tabList.basePath = window.location.pathname.match(/.*accounts\/[^/]*/)[0]
@@ -70,9 +68,9 @@ ready(() => {
     updateDocumentTitleBreadcrumbAndActiveTab(selectedTab)
 
     ReactDOM.render(
-      <InstUISettingsProvider theme={ENV.use_high_contrast ? canvasHighContrastTheme : canvasTheme}>
+      <ThemeProvider>
         <App {...props} />
-      </InstUISettingsProvider>,
+      </ThemeProvider>,
       content
     )
   })

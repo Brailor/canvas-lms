@@ -19,10 +19,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import ready from '@instructure/ready'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 import GradeSummary from './react/index'
 
 ready(() => {
   const $container = document.getElementById('content')
-  ReactDOM.render(<GradeSummary />, $container)
+  ReactDOM.render(
+    <ThemeProvider>
+      <GradeSummary />
+    </ThemeProvider>,
+    $container
+  )
 })

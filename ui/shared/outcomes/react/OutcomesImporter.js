@@ -23,6 +23,7 @@ import I18n from 'i18n!OutcomesImporter'
 import {Text} from '@instructure/ui-text'
 import {Heading} from '@instructure/ui-heading'
 import {Spinner} from '@instructure/ui-spinner'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 import {showFlashAlert} from '@canvas/alerts/react/FlashAlert'
 import * as apiClient from './apiClient'
 
@@ -35,12 +36,14 @@ export function showOutcomesImporterIfInProgress({mount, ...props}, userId) {
         const importId = response.data.id
         const invokedImport = userId === response.data.user.id
         ReactDOM.render(
-          <OutcomesImporter
-            {...props}
-            hide={unmount(mount)}
-            importId={importId}
-            invokedImport={invokedImport}
-          />,
+          <ThemeProvider>
+            <OutcomesImporter
+              {...props}
+              hide={unmount(mount)}
+              importId={importId}
+              invokedImport={invokedImport}
+            />
+          </ThemeProvider>,
           mount
         )
       }
@@ -49,7 +52,12 @@ export function showOutcomesImporterIfInProgress({mount, ...props}, userId) {
 }
 
 export function showOutcomesImporter({mount, ...props}) {
-  ReactDOM.render(<OutcomesImporter {...props} hide={unmount(mount)} invokedImport />, mount)
+  ReactDOM.render(
+    <ThemeProvider>
+      <OutcomesImporter {...props} hide={unmount(mount)} invokedImport />
+    </ThemeProvider>,
+    mount
+  )
 }
 
 export default class OutcomesImporter extends Component {

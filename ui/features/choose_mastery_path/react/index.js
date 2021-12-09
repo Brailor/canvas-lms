@@ -23,6 +23,7 @@ import {connect, Provider} from 'react-redux'
 import createStore from './store'
 import actions from './actions'
 import ChooseMasteryPath from './components/choose-mastery-path'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default {
   init: (data, root) => {
@@ -40,9 +41,11 @@ export default {
     }))(ChooseMasteryPath)
 
     ReactDOM.render(
-      <Provider store={store}>
-        <ConnectedApp selectOption={boundActions.selectOption} />
-      </Provider>,
+      <ThemeProvider>
+        <Provider store={store}>
+          <ConnectedApp selectOption={boundActions.selectOption} />
+        </Provider>
+      </ThemeProvider>,
       root
     )
   }

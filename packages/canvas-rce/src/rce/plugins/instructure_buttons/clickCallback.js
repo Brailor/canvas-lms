@@ -18,6 +18,7 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 import bridge from '../../../bridge'
 import {StoreProvider} from '../shared/StoreContext'
@@ -43,9 +44,13 @@ export default function (ed, document, type) {
     }
 
     ReactDOM.render(
-      <StoreProvider {...trayProps}>
-        {() => <ButtonsTray editor={ed} editing={type === EDIT_BUTTON} onUnmount={handleUnmount} />}
-      </StoreProvider>,
+      <ThemeProvider>
+        <StoreProvider {...trayProps}>
+          {() => (
+            <ButtonsTray editor={ed} editing={type === EDIT_BUTTON} onUnmount={handleUnmount} />
+          )}
+        </StoreProvider>
+      </ThemeProvider>,
       container
     )
   })

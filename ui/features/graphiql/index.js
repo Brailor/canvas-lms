@@ -20,7 +20,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import GraphiQLApp from './react/GraphiQLApp'
 import ready from '@instructure/ready'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ready(() => {
-  ReactDOM.render(<GraphiQLApp />, document.getElementById('graphiql'))
+  ReactDOM.render(
+    <ThemeProvider>
+      <GraphiQLApp />
+    </ThemeProvider>,
+    document.getElementById('graphiql')
+  )
 })

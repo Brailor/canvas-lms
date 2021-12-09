@@ -18,6 +18,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import $ from 'jquery'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 import SubmissionStatusPill from '../SubmissionStatusPill'
 
@@ -35,7 +36,12 @@ afterEach(() => {
 })
 
 it('does not render with null status', () => {
-  ReactDOM.render(<SubmissionStatusPill />, document.getElementById('fixtures'))
+  ReactDOM.render(
+    <ThemeProvider>
+      <SubmissionStatusPill />
+    </ThemeProvider>,
+    document.getElementById('fixtures')
+  )
   const excusedPill = $('[data-test-id="excused-pill"]')
   const missingPill = $('[data-test-id="missing-pill"]')
   const latePill = $('[data-test-id="late-pill"]')
@@ -45,14 +51,21 @@ it('does not render with null status', () => {
 })
 
 it('renders excused when given excused only', () => {
-  ReactDOM.render(<SubmissionStatusPill excused />, document.getElementById('fixtures'))
+  ReactDOM.render(
+    <ThemeProvider>
+      <SubmissionStatusPill excused />
+    </ThemeProvider>,
+    document.getElementById('fixtures')
+  )
   const excusedPill = $('[data-test-id="excused-pill"]')
   expect(excusedPill.text()).toEqual('Excused')
 })
 
 it('renders only excused even when submission is also missing', () => {
   ReactDOM.render(
-    <SubmissionStatusPill excused submissionStatus="missing" />,
+    <ThemeProvider>
+      <SubmissionStatusPill excused submissionStatus="missing" />
+    </ThemeProvider>,
     document.getElementById('fixtures')
   )
   const excusedPill = $('[data-test-id="excused-pill"]')
@@ -63,9 +76,12 @@ it('renders only excused even when submission is also missing', () => {
 
 it('renders only excused even when submission is also late', () => {
   ReactDOM.render(
-    <SubmissionStatusPill excused submissionStatus="late" />,
+    <ThemeProvider>
+      <SubmissionStatusPill excused submissionStatus="late" />
+    </ThemeProvider>,
     document.getElementById('fixtures')
   )
+
   const excusedPill = $('[data-test-id="excused-pill"]')
   expect(excusedPill.text()).toEqual('Excused')
   const latePill = $('[data-test-id="late-pill"]')
@@ -74,9 +90,12 @@ it('renders only excused even when submission is also late', () => {
 
 it('renders late when given late', () => {
   ReactDOM.render(
-    <SubmissionStatusPill submissionStatus="late" />,
+    <ThemeProvider>
+      <SubmissionStatusPill submissionStatus="late" />
+    </ThemeProvider>,
     document.getElementById('fixtures')
   )
+
   const latePill = $('[data-test-id="late-pill"]')
   expect(latePill.text()).toEqual('Late')
   const excusedPill = $('[data-test-id="excused-pill"]')
@@ -85,9 +104,12 @@ it('renders late when given late', () => {
 
 it('renders missing when given missing', () => {
   ReactDOM.render(
-    <SubmissionStatusPill submissionStatus="missing" />,
+    <ThemeProvider>
+      <SubmissionStatusPill submissionStatus="missing" />
+    </ThemeProvider>,
     document.getElementById('fixtures')
   )
+
   const missingPill = $('[data-test-id="missing-pill"]')
   expect(missingPill.text()).toEqual('Missing')
   const excusedPill = $('[data-test-id="excused-pill"]')

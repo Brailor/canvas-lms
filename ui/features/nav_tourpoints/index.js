@@ -19,6 +19,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import ready from '@instructure/ready'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const Tour = React.lazy(() => import('./react/tour'))
 
@@ -44,9 +45,11 @@ ready(() => {
   // to download the code-split bundle.
   if (globalNavTourContainer && roles.length > 0) {
     ReactDOM.render(
-      <React.Suspense fallback={null}>
-        <Tour roles={roles} />
-      </React.Suspense>,
+      <ThemeProvider>
+        <React.Suspense fallback={null}>
+          <Tour roles={roles} />
+        </React.Suspense>
+      </ThemeProvider>,
       globalNavTourContainer
     )
   }

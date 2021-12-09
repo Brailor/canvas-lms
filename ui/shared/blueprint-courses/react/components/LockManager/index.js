@@ -21,6 +21,7 @@ import $ from 'jquery'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import '@canvas/jquery/jquery.instructure_misc_plugins'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 import get from 'lodash/get'
 import buildProps from './buildLockProps'
@@ -129,11 +130,13 @@ export default class LockManager {
     if (!this.props.toggleWrapperSelector) return
     this.setupToggle(() => {
       ReactDOM.render(
-        <LockToggle
-          isLocked={this.state.isLocked}
-          isToggleable={this.props.page === 'show' && this.state.isMasterContent}
-          onClick={this.toggleLocked}
-        />,
+        <ThemeProvider>
+          <LockToggle
+            isLocked={this.state.isLocked}
+            isToggleable={this.props.page === 'show' && this.state.isMasterContent}
+            onClick={this.toggleLocked}
+          />
+        </ThemeProvider>,
         this.toggleNode
       )
     })
@@ -142,7 +145,9 @@ export default class LockManager {
   renderBanner() {
     if (!this.bannerNode) this.bannerNode = LockBanner.setupRootNode()
     ReactDOM.render(
-      <LockBanner isLocked={this.state.isLocked} itemLocks={this.state.itemLocks} />,
+      <ThemeProvider>
+        <LockBanner isLocked={this.state.isLocked} itemLocks={this.state.itemLocks} />
+      </ThemeProvider>,
       this.bannerNode
     )
   }

@@ -21,6 +21,7 @@ import ReactDOM from 'react-dom'
 import AvailabilityDates from '../AvailabilityDates'
 import {mockAssignment} from '../../graphql/studentMocks'
 import $ from 'jquery'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 beforeAll(() => {
   const found = document.getElementById('fixtures')
@@ -38,9 +39,12 @@ afterEach(() => {
 it('renders nothing if lockAt and unlockAt are null', async () => {
   const assignment = await mockAssignment()
   ReactDOM.render(
-    <AvailabilityDates assignment={assignment} />,
+    <ThemeProvider>
+      <AvailabilityDates assignment={assignment} />
+    </ThemeProvider>,
     document.getElementById('fixtures')
   )
+
   const element = $('#fixtures')
   expect(element.text()).toEqual('')
 })
@@ -48,9 +52,12 @@ it('renders nothing if lockAt and unlockAt are null', async () => {
 it('renders correctly if lockAt is set and and unlockAt is null', async () => {
   const assignment = await mockAssignment({Assignment: {lockAt: '2016-07-11T23:00:00-00:00'}})
   ReactDOM.render(
-    <AvailabilityDates assignment={assignment} />,
+    <ThemeProvider>
+      <AvailabilityDates assignment={assignment} />
+    </ThemeProvider>,
     document.getElementById('fixtures')
   )
+
   const element = $('#fixtures')
 
   // Rendered twice cause one of them is a screenreader only
@@ -62,9 +69,12 @@ it('renders correctly if lockAt is set and and unlockAt is null', async () => {
 it('renders correctly if unlockAt is set and and lockAt is null', async () => {
   const assignment = await mockAssignment({Assignment: {unlockAt: '2016-07-11T23:00:00-00:00'}})
   ReactDOM.render(
-    <AvailabilityDates assignment={assignment} />,
+    <ThemeProvider>
+      <AvailabilityDates assignment={assignment} />
+    </ThemeProvider>,
     document.getElementById('fixtures')
   )
+
   const element = $('#fixtures')
 
   // Rendered twice cause one of them is a screenreader only
@@ -78,9 +88,12 @@ it('renders correctly if unlockAt and lockAt are set', async () => {
     Assignment: {unlockAt: '2016-07-11T23:00:00-00:00', lockAt: '2016-07-15T23:00:00-00:00'}
   })
   ReactDOM.render(
-    <AvailabilityDates assignment={assignment} />,
+    <ThemeProvider>
+      <AvailabilityDates assignment={assignment} />
+    </ThemeProvider>,
     document.getElementById('fixtures')
   )
+
   const element = $('#fixtures')
 
   // Rendered twice cause one of them is a screenreader only
@@ -94,7 +107,9 @@ it('renders correctly if unlockAt and lockAt are set and rendered in short mode'
     Assignment: {unlockAt: '2016-07-11T23:00:00-00:00', lockAt: '2016-07-15T23:00:00-00:00'}
   })
   ReactDOM.render(
-    <AvailabilityDates assignment={assignment} formatStyle="short" />,
+    <ThemeProvider>
+      <AvailabilityDates assignment={assignment} formatStyle="short" />
+    </ThemeProvider>,
     document.getElementById('fixtures')
   )
   const element = $('#fixtures')

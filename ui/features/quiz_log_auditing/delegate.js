@@ -22,6 +22,7 @@ import _ from 'lodash-underscore'
 import config from './config'
 import initialize from './config/initializers/initializer'
 import Layout from './react/routes'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 import controller from './controller'
 
 const extend = _.extend
@@ -41,7 +42,7 @@ const exports = {}
  * @param  {Object} options
  *         A set of options to override.
  */
-const configure = function(options) {
+const configure = function (options) {
   extend(config, options)
 }
 
@@ -57,29 +58,39 @@ const configure = function(options) {
  * @return {Promise}
  *         Fulfilled when the app has been started and rendered.
  */
-const mount = function(node, options) {
+const mount = function (node, options) {
   configure(options)
   container = node
 
-  return initialize().then(function() {
-    ReactDOM.render(<Layout {...controller.getState()} />, container)
+  return initialize().then(function () {
+    ReactDOM.render(
+      <ThemeProvider>
+        <Layout {...controller.getState()} />
+      </ThemeProvider>,
+      container
+    )
     return controller.start(update)
   })
 }
 
-const isMounted = function() {
+const isMounted = function () {
   return !!container
 }
 
-const update = function(props) {
-  ReactDOM.render(<Layout {...props} />, container)
+const update = function (props) {
+  ReactDOM.render(
+    <ThemeProvider>
+      <Layout {...props} />
+    </ThemeProvider>,
+    container
+  )
 }
 
-const reload = function() {
+const reload = function () {
   controller.load()
 }
 
-const unmount = function() {
+const unmount = function () {
   if (isMounted()) {
     controller.stop()
     ReactDOM.unmountComponentAtNode(container)

@@ -20,6 +20,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import AssignmentToggleDetails from '../AssignmentToggleDetails'
 import $ from 'jquery'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 beforeAll(() => {
   const found = document.getElementById('fixtures')
@@ -42,9 +43,12 @@ it('renders normally', () => {
     description: 'an assignment'
   }
   ReactDOM.render(
-    <AssignmentToggleDetails description={assignment.description} />,
+    <ThemeProvider>
+      <AssignmentToggleDetails description={assignment.description} />
+    </ThemeProvider>,
     document.getElementById('fixtures')
   )
+
   const element = $('[data-test-id="assignments-2-assignment-toggle-details-text"]')
   expect(element.text()).toEqual(assignment.description)
 })
@@ -56,9 +60,12 @@ it('renders normally an assignment with no content', () => {
     dueAt: 'some time'
   }
   ReactDOM.render(
-    <AssignmentToggleDetails description={assignment.description} />,
+    <ThemeProvider>
+      <AssignmentToggleDetails description={assignment.description} />
+    </ThemeProvider>,
     document.getElementById('fixtures')
   )
+
   const element = $('[data-test-id="assignments-2-assignment-toggle-details-text"]')
   expect(element.text()).toEqual('No additional details were added for this assignment.')
 })

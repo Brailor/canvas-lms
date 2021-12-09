@@ -19,6 +19,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
+
 import MoveItemTray from './react/index'
 
 const ROOT_ID = 'move_item_tray'
@@ -32,7 +34,12 @@ export function renderTray(props, rootContainer = document.body) {
     rootContainer.appendChild(root)
   }
 
-  ReactDOM.render(<MoveItemTray {...props} ref={tray => tray && tray.open()} />, root)
+  ReactDOM.render(
+    <ThemeProvider>
+      <MoveItemTray {...props} ref={tray => tray && tray.open()} />
+    </ThemeProvider>,
+    root
+  )
 }
 
 export const backbone = {

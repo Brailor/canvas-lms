@@ -41,6 +41,7 @@ import FileBrowser from '@canvas/rce/FileBrowser'
 import {ProgressCircle} from '@instructure/ui-progress'
 import {Alert} from '@instructure/ui-alerts'
 import Attachment from '../react/Attachment'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 let submissionAttachmentIndex = -1
 
@@ -60,9 +61,11 @@ $(document).ready(function () {
 
   if (alertMount()) {
     ReactDOM.render(
-      <Alert screenReaderOnly liveRegion={alertMount} liveRegionPoliteness="assertive">
-        {accessibilityAlert}
-      </Alert>,
+      <ThemeProvider>
+        <Alert screenReaderOnly liveRegion={alertMount} liveRegionPoliteness="assertive">
+          {accessibilityAlert}
+        </Alert>
+      </ThemeProvider>,
       alertMount()
     )
   }
@@ -164,16 +167,20 @@ $(document).ready(function () {
 
           if (mountPoint) {
             ReactDOM.render(
-              <ProgressCircle
-                screenReaderLabel={I18n.t('Uploading Progress')}
-                size="x-small"
-                valueMax={event.total}
-                valueNow={event.loaded}
-                meterColor="info"
-                formatScreenReaderValue={({valueNow, valueMax}) =>
-                  I18n.t('%{percent}% complete', {percent: Math.round((valueNow * 100) / valueMax)})
-                }
-              />,
+              <ThemeProvider>
+                <ProgressCircle
+                  screenReaderLabel={I18n.t('Uploading Progress')}
+                  size="x-small"
+                  valueMax={event.total}
+                  valueNow={event.loaded}
+                  meterColor="info"
+                  formatScreenReaderValue={({valueNow, valueMax}) =>
+                    I18n.t('%{percent}% complete', {
+                      percent: Math.round((valueNow * 100) / valueMax)
+                    })
+                  }
+                />
+              </ThemeProvider>,
               mountPoint
             )
           }
@@ -415,12 +422,14 @@ $(document).ready(function () {
       if (wrapperDom) {
         const index = ++submissionAttachmentIndex
         ReactDOM.render(
-          <Attachment
-            index={index}
-            setBlob={blob => {
-              webcamBlobs[index] = blob
-            }}
-          />,
+          <ThemeProvider>
+            <Attachment
+              index={index}
+              setBlob={blob => {
+                webcamBlobs[index] = blob
+              }}
+            />
+          </ThemeProvider>,
           wrapperDom
         )
       }

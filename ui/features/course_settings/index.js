@@ -31,6 +31,7 @@ import './jquery/index'
 import '@canvas/grading-standards'
 import FeatureFlags from '@canvas/feature-flags'
 import I18n from 'i18n!course_settings'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const BlueprintLockOptions = React.lazy(() => import('./react/components/BlueprintLockOptions'))
 const CourseTemplateDetails = React.lazy(() => import('./react/components/CourseTemplateDetails'))
@@ -49,17 +50,19 @@ const Error = () => (
 const blueprint = document.getElementById('blueprint_menu')
 if (blueprint) {
   ReactDOM.render(
-    <Suspense fallback={<Loading />}>
-      <ErrorBoundary errorComponent={<Error />}>
-        <BlueprintLockOptions
-          isMasterCourse={ENV.IS_MASTER_COURSE}
-          disabledMessage={ENV.DISABLED_BLUEPRINT_MESSAGE}
-          generalRestrictions={ENV.BLUEPRINT_RESTRICTIONS}
-          useRestrictionsbyType={ENV.USE_BLUEPRINT_RESTRICTIONS_BY_OBJECT_TYPE}
-          restrictionsByType={ENV.BLUEPRINT_RESTRICTIONS_BY_OBJECT_TYPE}
-        />
-      </ErrorBoundary>
-    </Suspense>,
+    <ThemeProvider>
+      <Suspense fallback={<Loading />}>
+        <ErrorBoundary errorComponent={<Error />}>
+          <BlueprintLockOptions
+            isMasterCourse={ENV.IS_MASTER_COURSE}
+            disabledMessage={ENV.DISABLED_BLUEPRINT_MESSAGE}
+            generalRestrictions={ENV.BLUEPRINT_RESTRICTIONS}
+            useRestrictionsbyType={ENV.USE_BLUEPRINT_RESTRICTIONS_BY_OBJECT_TYPE}
+            restrictionsByType={ENV.BLUEPRINT_RESTRICTIONS_BY_OBJECT_TYPE}
+          />
+        </ErrorBoundary>
+      </Suspense>
+    </ThemeProvider>,
     blueprint
   )
 }
@@ -68,11 +71,13 @@ const courseTemplate = document.getElementById('course_template_details')
 if (courseTemplate) {
   const isEditable = courseTemplate.getAttribute('data-is-editable') === 'true'
   ReactDOM.render(
-    <Suspense fallback={<Loading />}>
-      <ErrorBoundary errorComponent={<Error />}>
-        <CourseTemplateDetails isEditable={isEditable} />
-      </ErrorBoundary>
-    </Suspense>,
+    <ThemeProvider>
+      <Suspense fallback={<Loading />}>
+        <ErrorBoundary errorComponent={<Error />}>
+          <CourseTemplateDetails isEditable={isEditable} />
+        </ErrorBoundary>
+      </Suspense>
+    </ThemeProvider>,
     courseTemplate
   )
 }
@@ -80,29 +85,38 @@ if (courseTemplate) {
 const navView = new NavigationView({el: $('#tab-navigation')})
 
 if (document.getElementById('tab-features')) {
-  ReactDOM.render(<FeatureFlags disableDefaults />, document.getElementById('tab-features'))
+  ReactDOM.render(
+    <ThemeProvider>
+      <FeatureFlags disableDefaults />
+    </ThemeProvider>,
+    document.getElementById('tab-features')
+  )
 }
 
 $(() => navView.render())
 
 ReactDOM.render(
-  <CourseImageSelector
-    store={configureStore(initialState)}
-    courseId={ENV.COURSE_ID}
-    setting="image"
-  />,
+  <ThemeProvider>
+    <CourseImageSelector
+      store={configureStore(initialState)}
+      courseId={ENV.COURSE_ID}
+      setting="image"
+    />
+  </ThemeProvider>,
   $('.CourseImageSelector__Container')[0]
 )
 
 const bannerImageContainer = document.getElementById('course_banner_image_selector_container')
 if (bannerImageContainer) {
   ReactDOM.render(
-    <CourseImageSelector
-      store={configureStore(initialState)}
-      courseId={ENV.COURSE_ID}
-      setting="banner_image"
-      wide
-    />,
+    <ThemeProvider>
+      <CourseImageSelector
+        store={configureStore(initialState)}
+        courseId={ENV.COURSE_ID}
+        setting="banner_image"
+        wide
+      />
+    </ThemeProvider>,
     bannerImageContainer
   )
 }
@@ -110,16 +124,18 @@ if (bannerImageContainer) {
 const availabilityOptionsContainer = document.getElementById('availability_options_container')
 if (availabilityOptionsContainer) {
   ReactDOM.render(
-    <Suspense fallback={<Loading />}>
-      <CourseAvailabilityOptions
-        canManage={
-          ENV.PERMISSIONS.can_manage_courses ||
-          (ENV.PERMISSIONS.manage && !ENV.PREVENT_COURSE_AVAILABILITY_EDITING_BY_TEACHERS)
-        }
-        viewPastLocked={ENV.RESTRICT_STUDENT_PAST_VIEW_LOCKED}
-        viewFutureLocked={ENV.RESTRICT_STUDENT_FUTURE_VIEW_LOCKED}
-      />
-    </Suspense>,
+    <ThemeProvider>
+      <Suspense fallback={<Loading />}>
+        <CourseAvailabilityOptions
+          canManage={
+            ENV.PERMISSIONS.can_manage_courses ||
+            (ENV.PERMISSIONS.manage && !ENV.PREVENT_COURSE_AVAILABILITY_EDITING_BY_TEACHERS)
+          }
+          viewPastLocked={ENV.RESTRICT_STUDENT_PAST_VIEW_LOCKED}
+          viewFutureLocked={ENV.RESTRICT_STUDENT_FUTURE_VIEW_LOCKED}
+        />
+      </Suspense>
+    </ThemeProvider>,
     availabilityOptionsContainer
   )
 }
@@ -128,7 +144,9 @@ if (ENV.COURSE_COLORS_ENABLED) {
   const courseColorPickerContainer = document.getElementById('course_color_picker_container')
   if (courseColorPickerContainer) {
     ReactDOM.render(
-      <CourseColorSelector courseColor={ENV.COURSE_COLOR} />,
+      <ThemeProvider>
+        <CourseColorSelector courseColor={ENV.COURSE_COLOR} />
+      </ThemeProvider>,
       courseColorPickerContainer
     )
   }
@@ -137,9 +155,11 @@ if (ENV.COURSE_COLORS_ENABLED) {
 const integrationsContainer = document.getElementById('tab-integrations')
 if (integrationsContainer) {
   ReactDOM.render(
-    <Suspense fallback={<Loading />}>
-      <Integrations />
-    </Suspense>,
+    <ThemeProvider>
+      <Suspense fallback={<Loading />}>
+        <Integrations />
+      </Suspense>
+    </ThemeProvider>,
     integrationsContainer
   )
 }

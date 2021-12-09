@@ -19,6 +19,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import StudentFirstNameColumnHeader from './StudentFirstNameColumnHeader'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 function getProps(gradebook, options) {
   const columnId = 'student_firstname'
@@ -41,7 +42,12 @@ export default class StudentFirstNameColumnHeaderRenderer {
 
   render(_column, $container, _gridSupport, options) {
     const props = getProps(this.gradebook, options)
-    ReactDOM.render(<StudentFirstNameColumnHeader {...props} />, $container)
+    ReactDOM.render(
+      <ThemeProvider>
+        <StudentFirstNameColumnHeader {...props} />
+      </ThemeProvider>,
+      $container
+    )
   }
 
   destroy(_column, $container, _gridSupport) {

@@ -28,6 +28,7 @@ import {Text} from '@instructure/ui-text'
 import {View} from '@instructure/ui-view'
 import {PresentationContent} from '@instructure/ui-a11y-content'
 import SVGWrapper from '@canvas/svg-wrapper'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export function showImportOutcomesModal(props) {
   const parent = document.createElement('div')
@@ -39,7 +40,9 @@ export function showImportOutcomesModal(props) {
   }
 
   ReactDOM.render(
-    <ImportOutcomesModal {...props} parent={parent} ref={showImportOutcomesRef} />,
+    <ThemeProvider>
+      <ImportOutcomesModal {...props} parent={parent} ref={showImportOutcomesRef} />
+    </ThemeProvider>,
     parent
   )
 }

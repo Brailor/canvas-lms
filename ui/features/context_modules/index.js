@@ -21,12 +21,19 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import ModulesHomePage from './react/ModulesHomePage'
 import modules from '@canvas/context-modules'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
+
 import ready from '@instructure/ready'
 
 ready(() => {
   const container = document.getElementById('modules_homepage_user_create')
   if (container) {
-    ReactDOM.render(<ModulesHomePage onCreateButtonClick={modules.addModule} />, container)
+    ReactDOM.render(
+      <ThemeProvider>
+        <ModulesHomePage onCreateButtonClick={modules.addModule} />
+      </ThemeProvider>,
+      container
+    )
   }
 
   if (ENV.NO_MODULE_PROGRESSIONS) {

@@ -26,6 +26,7 @@ import $ from 'jquery'
 import '@canvas/forms/jquery/jquery.instructure_forms' /* formSubmit */
 import '@canvas/keycodes'
 import '@canvas/loading-image'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const selectorNode = document.getElementById('add-authentication-provider')
 const authTypeOptions = JSON.parse(selectorNode.getAttribute('data-options'))
@@ -35,11 +36,16 @@ authTypeOptions.unshift({
 })
 
 ReactDOM.render(
-  <AuthTypePicker authTypes={authTypeOptions} onChange={authenticationProviders.changedAuthType} />,
+  <ThemeProvider>
+    <AuthTypePicker
+      authTypes={authTypeOptions}
+      onChange={authenticationProviders.changedAuthType}
+    />
+  </ThemeProvider>,
   selectorNode
 )
 
-$('.parent_reg_warning').click(function() {
+$('.parent_reg_warning').click(function () {
   let msg
   const parent_reg_selected = $('#parent_reg_selected').attr('data-parent-reg-selected')
   if ($(this).is(':checked') && parent_reg_selected === 'true') {
@@ -59,7 +65,7 @@ $('.parent_reg_warning').click(function() {
   }
 })
 
-$('.add_federated_attribute_button').click(function(event) {
+$('.add_federated_attribute_button').click(function (event) {
   const $federated_attributes = $(this).closest('.federated_attributes')
   const $template = $federated_attributes.find('.attribute_template').clone(true)
   $template.removeClass('attribute_template')
@@ -94,17 +100,13 @@ $('.add_federated_attribute_button').click(function(event) {
   event.preventDefault()
 })
 
-$('.remove_federated_attribute').click(function() {
+$('.remove_federated_attribute').click(function () {
   const $attribute_row = $(this).closest('tr')
   const $federated_attributes = $attribute_row.closest('.federated_attributes')
   const $canvas_attribute_select = $federated_attributes.find('.add_attribute .canvas_attribute')
   const canvas_attribute_html = $attribute_row.find('.canvas_attribute_name').text()
   $canvas_attribute_select.append(`<option>${canvas_attribute_html}</option>`)
-  const $next = $attribute_row
-    .nextAll(':visible')
-    .first()
-    .find('input:visible')
-    .first()
+  const $next = $attribute_row.nextAll(':visible').first().find('input:visible').first()
   $attribute_row.remove()
   $federated_attributes.find('.add_attribute').show()
   if ($federated_attributes.find('tbody tr:visible').length === 0) {
@@ -120,7 +122,7 @@ $('.remove_federated_attribute').click(function() {
   }
 })
 
-$('.jit_provisioning_checkbox').click(function() {
+$('.jit_provisioning_checkbox').click(function () {
   const $provisioning_elements = $(this)
     .closest('.authentication_provider_form')
     .find('.provisioning_only_column')

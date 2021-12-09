@@ -20,10 +20,13 @@ import ReactDOM from 'react-dom'
 import StudentView from '@canvas/groups/react'
 import ready from '@instructure/ready'
 import React from 'react'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ready(() => {
   ReactDOM.render(
-    <StudentView enableGroupCreation enableEveryoneTab />,
+    <ThemeProvider>
+      <StudentView enableGroupCreation enableEveryoneTab />
+    </ThemeProvider>,
     document.getElementById('content')
   )
 })

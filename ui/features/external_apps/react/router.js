@@ -24,6 +24,7 @@ import AppList from './components/AppList'
 import AppDetails from './components/AppDetails'
 import Configurations from './components/Configurations'
 import AppCenterStore from './lib/AppCenterStore'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const currentPath = window.location.pathname
 const re = /(.*\/settings|.*\/details)/
@@ -40,9 +41,11 @@ const renderAppList = _ctx => {
     page.redirect('/configurations')
   } else {
     ReactDOM.render(
-      <Root>
-        <AppList baseUrl={baseUrl} />
-      </Root>,
+      <ThemeProvider>
+        <Root>
+          <AppList baseUrl={baseUrl} />
+        </Root>
+      </ThemeProvider>,
       targetNodeToRenderIn
     )
   }
@@ -50,9 +53,11 @@ const renderAppList = _ctx => {
 
 const renderAppDetails = ctx => {
   ReactDOM.render(
-    <Root>
-      <AppDetails shortName={ctx.params.shortName} baseUrl={baseUrl} store={AppCenterStore} />
-    </Root>,
+    <ThemeProvider>
+      <Root>
+        <AppDetails shortName={ctx.params.shortName} baseUrl={baseUrl} store={AppCenterStore} />
+      </Root>
+    </ThemeProvider>,
     targetNodeToRenderIn
   )
 }
@@ -62,9 +67,11 @@ const renderConfigurations = _ctx => {
   // so we don't want to try anything here that hasn't happened.
   if (targetNodeToRenderIn) {
     ReactDOM.render(
-      <Root>
-        <Configurations pathname={baseUrl} env={window.ENV} />
-      </Root>,
+      <ThemeProvider>
+        <Root>
+          <Configurations pathname={baseUrl} env={window.ENV} />
+        </Root>
+      </ThemeProvider>,
       targetNodeToRenderIn
     )
   }

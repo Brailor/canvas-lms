@@ -18,6 +18,7 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default function clickCallback(ed, ltiButtons) {
   return import('./components/LtiToolsModal').then(({LtiToolsModal}) => {
@@ -34,7 +35,9 @@ export default function clickCallback(ed, ltiButtons) {
     }
 
     ReactDOM.render(
-      <LtiToolsModal editor={ed} onDismiss={handleDismiss} ltiButtons={ltiButtons} />,
+      <ThemeProvider>
+        <LtiToolsModal editor={ed} onDismiss={handleDismiss} ltiButtons={ltiButtons} />
+      </ThemeProvider>,
       container
     )
   })

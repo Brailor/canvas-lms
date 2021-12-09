@@ -20,6 +20,7 @@ import I18n from 'i18n!gradebook'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import CustomColumnHeader from './CustomColumnHeader'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 function getProps(column, gradebook, options) {
   const customColumn = gradebook.getCustomColumn(column.customColumnId)
@@ -37,7 +38,12 @@ export default class CustomColumnHeaderRenderer {
 
   render(column, $container, _gridSupport, options) {
     const props = getProps(column, this.gradebook, options)
-    ReactDOM.render(<CustomColumnHeader {...props} />, $container)
+    ReactDOM.render(
+      <ThemeProvider>
+        <CustomColumnHeader {...props} />
+      </ThemeProvider>,
+      $container
+    )
   }
 
   destroy(_column, $container, _gridSupport) {

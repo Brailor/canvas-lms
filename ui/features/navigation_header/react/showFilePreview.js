@@ -24,6 +24,7 @@ import {showFlashAlert} from '@canvas/alerts/react/FlashAlert'
 import FilePreview from '@canvas/files/react/components/FilePreview'
 import File from '@canvas/files/backbone/models/File.coffee'
 import {asJson, defaultFetchOptions} from '@instructure/js-utils'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 // showFilePreview repurposes the file preview overlay from the Files
 // pages to show a single file in an arbitrary context. First use
@@ -44,7 +45,12 @@ export function showFilePreview(file_id, verifier = '') {
   )
     .then(file => {
       const backboneFile = new File(file)
-      ReactDOM.render(<StandaloneFilePreview preview_file={backboneFile} />, container)
+      ReactDOM.render(
+        <ThemeProvider>
+          <StandaloneFilePreview preview_file={backboneFile} />
+        </ThemeProvider>,
+        container
+      )
     })
     .catch(err => {
       showFlashAlert({

@@ -20,6 +20,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
 import ready from '@instructure/ready'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 import App from './react/app'
 import createStore from './react/shared/create_store'
@@ -31,5 +32,10 @@ const CoursePage: React.FC = () => (
 )
 
 ready(() => {
-  ReactDOM.render(<CoursePage />, document.getElementById('pace_plans'))
+  ReactDOM.render(
+    <ThemeProvider>
+      <CoursePage />
+    </ThemeProvider>,
+    document.getElementById('pace_plans')
+  )
 })

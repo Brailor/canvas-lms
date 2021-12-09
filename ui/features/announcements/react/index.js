@@ -21,6 +21,8 @@ import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
 
 import {subscribeFlashNotifications} from '@canvas/notifications/redux/actions'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
+
 import {ConnectedAnnouncementsIndex} from './components/AnnouncementsIndex'
 import createStore from './store'
 
@@ -33,9 +35,11 @@ export default function createAnnouncementsIndex(root, data = {}) {
 
   function render() {
     ReactDOM.render(
-      <Provider store={store}>
-        <ConnectedAnnouncementsIndex />
-      </Provider>,
+      <ThemeProvider>
+        <Provider store={store}>
+          <ConnectedAnnouncementsIndex />
+        </Provider>
+      </ThemeProvider>,
       root
     )
   }

@@ -29,6 +29,7 @@ import {initializePlanner, renderToDoSidebar} from '@instructure/canvas-planner'
 import {showFlashAlert} from '@canvas/alerts/react/FlashAlert'
 import apiUserContent from '@canvas/util/jquery/apiUserContent'
 import * as apiClient from '@canvas/courses/courseAPIClient'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 const defaultViewStore = createStore({
   selectedDefaultView: ENV.COURSE.default_view,
@@ -112,19 +113,21 @@ $(() => {
         apiClient.getModules({courseId}).then(({data: modules}) => {
           if (defaultView === 'modules' && modules.length === 0) {
             ReactDOM.render(
-              <HomePagePromptContainer
-                forceOpen
-                store={defaultViewStore}
-                courseId={courseId}
-                wikiFrontPageTitle={ENV.COURSE.front_page_title}
-                wikiUrl={ENV.COURSE.pages_url}
-                returnFocusTo={$('.btn-publish').get(0)}
-                onSubmit={() => {
-                  if (defaultViewStore.getState().savedDefaultView !== 'modules') {
-                    apiClient.publishCourse({courseId})
-                  }
-                }}
-              />,
+              <ThemeProvider>
+                <HomePagePromptContainer
+                  forceOpen
+                  store={defaultViewStore}
+                  courseId={courseId}
+                  wikiFrontPageTitle={ENV.COURSE.front_page_title}
+                  wikiUrl={ENV.COURSE.pages_url}
+                  returnFocusTo={$('.btn-publish').get(0)}
+                  onSubmit={() => {
+                    if (defaultViewStore.getState().savedDefaultView !== 'modules') {
+                      apiClient.publishCourse({courseId})
+                    }
+                  }}
+                />
+              </ThemeProvider>,
               container
             )
           } else {
@@ -140,7 +143,12 @@ $(() => {
 
   const container = document.getElementById('choose_home_page')
   if (container) {
-    ReactDOM.render(<ChooseHomePageButton store={defaultViewStore} />, container)
+    ReactDOM.render(
+      <ThemeProvider>
+        <ChooseHomePageButton store={defaultViewStore} />
+      </ThemeProvider>,
+      container
+    )
   }
 
   const todo_container = document.querySelector('.todo-list')

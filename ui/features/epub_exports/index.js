@@ -21,9 +21,15 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import EpubExportsApp from './react/App'
 import ready from '@instructure/ready'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ready(() => {
   $('.course-epub-exports-app').each((_i, element) => {
-    ReactDOM.render(<EpubExportsApp />, element)
+    ReactDOM.render(
+      <ThemeProvider>
+        <EpubExportsApp />
+      </ThemeProvider>,
+      element
+    )
   })
 })

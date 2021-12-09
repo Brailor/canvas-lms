@@ -21,6 +21,7 @@ import ReactDOM from 'react-dom'
 import Steps from '../index'
 import StepItem from '../StepItem/index'
 import $ from 'jquery'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 beforeAll(() => {
   const found = document.getElementById('fixtures')
@@ -36,30 +37,47 @@ afterEach(() => {
 })
 
 it('should render', () => {
-  ReactDOM.render(<Steps />, document.getElementById('fixtures'))
+  ReactDOM.render(
+    <ThemeProvider>
+      <Steps />
+    </ThemeProvider>,
+    document.getElementById('fixtures')
+  )
   const element = $('[data-test-id="assignment-2-step-index"]')
   expect(element).toHaveLength(1)
 })
 
 it('should not render collapsed class when not collapsed', () => {
-  ReactDOM.render(<Steps isCollapsed={false} />, document.getElementById('fixtures'))
+  ReactDOM.render(
+    <ThemeProvider>
+      <Steps isCollapsed={false} />
+    </ThemeProvider>,
+    document.getElementById('fixtures')
+  )
   const element = $('[data-test-id="steps-container-collapsed"]')
   expect(element).toHaveLength(0)
 })
 
 it('should render collapsed class when collapsed', () => {
-  ReactDOM.render(<Steps isCollapsed />, document.getElementById('fixtures'))
+  ReactDOM.render(
+    <ThemeProvider>
+      <Steps isCollapsed />
+    </ThemeProvider>,
+    document.getElementById('fixtures')
+  )
   const element = $('[data-test-id="steps-container-collapsed"]')
   expect(element).toHaveLength(1)
 })
 
 it('should render with StepItems', () => {
   ReactDOM.render(
-    <Steps label="Settings">
-      <StepItem label="Phase one" status="complete" />
-      <StepItem label="Phase two" status="in-progress" />
-      <StepItem label="Phase three" />
-    </Steps>,
+    <ThemeProvider>
+      <Steps label="Settings">
+        <StepItem label="Phase one" status="complete" />
+        <StepItem label="Phase two" status="in-progress" />
+        <StepItem label="Phase three" />
+      </Steps>
+    </ThemeProvider>,
     document.getElementById('fixtures')
   )
   const element = $('li')
@@ -68,11 +86,13 @@ it('should render with StepItems', () => {
 
 it('should render aria-current for the item that is in progress', () => {
   ReactDOM.render(
-    <Steps label="Settings">
-      <StepItem label="Phase one" status="complete" />
-      <StepItem label="Phase two" status="in-progress" />
-      <StepItem label="Phase three" />
-    </Steps>,
+    <ThemeProvider>
+      <Steps label="Settings">
+        <StepItem label="Phase one" status="complete" />
+        <StepItem label="Phase two" status="in-progress" />
+        <StepItem label="Phase three" />
+      </Steps>
+    </ThemeProvider>,
     document.getElementById('fixtures')
   )
 

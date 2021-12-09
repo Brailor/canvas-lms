@@ -30,6 +30,7 @@ import ContentTypeExternalToolTray from '@canvas/trays/react/ContentTypeExternal
 import QuizEngineModal from '../../react/QuizEngineModal'
 import {ltiState} from '@canvas/lti/jquery/messages'
 import getCookie from 'get-cookie'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default class IndexView extends Backbone.View {
   static initClass() {
@@ -161,8 +162,10 @@ export default class IndexView extends Backbone.View {
     }
 
     ReactDOM.render(
-      <QuizEngineModal onDismiss={handleDismiss} setOpen={setOpen} />,
-      $('#quiz-modal-mount-point')[0]
+      <ThemeProvider>
+        <QuizEngineModal onDismiss={handleDismiss} setOpen={setOpen} />
+      </ThemeProvider>,
+      $('quiz-modal-mount-point')[0]
     )
   }
 
@@ -173,10 +176,12 @@ export default class IndexView extends Backbone.View {
       .css('display', 'block')
 
     ReactDOM.render(
-      <Alert variant="success" timeout={4000} transition="fade">
-        <Text>{I18n.t(`Your quiz engine choice has been reset!`)}</Text>
-      </Alert>,
-      $('#flash_message_holder')[0]
+      <ThemeProvider>
+        <Alert variant="success" timeout={4000} transition="fade">
+          <Text>{I18n.t(`Your quiz engine choice has been reset!`)}</Text>
+        </Alert>
+      </ThemeProvider>,
+      $('flash_message_holder')[0]
     )
   }
 
@@ -186,10 +191,12 @@ export default class IndexView extends Backbone.View {
       .css('padding-left', '35rem')
       .css('display', 'block')
     ReactDOM.render(
-      <Alert variant="error" timeout={4000} transition="fade">
-        <Text>{I18n.t(`There was a problem resetting your quiz engine choice`)}</Text>
-      </Alert>,
-      $('#flash_message_holder')[0]
+      <ThemeProvider>
+        <Alert variant="error" timeout={4000} transition="fade">
+          <Text>{I18n.t(`There was a problem resetting your quiz engine choice`)}</Text>
+        </Alert>
+      </ThemeProvider>,
+      $('flash_message_holder')[0]
     )
   }
 
@@ -215,16 +222,18 @@ export default class IndexView extends Backbone.View {
     }
 
     ReactDOM.render(
-      <ContentTypeExternalToolTray
-        tool={tool}
-        placement="quiz_index_menu"
-        acceptedResourceTypes={['quiz']}
-        targetResourceType="quiz"
-        allowItemSelection={false}
-        selectableItems={[]}
-        onDismiss={handleDismiss}
-        open={tool !== null}
-      />,
+      <ThemeProvider>
+        <ContentTypeExternalToolTray
+          tool={tool}
+          placement="quiz_index_menu"
+          acceptedResourceTypes={['quiz']}
+          targetResourceType="quiz"
+          allowItemSelection={false}
+          selectableItems={[]}
+          onDismiss={handleDismiss}
+          open={tool !== null}
+        />
+      </ThemeProvider>,
       $('#external-tool-mount-point')[0]
     )
   }

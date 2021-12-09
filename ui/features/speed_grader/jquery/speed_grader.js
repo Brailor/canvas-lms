@@ -81,6 +81,7 @@ import turnitinInfoTemplate from '../jst/_turnitinInfo.handlebars'
 import turnitinScoreTemplate from '@canvas/grading/jst/_turnitinScore.handlebars'
 import vericiteInfoTemplate from '../jst/_vericiteInfo.handlebars'
 import vericiteScoreTemplate from '@canvas/grading/jst/_vericiteScore.handlebars'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 import 'jqueryui/draggable'
 import '@canvas/jquery/jquery.ajaxJSON' /* getJSON, ajaxJSON */
 import '@canvas/forms/jquery/jquery.instructure_forms' /* ajaxJSONFiles */
@@ -639,11 +640,13 @@ function renderProgressIcon(attachment) {
   } else {
     const {icon, tip} = iconAndTipMap[attachment.upload_status] || iconAndTipMap.default
     const tooltip = (
-      <Tooltip tip={tip} on={['click', 'hover', 'focus']}>
-        <Button variant="icon" icon={icon}>
-          <ScreenReaderContent>toggle tooltip</ScreenReaderContent>
-        </Button>
-      </Tooltip>
+      <ThemeProvider>
+        <Tooltip tip={tip} on={['click', 'hover', 'focus']}>
+          <Button variant="icon" icon={icon}>
+            <ScreenReaderContent>toggle tooltip</ScreenReaderContent>
+          </Button>
+        </Tooltip>
+      </ThemeProvider>
     )
     ReactDOM.render(tooltip, mountPoint)
   }
@@ -654,7 +657,9 @@ function renderHiddenSubmissionPill(submission) {
 
   if (isPostable(submission)) {
     ReactDOM.render(
-      <Pill variant="warning" text={I18n.t('Hidden')} margin="0 0 small" />,
+      <ThemeProvider>
+        <Pill variant="warning" text={I18n.t('Hidden')} margin="0 0 small" />
+      </ThemeProvider>,
       mountPoint
     )
   } else {
@@ -671,11 +676,13 @@ function renderCommentTextArea() {
   }
 
   ReactDOM.render(
-    <CommentArea
-      getTextAreaRef={getTextAreaRef}
-      courseId={ENV.course_id}
-      userId={ENV.current_user_id}
-    />,
+    <ThemeProvider>
+      <CommentArea
+        getTextAreaRef={getTextAreaRef}
+        courseId={ENV.course_id}
+        userId={ENV.current_user_id}
+      />
+    </ThemeProvider>,
     document.getElementById(SPEED_GRADER_COMMENT_TEXTAREA_MOUNT_POINT)
   )
 }
@@ -1161,7 +1168,7 @@ function renderStatusMenu(component, mountPoint) {
       ? SPEED_GRADER_EDIT_STATUS_MENU_SECONDARY_MOUNT_POINT
       : SPEED_GRADER_EDIT_STATUS_MENU_MOUNT_POINT
   ReactDOM.render(null, document.getElementById(unmountPoint))
-  ReactDOM.render(component, mountPoint)
+  ReactDOM.render(<ThemeProvider>{component}</ThemeProvider>, mountPoint)
 }
 
 function statusMenuComponent(submission) {
@@ -1746,7 +1753,11 @@ EG = {
     }
 
     const tray = <AssessmentAuditTray ref={bindRef} />
-    ReactDOM.render(tray, document.getElementById(ASSESSMENT_AUDIT_TRAY_MOUNT_POINT))
+    ReactDOM.render(
+      <ThemeProvider>{tray}</ThemeProvider>,
+
+      document.getElementById(ASSESSMENT_AUDIT_TRAY_MOUNT_POINT)
+    )
 
     const onClick = () => {
       const {submission} = this.currentStudent
@@ -3736,7 +3747,7 @@ EG = {
     }
 
     const gradeSelector = <SpeedGraderProvisionalGradeSelector {...props} />
-    ReactDOM.render(gradeSelector, mountPoint)
+    ReactDOM.render(<ThemeProvider>gradeSelector</ThemeProvider>, mountPoint)
   },
 
   changeToSection(sectionId) {
@@ -3802,9 +3813,11 @@ function speedGraderJSONErrorFn(_data, xhr, _textStatus, _errorThrown) {
     }
 
     ReactDOM.render(
-      <Alert {...alertProps}>
-        <span dangerouslySetInnerHTML={buildAlertMessage()} />
-      </Alert>,
+      <ThemeProvider>
+        <Alert {...alertProps}>
+          <span dangerouslySetInnerHTML={buildAlertMessage()} />
+        </Alert>
+      </ThemeProvider>,
       document.getElementById('speed_grader_timeout_alert')
     )
   }
@@ -3907,7 +3920,12 @@ function renderSettingsMenu() {
   }
 
   const mountPoint = document.getElementById(SPEED_GRADER_SETTINGS_MOUNT_POINT)
-  ReactDOM.render(<SpeedGraderSettingsMenu {...props} />, mountPoint)
+  ReactDOM.render(
+    <ThemeProvider>
+      <SpeedGraderSettingsMenu {...props} />
+    </ThemeProvider>,
+    mountPoint
+  )
 }
 
 function teardownSettingsMenu() {
@@ -3946,7 +3964,9 @@ function renderPostGradesMenu() {
   }
 
   ReactDOM.render(
-    <SpeedGraderPostGradesMenu {...props} />,
+    <ThemeProvider>
+      <SpeedGraderPostGradesMenu {...props} />
+    </ThemeProvider>,
     document.getElementById(SPEED_GRADER_POST_GRADES_MENU_MOUNT_POINT)
   )
 }

@@ -20,16 +20,27 @@ import ready from '@instructure/ready'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import TermsOfServiceModal from './react/TermsOfServiceModal'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 ready(() => {
   let container = document.querySelector('#terms_of_service_preview_link')
   if (container) {
-    ReactDOM.render(<TermsOfServiceModal preview />, container)
+    ReactDOM.render(
+      <ThemeProvider>
+        <TermsOfServiceModal preview />
+      </ThemeProvider>,
+      container
+    )
   } else {
     container = document.querySelectorAll('.terms_of_service_link')
     if (container.length) {
       for (let i = 0; i < container.length; i++) {
-        ReactDOM.render(<TermsOfServiceModal />, container[i])
+        ReactDOM.render(
+          <ThemeProvider>
+            <TermsOfServiceModal />
+          </ThemeProvider>,
+          container[i]
+        )
       }
     }
   }

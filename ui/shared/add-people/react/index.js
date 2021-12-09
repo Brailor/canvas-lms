@@ -25,6 +25,7 @@ import {createStore, defaultState} from './store'
 import {actions} from './actions'
 import reducer from './reducer'
 import AddPeople from './components/add_people'
+import ThemeProvider from '@canvas/instui-bindings/react/ThemeProvider'
 
 export default class AddPeopleApp {
   constructor(root, props) {
@@ -69,10 +70,7 @@ export default class AddPeopleApp {
     const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch)
 
     // connect our top-level component to redux
-    this.ConnectedApp = connect(
-      mapStateToProps,
-      mapDispatchToProps
-    )(AddPeople)
+    this.ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(AddPeople)
   }
 
   open() {
@@ -99,9 +97,11 @@ export default class AddPeopleApp {
   render(isOpen) {
     const ConnectedApp = this.ConnectedApp
     ReactDOM.render(
-      <Provider store={this.store}>
-        <ConnectedApp isOpen={isOpen} onClose={this.closer} theme={this.theme} />
-      </Provider>,
+      <ThemeProvider>
+        <Provider store={this.store}>
+          <ConnectedApp isOpen={isOpen} onClose={this.closer} theme={this.theme} />
+        </Provider>
+      </ThemeProvider>,
       this.root
     )
   }
