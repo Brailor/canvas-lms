@@ -37,7 +37,7 @@ export default function LatePolicyStatusDisplay(props) {
         </Flex.Item>
         <Flex.Item>
           <Tooltip
-            tip={
+            renderTip={
               <LatePolicyToolTipContent
                 attempt={attempt}
                 grade={grade}
@@ -52,7 +52,7 @@ export default function LatePolicyStatusDisplay(props) {
           >
             <Button
               href="#"
-              variant="link"
+              color="link"
               theme={{mediumPaddingHorizontal: '0', mediumHeight: 'normal'}}
             >
               <ScreenReaderContent>

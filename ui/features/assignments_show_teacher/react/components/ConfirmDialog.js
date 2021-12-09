@@ -119,7 +119,7 @@ export default class ConfirmDialog extends React.Component {
               placement="end"
               onClick={this.props.onDismiss}
               disabled={this.props.disabled}
-              buttonRef={this.closeButtonRef}
+              elementRef={this.closeButtonRef}
             >
               {this.props.closeLabel}
             </CloseButton>

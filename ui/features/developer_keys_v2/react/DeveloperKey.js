@@ -157,14 +157,14 @@ class DeveloperKey extends React.Component {
               <div>
                 <Popover
                   placement="top"
-                  alignArrow
+                  shouldAlignArrow
                   on="click"
-                  show={this.state.showKey}
+                  isShowingContent={this.state.showKey}
                   shouldContainFocus
                   shouldReturnFocus
                   shouldCloseOnDocumentClick
-                  onDismiss={this.handleShowKey}
-                  label={I18n.t('Key')}
+                  onHideContent={this.handleShowKey}
+                  screenReaderLabel={I18n.t('Key')}
                   renderTrigger={
                     <Button onClick={this.handleShowKey} size="small">
                       {this.state.showKey ? I18n.t('Hide Key') : I18n.t('Show Key')}
@@ -172,12 +172,7 @@ class DeveloperKey extends React.Component {
                     </Button>
                   }
                 >
-                  <CloseButton
-                    placement="end"
-                    offset="x-small"
-                    variant="icon"
-                    onClick={this.handleShowKey}
-                  >
+                  <CloseButton placement="end" offset="x-small" onClick={this.handleShowKey}>
                     {I18n.t('Close')}
                   </CloseButton>
                   <View padding="large small small small" display="block">
@@ -210,10 +205,10 @@ class DeveloperKey extends React.Component {
         <Table.Cell>
           {developerKey.is_lti_key ? (
             <Tooltip
-              tip={I18n.t('Developer key is an external tool.')}
+              renderTip={I18n.t('Developer key is an external tool.')}
               on={['click', 'hover', 'focus']}
             >
-              <Button variant="icon" icon={IconLtiLine}>
+              <Button renderIcon={IconLtiLine}>
                 <ScreenReaderContent>{I18n.t('Toggle ToolTip')}</ScreenReaderContent>
               </Button>
             </Tooltip>

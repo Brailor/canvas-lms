@@ -170,7 +170,7 @@ export default function ComputerPanel({theFile, setFile, setError, accept, label
             aria-label={formatMessage('{filename} image preview', {filename: theFile.name})}
             src={preview.preview}
             constrain="contain"
-            inline={false}
+            display={false}
           />
         )
       } else if (isText(theFile.type)) {
@@ -210,14 +210,14 @@ export default function ComputerPanel({theFile, setFile, setError, accept, label
         <Flex direction="row-reverse" margin="none none medium">
           <Flex.Item>
             <Button
-              buttonRef={el => {
+              elementRef={el => {
                 clearButtonRef.current = el
               }}
               onClick={() => {
                 setFile(null)
                 setPreview({preview: null, isLoading: false, error: null})
               }}
-              icon={IconTrashLine}
+              renderIcon={IconTrashLine}
             >
               <ScreenReaderContent>
                 {formatMessage('Clear selected file: {filename}', {filename: theFile.name})}

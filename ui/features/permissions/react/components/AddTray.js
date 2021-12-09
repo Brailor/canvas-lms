@@ -112,10 +112,11 @@ export default class AddTray extends Component {
       <Flex.Item>
         <Button
           id="close-add-role-tray-button"
-          variant="icon"
+          withBorder={false}
+          withBackground={false}
           size="small"
           onClick={this.hideTray}
-          buttonRef={c => (this.closeButton = c)}
+          elementRef={c => (this.closeButton = c)}
         >
           <IconXSolid title={I18n.t('Close')} />
         </Button>
@@ -180,7 +181,7 @@ export default class AddTray extends Component {
             id="permissions-add-tray-submit-button"
             disabled={this.state.roleNameErrors.length !== 0}
             type="submit"
-            variant="primary"
+            color="primary"
             onClick={this.handleSaveButton}
             margin="0 x-small 0 0"
           >

@@ -46,7 +46,7 @@ export default function RestoreAutoSaveModal(props) {
       onDismiss={props.onNo}
     >
       <Modal.Header>
-        <CloseButton placement="end" offset="medium" variant="icon" onClick={props.onNo}>
+        <CloseButton placement="end" offset="medium" onClick={props.onNo}>
           {formatMessage('Close')}
         </CloseButton>
         <Heading>{formatMessage('Found auto-saved content')}</Heading>
@@ -79,7 +79,7 @@ export default function RestoreAutoSaveModal(props) {
           {formatMessage('No')}
         </Button>
         &nbsp;
-        <Button variant="primary" onClick={props.onYes}>
+        <Button color="primary" onClick={props.onYes}>
           {formatMessage('Yes')}
         </Button>
       </Modal.Footer>

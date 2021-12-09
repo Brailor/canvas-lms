@@ -32,12 +32,12 @@ export default function UsersListHeader(props) {
 
   return (
     <Table.ColHeader id={id} data-testid="UsersListHeader">
-      <Tooltip tip={sort === id && order === 'asc' ? tipAsc : tipDesc}>
+      <Tooltip renderTip={sort === id && order === 'asc' ? tipAsc : tipDesc}>
         <Button
           onClick={preventDefault(() => {
             onUpdateFilters({search_term, sort: id, order: newOrder, role_filter_id})
           })}
-          variant="link"
+          color="link"
           theme={{fontWeight: '700', mediumPaddingHorizontal: '0', mediumHeight: '1.5rem'}}
         >
           {label}

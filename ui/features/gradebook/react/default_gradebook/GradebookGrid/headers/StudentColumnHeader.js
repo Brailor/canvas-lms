@@ -252,11 +252,10 @@ export default class StudentColumnHeader extends ColumnHeader {
                     shouldFocusTriggerOnClose={false}
                     trigger={
                       <Button
-                        buttonRef={e => (this.optionsMenuTrigger = e)}
+                        elementRef={e => (this.optionsMenuTrigger = e)}
                         margin="0"
                         size="small"
-                        variant="icon"
-                        icon={IconMoreSolid}
+                        renderIcon={IconMoreSolid}
                       >
                         <ScreenReaderContent>{this.getColumnHeaderOptions()}</ScreenReaderContent>
                       </Button>

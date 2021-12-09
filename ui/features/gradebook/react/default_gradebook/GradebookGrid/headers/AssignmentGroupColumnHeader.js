@@ -87,7 +87,7 @@ AssignmentGroupDetail.propTypes = {
 
 function renderTrigger(assignmentGroup, ref) {
   return (
-    <Button buttonRef={ref} margin="0" size="small" variant="icon">
+    <Button elementRef={ref} margin="0" size="small" withBorder={false} withBackground={false}>
       <IconMoreSolid title={I18n.t('%{name} Options', {name: assignmentGroup.name})} />
     </Button>
   )

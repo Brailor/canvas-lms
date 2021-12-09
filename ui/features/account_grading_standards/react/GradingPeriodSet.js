@@ -28,11 +28,11 @@ import GradingPeriodForm from './GradingPeriodForm'
 import gradingPeriodsApi from '@canvas/grading/jquery/gradingPeriodsApi'
 import '@canvas/jquery/jquery.instructure_misc_helpers'
 
-const sortPeriods = function(periods) {
+const sortPeriods = function (periods) {
   return _.sortBy(periods, 'startDate')
 }
 
-const anyPeriodsOverlap = function(periods) {
+const anyPeriodsOverlap = function (periods) {
   if (_.isEmpty(periods)) {
     return false
   }
@@ -46,11 +46,11 @@ const anyPeriodsOverlap = function(periods) {
   return overlapping || anyPeriodsOverlap(otherPeriods)
 }
 
-const isValidDate = function(date) {
+const isValidDate = function (date) {
   return Object.prototype.toString.call(date) === '[object Date]' && !_.isNaN(date.getTime())
 }
 
-const validatePeriods = function(periods, weighted) {
+const validatePeriods = function (periods, weighted) {
   if (_.some(periods, period => !(period.title || '').trim())) {
     return [I18n.t('All grading periods must have a title')]
   }
@@ -86,15 +86,15 @@ const validatePeriods = function(periods, weighted) {
   }
 }
 
-const isEditingPeriod = function(state) {
+const isEditingPeriod = function (state) {
   return !!state.editPeriod.id
 }
 
-const isActionsDisabled = function(state, props) {
+const isActionsDisabled = function (state, props) {
   return !!(props.actionsDisabled || isEditingPeriod(state) || state.newPeriod.period)
 }
 
-const getShowGradingPeriodRef = function(period) {
+const getShowGradingPeriodRef = function (period) {
   return `show-grading-period-${period.id}`
 }
 
@@ -256,10 +256,9 @@ export default class GradingPeriodSet extends React.Component {
   }
 
   updatePeriod = period => {
-    const periods = _.reject(
-      this.state.gradingPeriods,
-      _period => period.id === _period.id
-    ).concat([period])
+    const periods = _.reject(this.state.gradingPeriods, _period => period.id === _period.id).concat(
+      [period]
+    )
     const validations = validatePeriods(periods, this.state.weighted)
     if (_.isEmpty(validations)) {
       this.setEditPeriod({saving: true})
@@ -300,7 +299,6 @@ export default class GradingPeriodSet extends React.Component {
           elementRef={ref => {
             this._refs.editButton = ref
           }}
-          variant="icon"
           disabled={disabled}
           onClick={this.editSet}
           title={I18n.t('Edit %{title}', {title: this.props.set.title})}
@@ -322,7 +320,6 @@ export default class GradingPeriodSet extends React.Component {
           elementRef={ref => {
             this._refs.deleteButton = ref
           }}
-          variant="icon"
           disabled={disabled}
           onClick={this.promptDeleteSet}
           title={I18n.t('Delete %{title}', {title: this.props.set.title})}
@@ -423,7 +420,7 @@ export default class GradingPeriodSet extends React.Component {
     return (
       <div className="GradingPeriodList__new-period center-xs border-rbl border-round-b">
         <Button
-          variant="link"
+          color="link"
           elementRef={ref => {
             this._refs.addPeriodButton = ref
           }}

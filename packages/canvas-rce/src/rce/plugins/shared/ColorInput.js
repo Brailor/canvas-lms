@@ -108,7 +108,7 @@ export const ColorInput = ({color, label, name, onChange, popoverMountNode, widt
           justifyItems="center"
           padding="x-large x-small small"
           width="175px"
-          wrapItems
+          wrap="wrap"
         >
           {COLORS.map(hex => (
             <ColorPreview
@@ -159,10 +159,7 @@ function ColorPreview({color, disabled, margin = 'xxx-small', onSelect}) {
           {color ? formatMessage('Color {color}', {color}) : formatMessage('None')}
         </ScreenReaderContent>
       )}
-      <PreviewIcon
-        color={color}
-        testId={`colorPreview-${color}`}
-      />
+      <PreviewIcon color={color} testId={`colorPreview-${color}`} />
     </BaseButton>
   )
 }

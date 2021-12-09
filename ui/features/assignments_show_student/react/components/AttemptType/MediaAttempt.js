@@ -167,7 +167,7 @@ export default class MediaAttempt extends React.Component {
           {renderTrashIcon && (
             <Button
               data-testid="remove-media-recording"
-              icon={IconTrashLine}
+              renderIcon={IconTrashLine}
               id={mediaObject.id}
               margin="0 0 0 x-small"
               onClick={this.handleRemoveFile}
@@ -217,7 +217,7 @@ export default class MediaAttempt extends React.Component {
               <Button
                 size="small"
                 data-testid="media-modal-launch-button"
-                variant="primary"
+                color="primary"
                 onClick={() => this.setState({mediaModalOpen: true})}
                 ref={this._mediaUploadRef}
                 interaction={!context.allowChangesToSubmission ? 'readonly' : 'enabled'}

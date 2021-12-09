@@ -65,7 +65,7 @@ export default class StudentContextTray extends React.Component {
   static renderQuickLink(key, label, srLabel, url, showIf) {
     return showIf() ? (
       <div className="StudentContextTray-QuickLinks__Link" key={key}>
-        <Button href={url} variant="ghost" size="small" fluidWidth aria-label={srLabel}>
+        <Button href={url} color="primary" size="small" display="block" aria-label={srLabel}>
           <span className="StudentContextTray-QuickLinks__Link-text">{label}</span>
         </Button>
       </div>
@@ -235,9 +235,9 @@ export default class StudentContextTray extends React.Component {
                         <div className="StudentContextTray-Header__Name">
                           <Heading level="h3" as="h2">
                             <Button
-                              variant="link"
+                              color="link"
                               size="large"
-                              fluidWidth
+                              display="block"
                               href={`/courses/${this.props.courseId}/users/${this.props.studentId}`}
                               aria-label={I18n.t("Go to %{name}'s profile", {
                                 name:
@@ -269,7 +269,6 @@ export default class StudentContextTray extends React.Component {
                       <div className="StudentContextTray-Header__Actions">
                         <Button
                           ref={b => (this.messageStudentsButton = b)}
-                          variant="icon"
                           size="small"
                           onClick={this.handleMessageButtonClick}
                         >

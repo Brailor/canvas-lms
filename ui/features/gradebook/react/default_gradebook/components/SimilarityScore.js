@@ -59,8 +59,8 @@ export default class SimilarityScore extends PureComponent {
           <Grid.Row>
             <Grid.Col>
               <Button
-                variant="link"
-                icon={statusIcon}
+                color="link"
+                renderIcon={statusIcon}
                 href={reportUrl}
                 theme={{mediumPaddingHorizontal: '0', mediumHeight: 'normal'}}
               >

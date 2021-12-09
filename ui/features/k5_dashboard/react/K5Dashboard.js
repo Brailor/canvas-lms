@@ -94,7 +94,7 @@ const K5DashboardOptionsMenu = ({onDisableK5Dashboard}) => {
   return (
     <Menu
       trigger={
-        <Button variant="icon" icon={IconMoreLine} data-testid="k5-dashboard-options">
+        <Button renderIcon={IconMoreLine} data-testid="k5-dashboard-options">
           <ScreenReaderContent>{I18n.t('Dashboard Options')}</ScreenReaderContent>
         </Button>
       }

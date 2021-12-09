@@ -335,7 +335,7 @@ export class PlannerHeader extends Component {
       return (
         <Button
           id="planner-today-btn"
-          variant="light"
+          color="primary-inverse"
           margin={buttonMargin}
           onClick={this.handleTodayClick}
         >
@@ -363,12 +363,11 @@ export class PlannerHeader extends Component {
       <Badge {...badgeProps}>
         <Button
           onClick={this.toggleOpportunitiesDropdown}
-          variant="icon"
-          icon={IconAlertsLine}
+          renderIcon={IconAlertsLine}
           ref={b => {
             this.opportunitiesButton = b
           }}
-          buttonRef={b => {
+          elementRef={b => {
             this.opportunitiesHtmlButton = b
           }}
         >
@@ -406,8 +405,7 @@ export class PlannerHeader extends Component {
       <div className={`${styles.root} PlannerHeader`} data-testid="PlannerHeader">
         {this.renderToday(buttonMargin)}
         <Button
-          variant="icon"
-          icon={IconPlusLine}
+          renderIcon={IconPlusLine}
           margin={buttonMargin}
           onClick={this.handleToggleTray}
           ref={b => {
@@ -417,8 +415,7 @@ export class PlannerHeader extends Component {
           <ScreenReaderContent>{formatMessage('Add To Do')}</ScreenReaderContent>
         </Button>
         <Button
-          variant="icon"
-          icon={IconGradebookLine}
+          renderIcon={IconGradebookLine}
           margin={buttonMargin}
           onClick={this.toggleGradesTray}
         >
@@ -453,7 +450,7 @@ export class PlannerHeader extends Component {
           shouldReturnFocus={false}
           onDismiss={this.handleCloseTray}
         >
-          <CloseButton placement="start" variant="icon" onClick={this.handleCloseTray}>
+          <CloseButton placement="start" onClick={this.handleCloseTray}>
             {formatMessage('Close')}
           </CloseButton>
           <UpdateItemTray
@@ -474,7 +471,7 @@ export class PlannerHeader extends Component {
           onDismiss={this.toggleGradesTray}
         >
           <View as="div" padding="large large medium">
-            <CloseButton placement="start" variant="icon" onClick={this.toggleGradesTray}>
+            <CloseButton placement="start" onClick={this.toggleGradesTray}>
               {formatMessage('Close')}
             </CloseButton>
             <GradesDisplay

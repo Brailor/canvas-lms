@@ -60,7 +60,7 @@ export function Embed({onSubmit, onDismiss}) {
             onSubmit(embedCode)
             onDismiss()
           }}
-          variant="primary"
+          color="primary"
           type="submit"
           disabled={!embedCode}
         >

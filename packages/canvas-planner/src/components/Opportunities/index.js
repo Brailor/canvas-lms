@@ -184,9 +184,8 @@ export class Opportunities extends Component {
       <CloseButton
         placement="end"
         offset="x-small"
-        variant="icon"
         onClick={this.props.togglePopover}
-        buttonRef={el => {
+        elementRef={el => {
           this.closeButtonRef = el
         }}
       >

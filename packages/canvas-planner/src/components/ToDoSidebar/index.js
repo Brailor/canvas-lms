@@ -106,7 +106,7 @@ export class ToDoSidebar extends Component {
     if (this.props.changeDashboardView && this.state.visibleToDos.length > 0) {
       return (
         <View as="div" textAlign="center">
-          <Button variant="link" onClick={() => this.props.changeDashboardView('planner')}>
+          <Button color="link" onClick={() => this.props.changeDashboardView('planner')}>
             {formatMessage('Show All')}
           </Button>
         </View>

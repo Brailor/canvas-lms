@@ -116,7 +116,7 @@ export default class CalendarEventModal extends React.Component {
         <Modal.Header>
           <Heading>
             <Button
-              variant="link"
+              color="link"
               size="large"
               theme={{largePadding: '0', largeHeight: 'normal'}}
               href={this.props.html_url}

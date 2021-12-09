@@ -159,8 +159,8 @@ class OutcomePopover extends React.Component {
     return (
       <span>
         <Popover
-          show={this.state.linkHover || this.state.linkClicked}
-          onDismiss={() => this.setState({linkHover: false, linkClicked: false})}
+          isShowingContent={this.state.linkHover || this.state.linkClicked}
+          onHideContent={() => this.setState({linkHover: false, linkClicked: false})}
           placement="bottom"
           on={['hover', 'click']}
           shouldContainFocus

@@ -157,7 +157,7 @@ export default class FlashAlert extends React.Component {
         details = (
           <span>
             <PresentationContent>
-              <Button variant="link" onClick={this.showDetails}>
+              <Button color="link" onClick={this.showDetails}>
                 {formatMessage('Details')}
               </Button>
             </PresentationContent>

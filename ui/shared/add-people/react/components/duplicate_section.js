@@ -162,22 +162,22 @@ class DuplicateSection extends React.Component {
             </Table.RowHeader>
             <Table.Cell>
               <TextInput
-                required
+                isRequired
                 name="name"
                 type="text"
                 placeholder={nameLabel}
-                label={<ScreenReaderContent>{nameLabel}</ScreenReaderContent>}
+                renderLabel={<ScreenReaderContent>{nameLabel}</ScreenReaderContent>}
                 value={duplicateSet.newUserInfo.name}
                 onChange={this.onNewForDuplicateChange}
               />
             </Table.Cell>
             <Table.Cell>
               <TextInput
-                required
+                isRequired
                 name="email"
                 type="email"
                 placeholder={emailLabel}
-                label={<ScreenReaderContent>{emailLabel}</ScreenReaderContent>}
+                renderLabel={<ScreenReaderContent>{emailLabel}</ScreenReaderContent>}
                 value={duplicateSet.newUserInfo.email}
                 onChange={this.onNewForDuplicateChange}
               />
@@ -206,7 +206,7 @@ class DuplicateSection extends React.Component {
             </Table.RowHeader>
             <Table.Cell colSpan="5">
               <Button
-                variant="link"
+                color="link"
                 onClick={this.onSelectNewForDuplicate}
                 theme={{mediumPaddingHorizontal: '0', mediumHeight: 'normal'}}
               >
@@ -236,7 +236,7 @@ class DuplicateSection extends React.Component {
         <Table.Cell colSpan="5">
           <Button
             onClick={this.onSkipDuplicate}
-            variant="link"
+            color="link"
             theme={{mediumPaddingHorizontal: '0', mediumHeight: 'normal'}}
           >
             {I18n.t('Don’t add this user for now.')}

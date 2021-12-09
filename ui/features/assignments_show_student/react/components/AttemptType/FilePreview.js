@@ -89,7 +89,7 @@ export default class FilePreview extends Component {
 
   renderThumbnail = (file, index) => {
     return (
-      <Button variant="icon" size="large" onClick={() => this.selectFile(index)}>
+      <Button size="large" onClick={() => this.selectFile(index)}>
         <img
           alt={I18n.t('%{filename} preview', {filename: file.displayName})}
           src={file.thumbnailUrl}
@@ -102,10 +102,9 @@ export default class FilePreview extends Component {
   renderIcon = (file, index) => {
     return (
       <Button
-        variant="icon"
         size="large"
         onClick={() => this.selectFile(index)}
-        icon={getIconByType(file.mimeClass)}
+        renderIcon={getIconByType(file.mimeClass)}
       >
         <ScreenReaderContent>{file.displayName}</ScreenReaderContent>
       </Button>
@@ -129,7 +128,7 @@ export default class FilePreview extends Component {
       <div data-testid="assignments_2_file_icons" style={iconsContainerStyle}>
         {this.props.files.map((file, index) => (
           <div key={file.id} style={iconsStyle}>
-            <Tooltip tip={file.displayName} placement="bottom" variant="inverse">
+            <Tooltip renderTip={file.displayName} placement="bottom" color="primary">
               {this.shouldDisplayThumbnail(file)
                 ? this.renderThumbnail(file, index)
                 : this.renderIcon(file, index)}
@@ -196,7 +195,7 @@ export default class FilePreview extends Component {
             <div style={{display: 'block'}}>
               <Button
                 margin="medium auto"
-                icon={IconDownloadLine}
+                renderIcon={IconDownloadLine}
                 href={selectedFile.url}
                 disabled={!selectedFile.url}
               >

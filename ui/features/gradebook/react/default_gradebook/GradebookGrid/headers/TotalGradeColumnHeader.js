@@ -31,7 +31,7 @@ import ColumnHeader from './ColumnHeader'
 
 function renderTrigger(ref) {
   return (
-    <Button buttonRef={ref} margin="0" size="small" variant="icon" icon={IconMoreSolid}>
+    <Button elementRef={ref} margin="0" size="small" renderIcon={IconMoreSolid}>
       <ScreenReaderContent>{I18n.t('Total Options')}</ScreenReaderContent>
     </Button>
   )

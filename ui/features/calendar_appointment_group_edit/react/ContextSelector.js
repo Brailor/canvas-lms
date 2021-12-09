@@ -284,7 +284,7 @@ class ContextSelector extends React.Component {
           return (
             <div key={context.asset_string} className="CourseListItem">
               <div className="CourseListItem-horizontal">
-                <Button onClick={() => this.toggleCourseExpanded(context)} variant="icon">
+                <Button onClick={() => this.toggleCourseExpanded(context)}>
                   {expanded ? <IconMiniArrowDownSolid /> : <IconMiniArrowEndSolid />}
                 </Button>
                 <span className="screenreader-only">{context.name}</span>

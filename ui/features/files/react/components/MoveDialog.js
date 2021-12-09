@@ -26,7 +26,7 @@ import ModalButtons from '@canvas/modal/react/buttons'
 import BBTreeBrowser from './BBTreeBrowser'
 import classnames from 'classnames'
 
-MoveDialog.renderMoveButton = function() {
+MoveDialog.renderMoveButton = function () {
   const buttonClassNames = classnames({
     disabled: !this.state.destinationFolder,
     btn: true,
@@ -57,15 +57,15 @@ MoveDialog.renderMoveButton = function() {
   }
 }
 
-MoveDialog.render = function() {
+MoveDialog.render = function () {
   return (
     <Modal
       className="ReactModal__Content--canvas ReactModal__Content--mini-modal"
       overlayClassName="ReactModal__Overlay--canvas"
       ref="canvasModal"
-      isOpen={this.state.isOpen}
+      open={this.state.isOpen}
       title={this.getTitle()}
-      onRequestClose={this.closeDialog}
+      onDismiss={this.closeDialog}
       onSubmit={this.submit}
     >
       <ModalContent>

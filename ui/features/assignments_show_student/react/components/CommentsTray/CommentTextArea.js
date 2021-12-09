@@ -285,7 +285,7 @@ export default class CommentTextArea extends Component {
                 />
                 <Button
                   id="attachmentFileButton"
-                  icon={DEFAULT_ICON}
+                  renderIcon={DEFAULT_ICON}
                   margin="0 x-small 0 0"
                   onClick={() => {
                     this.fileInput.click()
@@ -294,17 +294,15 @@ export default class CommentTextArea extends Component {
                     this.attachmentFileButton = element
                   }}
                   size="small"
-                  variant="icon"
                 >
                   <ScreenReaderContent>{I18n.t('Attach a File')}</ScreenReaderContent>
                 </Button>
                 <Button
                   id="mediaCommentButton"
                   onClick={() => this.setState({mediaModalOpen: true})}
-                  icon={IconAttachMediaLine}
+                  renderIcon={IconAttachMediaLine}
                   margin="0 x-small 0 0"
                   size="small"
-                  variant="icon"
                   disabled={this.state.mediaObject}
                 >
                   <ScreenReaderContent>{I18n.t('Record Audio/Video')}</ScreenReaderContent>

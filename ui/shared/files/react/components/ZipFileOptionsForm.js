@@ -55,10 +55,10 @@ class ZipFileOptionsForm extends React.Component {
     return (
       <Modal
         className="ReactModal__Content--canvas ReactModal__Content--mini-modal"
-        isOpen={!!this.props.fileOptions}
+        open={!!this.props.fileOptions}
         ref="canvasModal"
         title={I18n.t('zip_options', 'Zip file options')}
-        onRequestClose={this.props.onClose}
+        onDismiss={this.props.onClose}
       >
         <ModalContent>
           <p className="modalMessage">{this.buildMessage()}</p>

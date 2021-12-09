@@ -37,7 +37,7 @@ export default {
     forEachNode(missMountPoints, mountPoint => {
       ReactDOM.render(
         <ThemeProvider>
-          <Pill variant="danger" text={I18n.t('missing')} />
+          <Pill color="danger" children={I18n.t('missing')} />
         </ThemeProvider>,
         mountPoint
       )
@@ -46,7 +46,7 @@ export default {
     forEachNode(lateMountPoints, mountPoint => {
       ReactDOM.render(
         <ThemeProvider>
-          <Pill variant="danger" text={I18n.t('late')} />
+          <Pill color="danger" children={I18n.t('late')} />
         </ThemeProvider>,
         mountPoint
       )
@@ -55,7 +55,7 @@ export default {
     forEachNode(excusedMountPoints, mountPoint => {
       ReactDOM.render(
         <ThemeProvider>
-          <Pill variant="danger" text={I18n.t('excused')} />
+          <Pill color="danger" children={I18n.t('excused')} />
         </ThemeProvider>,
         mountPoint
       )

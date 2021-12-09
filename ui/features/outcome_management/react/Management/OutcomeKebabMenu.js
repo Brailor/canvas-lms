@@ -47,7 +47,7 @@ const OutcomeKebabMenu = ({
   return (
     <Menu
       trigger={
-        <Button variant="icon" icon={IconMoreLine}>
+        <Button renderIcon={IconMoreLine}>
           <ScreenReaderContent>{menuTitle || I18n.t('Menu')}</ScreenReaderContent>
         </Button>
       }

@@ -147,9 +147,8 @@ export default function ViolationTable({
               </Table.Cell>
               <Table.Cell textAlign="center">
                 <Button
-                  variant="icon"
                   size="small"
-                  icon={IconAddSolid}
+                  renderIcon={IconAddSolid}
                   onClick={() => {
                     addDomain('account', accountId, hostname, () => {
                       showAlert({

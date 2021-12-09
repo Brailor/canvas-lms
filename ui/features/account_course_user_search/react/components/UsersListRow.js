@@ -46,9 +46,9 @@ export default function UsersListRow({accountId, user, permissions, handleSubmit
         {permissions.can_masquerade && (
           <Tooltip
             data-testid="user-list-row-tooltip"
-            tip={I18n.t('Act as %{name}', {name: user.name})}
+            renderTip={I18n.t('Act as %{name}', {name: user.name})}
           >
-            <Button variant="icon" size="small" href={`/users/${user.id}/masquerade`}>
+            <Button size="small" href={`/users/${user.id}/masquerade`}>
               <IconMasqueradeLine title={I18n.t('Act as %{name}', {name: user.name})} />
             </Button>
           </Tooltip>
@@ -56,13 +56,9 @@ export default function UsersListRow({accountId, user, permissions, handleSubmit
         {permissions.can_message_users && (
           <Tooltip
             data-testid="user-list-row-tooltip"
-            tip={I18n.t('Send message to %{name}', {name: user.name})}
+            renderTip={I18n.t('Send message to %{name}', {name: user.name})}
           >
-            <Button
-              variant="icon"
-              size="small"
-              href={`/conversations?user_name=${user.name}&user_id=${user.id}`}
-            >
+            <Button size="small" href={`/conversations?user_name=${user.name}&user_id=${user.id}`}>
               <IconMessageLine title={I18n.t('Send message to %{name}', {name: user.name})} />
             </Button>
           </Tooltip>
@@ -77,9 +73,9 @@ export default function UsersListRow({accountId, user, permissions, handleSubmit
             <span>
               <Tooltip
                 data-testid="user-list-row-tooltip"
-                tip={I18n.t('Edit %{name}', {name: user.name})}
+                renderTip={I18n.t('Edit %{name}', {name: user.name})}
               >
-                <Button variant="icon" size="small">
+                <Button size="small">
                   <IconEditLine title={I18n.t('Edit %{name}', {name: user.name})} />
                 </Button>
               </Tooltip>

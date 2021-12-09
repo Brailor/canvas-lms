@@ -384,8 +384,8 @@ class FileBrowser extends React.Component {
           id="image-upload__upload"
           onClick={this.selectLocalFile}
           disabled={disabled}
-          variant="ghost"
-          icon={IconUploadSolid}
+          color="primary"
+          renderIcon={IconUploadSolid}
         >
           {I18n.t('Upload File')} {srError}
         </Button>

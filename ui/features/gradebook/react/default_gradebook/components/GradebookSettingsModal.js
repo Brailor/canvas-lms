@@ -316,7 +316,7 @@ export default class GradebookSettingsModal extends React.Component {
               </Flex.Item>
 
               <Flex.Item>
-                <CloseButton placement="static" variant="icon" onClick={this.close}>
+                <CloseButton placement="static" onClick={this.close}>
                   {I18n.t('Close')}
                 </CloseButton>
               </Flex.Item>
@@ -430,7 +430,7 @@ export default class GradebookSettingsModal extends React.Component {
               id="gradebook-settings-update-button"
               onClick={this.handleUpdateButtonClicked}
               disabled={!this.isUpdateButtonEnabled()}
-              variant="primary"
+              color="primary"
             >
               {I18n.t('Apply Settings')}
             </Button>

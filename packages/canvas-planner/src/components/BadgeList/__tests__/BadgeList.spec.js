@@ -23,9 +23,9 @@ import BadgeList from '../index'
 it('renders Pill components as list items', () => {
   const wrapper = shallow(
     <BadgeList>
-      <Pill text="Pill 1" />
-      <Pill text="Pill 2" />
-      <Pill text="Pill 3" />
+      <Pill children="Pill 1" />
+      <Pill children="Pill 2" />
+      <Pill children="Pill 3" />
     </BadgeList>
   )
   expect(wrapper).toMatchSnapshot()

@@ -72,7 +72,7 @@ export default function ReceivedTable({shares, onPreview, onImport, onRemove, on
       <Menu
         data-testid="action-menu"
         trigger={
-          <Button variant="icon" size="small" icon={IconMoreLine}>
+          <Button size="small" renderIcon={IconMoreLine}>
             <ScreenReaderContent>
               {I18n.t('Manage options for %{name}', {name: share.name})}
             </ScreenReaderContent>
@@ -103,7 +103,7 @@ export default function ReceivedTable({shares, onPreview, onImport, onRemove, on
       return (
         <Tooltip renderTip={srText()}>
           <Button
-            variant="link"
+            color="link"
             size="small"
             data-testid="received-table-row-unread"
             onClick={setReadState}
@@ -127,7 +127,7 @@ export default function ReceivedTable({shares, onPreview, onImport, onRemove, on
       return (
         <Tooltip renderTip={srText()}>
           <Button
-            variant="link"
+            color="link"
             size="small"
             data-testid="received-table-row-read"
             onClick={setUnreadState}

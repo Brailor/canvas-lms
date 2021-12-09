@@ -46,7 +46,7 @@ export default class LoadingFutureIndicator extends Component {
   renderLoadMore() {
     if (!this.props.loadingFuture && !this.props.allFutureItemsLoaded) {
       return (
-        <Button variant="link" onClick={this.handleLoadMoreButton}>
+        <Button color="link" onClick={this.handleLoadMoreButton}>
           {formatMessage('Load more')}
         </Button>
       )

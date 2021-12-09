@@ -158,28 +158,26 @@ export default class MoveSelect extends React.Component {
             selectSibling={this.selectSibling}
           />
         )}
-        {
-          <View textAlign="end" display="block">
-            <hr aria-hidden="true" />
-            <Button
-              id="move-item-tray-cancel-button"
-              onClick={this.props.onClose}
-              margin="0 x-small 0 0"
-            >
-              {I18n.t('Cancel')}
-            </Button>
-            <Button
-              id="move-item-tray-submit-button"
-              disabled={!this.isDoneSelecting()}
-              type="submit"
-              variant="primary"
-              onClick={this.submitSelection}
-              margin="0 x-small 0 0"
-            >
-              {I18n.t('Move')}
-            </Button>
-          </View>
-        }
+        <View textAlign="end" display="block">
+          <hr aria-hidden="true" />
+          <Button
+            id="move-item-tray-cancel-button"
+            onClick={this.props.onClose}
+            margin="0 x-small 0 0"
+          >
+            {I18n.t('Cancel')}
+          </Button>
+          <Button
+            id="move-item-tray-submit-button"
+            disabled={!this.isDoneSelecting()}
+            type="submit"
+            color="primary"
+            onClick={this.submitSelection}
+            margin="0 x-small 0 0"
+          >
+            {I18n.t('Move')}
+          </Button>
+        </View>
       </div>
     )
   }

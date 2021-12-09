@@ -26,9 +26,7 @@ import formatMessage from '../../format-message'
 export default function LoadMoreButton({loader}) {
   return (
     <View as="div" padding="small" textAlign="center">
-      <Button onClick={loader.onLoadMore} variant="default">
-        {formatMessage('Load More')}
-      </Button>
+      <Button onClick={loader.onLoadMore}>{formatMessage('Load More')}</Button>
     </View>
   )
 }

@@ -36,7 +36,7 @@ function NewTheme({onNewTheme, bases}) {
   return (
     <Menu
       trigger={
-        <Button icon={IconAddSolid} variant="primary" data-testid="new-theme-button">
+        <Button renderIcon={IconAddSolid} color="primary" data-testid="new-theme-button">
           {I18n.t('Theme')}
         </Button>
       }
@@ -242,7 +242,7 @@ export default function CollectionView(props) {
               {I18n.t('Templates')}
               <Popover
                 renderTrigger={
-                  <Button variant="link" size="small" icon={IconQuestionLine}>
+                  <Button color="link" size="small" renderIcon={IconQuestionLine}>
                     <ScreenReaderContent>{explainerText}</ScreenReaderContent>
                   </Button>
                 }

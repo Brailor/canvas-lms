@@ -36,7 +36,7 @@ export const Footer = ({disabled, onCancel, onSubmit, onReplace, editing}) => {
             label={formatMessage(
               'Apply changes to all instances of this Button and Icon in the Course'
             )}
-            data-testid='cb-replace-all'
+            data-testid="cb-replace-all"
             checked={replaceAll}
             onChange={() => {
               setReplaceAll(prev => !prev)
@@ -51,7 +51,7 @@ export const Footer = ({disabled, onCancel, onSubmit, onReplace, editing}) => {
         padding="small small x-small none"
       >
         <Flex>
-          <Flex.Item shouldGrow shouldShrink></Flex.Item>
+          <Flex.Item shouldGrow shouldShrink />
           <Flex.Item>
             <Button disabled={disabled} onClick={onCancel}>
               {formatMessage('Cancel')}

@@ -52,7 +52,7 @@ class PlannerEmptyState extends Component {
 
   renderAddToDoButton() {
     return (
-      <Button id="PlannerEmptyState_AddToDo" variant="link" onClick={this.props.onAddToDo}>
+      <Button id="PlannerEmptyState_AddToDo" color="link" onClick={this.props.onAddToDo}>
         {formatMessage('Add To-Do')}
       </Button>
     )

@@ -26,15 +26,15 @@ const wrapper = document.getElementById('fixtures')
 const createElement = data => (
   <TextInput
     defaultValue={data.defaultValue}
-    label={data.label}
+    renderLabel={data.label}
     id={data.id}
-    required={data.required}
+    isRequired={data.required}
     hintText={data.hintText}
     errors={data.errors}
   />
 )
 const renderComponent = data => ReactDOM.render(createElement(data), wrapper)
-const getDOMNodes = function(data) {
+const getDOMNodes = function (data) {
   const component = renderComponent(data)
   const inputNode = component.refs.input
   const hintNode = component.refs.hintText

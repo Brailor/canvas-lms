@@ -148,7 +148,7 @@ export default function LinkOptionsTray(props) {
             </Flex.Item>
 
             <Flex.Item>
-              <CloseButton placement="static" variant="icon" onClick={props.onRequestClose}>
+              <CloseButton placement="static" onClick={props.onRequestClose}>
                 {formatMessage('Close')}
               </CloseButton>
             </Flex.Item>
@@ -200,7 +200,7 @@ export default function LinkOptionsTray(props) {
               <Button
                 disabled={(showText && !text) || !(url && isValidURL)}
                 onClick={handleSave}
-                variant="primary"
+                color="primary"
               >
                 {formatMessage('Done')}
               </Button>

@@ -225,7 +225,7 @@ export function QRMobileLogin({refreshInterval, pollInterval, withWarning}) {
           </Button>
           <Button
             data-testid="qr-proceed-button"
-            variant="primary"
+            color="primary"
             margin="none x-small"
             onClick={onModalProceed}
           >

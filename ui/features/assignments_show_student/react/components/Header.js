@@ -93,7 +93,7 @@ class Header extends React.Component {
           return (
             <Tooltip
               as="div"
-              tip={
+              renderTip={
                 <LatePolicyToolTipContent
                   attempt={submission.attempt}
                   grade={submission.grade}
@@ -182,7 +182,7 @@ class Header extends React.Component {
           {addCommentsDisabled && (
             <Popover
               renderTrigger={
-                <Button variant="link" size="small" icon={IconQuestionLine}>
+                <Button color="link" size="small" renderIcon={IconQuestionLine}>
                   <ScreenReaderContent>{popoverMessage}</ScreenReaderContent>
                 </Button>
               }

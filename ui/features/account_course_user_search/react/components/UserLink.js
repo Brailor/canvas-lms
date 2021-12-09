@@ -23,7 +23,7 @@ import {Button} from '@instructure/ui-buttons'
 export default function UserLink({size, avatar_url, name, avatarName, ...propsToPassOnToLink}) {
   return (
     <Button
-      variant="link"
+      color="link"
       theme={{mediumPaddingHorizontal: '0', mediumHeight: '1rem'}}
       {...propsToPassOnToLink}
     >

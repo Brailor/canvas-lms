@@ -78,9 +78,9 @@ class AssignmentPickerModal extends React.Component {
       <Modal
         className="ReactModal__Content--canvas"
         overlayClassName="ReactModal__Overlay--canvas"
-        isOpen={this.props.isOpen}
-        onAfterOpen={this.onAfterOpen}
-        onRequestClose={this.props.onRequestClose}
+        open={this.props.isOpen}
+        onOpen={this.onAfterOpen}
+        onDismiss={this.props.onRequestClose}
       >
         <div className="ReactModal__Layout cr-assignment-modal">
           <header className="ReactModal__Header">

@@ -65,7 +65,7 @@ class ConfigurationFormLti13 extends React.Component {
         <TextInput
           name="client_id"
           value={this.state.clientId}
-          label={I18n.t('Client ID')}
+          renderLabel={I18n.t('Client ID')}
           icon={() => <IconLtiLine />}
           ref={this.clientIdInput}
           onChange={this.setClientId}
@@ -77,7 +77,7 @@ class ConfigurationFormLti13 extends React.Component {
               type: 'hint'
             }
           ].concat(this.state.messages)}
-          required
+          isRequired
         />
       </View>
     )

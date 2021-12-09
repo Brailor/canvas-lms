@@ -336,7 +336,7 @@ export class PlannerItem_raw extends Component {
     return (
       <div className={styles.title} style={{position: 'relative'}}>
         <Button
-          variant="link"
+          color="link"
           theme={{
             mediumPadding:
               this.props.simplifiedControls && this.props.responsiveSize === 'small'
@@ -347,7 +347,7 @@ export class PlannerItem_raw extends Component {
             linkColor: this.props.simplifiedControls ? colors.licorice : undefined,
             linkHoverColor: this.props.simplifiedControls ? colors.licorice : undefined
           }}
-          buttonRef={link => {
+          elementRef={link => {
             this.itemLink = link
           }}
           {...linkProps}
@@ -366,7 +366,7 @@ export class PlannerItem_raw extends Component {
       return (
         <BadgeList>
           {this.props.badges.map(b => (
-            <Pill key={b.id} text={b.text} variant={b.variant} />
+            <Pill key={b.id} children={b.text} color={b.variant} />
           ))}
         </BadgeList>
       )
@@ -396,7 +396,7 @@ export class PlannerItem_raw extends Component {
               }
             }}
           >
-            <Button variant="icon" icon={IconEditLine} onClick={this.toDoLinkClick}>
+            <Button renderIcon={IconEditLine} onClick={this.toDoLinkClick}>
               <ScreenReaderContent>{formatMessage('Edit')}</ScreenReaderContent>
             </Button>
           </ApplyTheme>

@@ -92,7 +92,7 @@ export default class RSSFeedList extends React.Component {
             <Grid.Row>
               <Grid.Col>
                 <Button
-                  variant="link"
+                  color="link"
                   margin="0 small"
                   size="small"
                   href={url}
@@ -108,7 +108,6 @@ export default class RSSFeedList extends React.Component {
                 <Button
                   id={`feed-row-${index}`}
                   className="external-rss-feed__delete-button"
-                  variant="icon"
                   onClick={() => this.deleteExternalFeed(id, index)}
                   offset="none"
                   size="small"

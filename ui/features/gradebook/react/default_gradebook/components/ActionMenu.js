@@ -302,7 +302,7 @@ class ActionMenu extends React.Component {
     return (
       <Menu
         trigger={
-          <Button variant="link">
+          <Button color="primary" withBackground={false}>
             <Text {...buttonTypographyProps}>
               {I18n.t('Actions')}
               <IconMiniArrowDownSolid />

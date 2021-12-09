@@ -149,8 +149,8 @@ export default class CoursesListRow extends React.Component {
       const {name} = this.props
       const addUsersTip = I18n.t('Add Users to %{name}', {name})
       return (
-        <Tooltip tip={addUsersTip}>
-          <Button variant="icon" size="small" onClick={this.openAddUsersToCourseDialog}>
+        <Tooltip renderTip={addUsersTip}>
+          <Button size="small" onClick={this.openAddUsersToCourseDialog}>
             <IconPlusLine title={addUsersTip} />
           </Button>
         </Tooltip>
@@ -200,13 +200,13 @@ export default class CoursesListRow extends React.Component {
           <a href={url}>
             <span style={{paddingRight: '0.5em'}}>{name}</span>
             {blueprint && (
-              <Tooltip tip={blueprintTip}>
+              <Tooltip renderTip={blueprintTip}>
                 <IconBlueprintLine />
                 <ScreenReaderContent>{blueprintTip}</ScreenReaderContent>
               </Tooltip>
             )}
             {template && (
-              <Tooltip tip={templateTip}>
+              <Tooltip renderTip={templateTip}>
                 <IconCollectionSolid />
                 <ScreenReaderContent>{templateTip}</ScreenReaderContent>
               </Tooltip>
@@ -229,7 +229,7 @@ export default class CoursesListRow extends React.Component {
             </div>
           ))}
           {teachers && teachers.length > 2 && teachersToShow.length === 2 && (
-            <Button variant="link" size="small" onClick={this.showMoreTeachers}>
+            <Button color="link" size="small" onClick={this.showMoreTeachers}>
               {I18n.t('Show More')}
             </Button>
           )}
@@ -241,13 +241,13 @@ export default class CoursesListRow extends React.Component {
         </Table.Cell>
         <Table.Cell textAlign="end">
           {this.renderAddEnrollments()}
-          <Tooltip tip={statsTip}>
-            <Button variant="icon" size="small" href={`${url}/statistics`}>
+          <Tooltip renderTip={statsTip}>
+            <Button size="small" href={`${url}/statistics`}>
               <IconStatsLine title={statsTip} />
             </Button>
           </Tooltip>
-          <Tooltip tip={settingsTip}>
-            <Button variant="icon" size="small" href={`${url}/settings`}>
+          <Tooltip renderTip={settingsTip}>
+            <Button size="small" href={`${url}/settings`}>
               <IconSettingsLine title={settingsTip} />
             </Button>
           </Tooltip>

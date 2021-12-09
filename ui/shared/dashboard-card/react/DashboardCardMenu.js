@@ -158,17 +158,17 @@ export default class DashboardCardMenu extends React.Component {
     return (
       <Popover
         on="click"
-        show={this.state.show}
+        isShowingContent={this.state.show}
         onToggle={this.handleMenuToggle}
         shouldContainFocus
         shouldReturnFocus
         defaultFocusElement={() => this._colorTab}
-        onShow={handleShow}
+        onPositioned={handleShow}
         contentRef={popoverContentRef}
         renderTrigger={trigger}
       >
         <CloseButton
-          buttonRef={c => (this._closeButton = c)}
+          elementRef={c => (this._closeButton = c)}
           placement="end"
           onClick={() => this.setState({show: false})}
         >

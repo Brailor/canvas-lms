@@ -106,13 +106,13 @@ export default function VideoOptionsTray(props) {
         <Tooltip
           on={['hover', 'focus']}
           placement="top"
-          tip={
+          renderTip={
             <View display="block" id="alt-text-label-tooltip" maxWidth="14rem">
               {tooltipText}
             </View>
           }
         >
-          <Button icon={IconQuestionLine} size="small" variant="icon">
+          <Button renderIcon={IconQuestionLine} size="small">
             <ScreenReaderContent>{tooltipText}</ScreenReaderContent>
           </Button>
         </Tooltip>
@@ -155,7 +155,7 @@ export default function VideoOptionsTray(props) {
                   <Heading as="h2">{formatMessage('Video Options')}</Heading>
                 </Flex.Item>
                 <Flex.Item>
-                  <CloseButton placemet="static" variant="icon" onClick={onRequestClose}>
+                  <CloseButton placemet="static" onClick={onRequestClose}>
                     {formatMessage('Close')}
                   </CloseButton>
                 </Flex.Item>
@@ -247,7 +247,7 @@ export default function VideoOptionsTray(props) {
                   <Button
                     disabled={saveDisabled}
                     onClick={event => handleSave(event, contentProps.updateMediaObject)}
-                    variant="primary"
+                    color="primary"
                   >
                     {formatMessage('Done')}
                   </Button>

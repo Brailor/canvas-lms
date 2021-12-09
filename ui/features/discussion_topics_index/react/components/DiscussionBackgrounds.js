@@ -67,10 +67,7 @@ export const unpinnedDiscussionsBackground = props => (
       {I18n.t('There are no discussions to show in this section')}
     </Text>
     {props.permissions.create && (
-      <Button
-        variant="link"
-        href={`/${props.contextType}s/${props.contextID}/discussion_topics/new`}
-      >
+      <Button color="link" href={`/${props.contextType}s/${props.contextID}/discussion_topics/new`}>
         {I18n.t('Click here to add a discussion')}
       </Button>
     )}

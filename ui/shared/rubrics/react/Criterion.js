@@ -46,7 +46,7 @@ const OutcomeIcon = () => (
 )
 
 const LongDescription = ({showLongDescription}) => (
-  <Button fluidWidth variant="link" onClick={() => showLongDescription()}>
+  <Button display="block" color="link" onClick={() => showLongDescription()}>
     <Text size="x-small">{I18n.t('view longer description')}</Text>
   </Button>
 )
@@ -65,7 +65,7 @@ const LongDescriptionDialog = ({open, close, longDescription}) => {
       shouldCloseOnDocumentClick
     >
       <Modal.Header>
-        <CloseButton placement="end" offset="medium" variant="icon" onClick={close}>
+        <CloseButton placement="end" offset="medium" onClick={close}>
           Close
         </CloseButton>
         <Heading>{modalHeader}</Heading>

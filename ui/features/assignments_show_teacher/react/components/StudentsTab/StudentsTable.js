@@ -127,7 +127,7 @@ export default class StudentsTable extends React.Component {
           <Button
             href={viewLink}
             target="_blank"
-            variant="link"
+            color="link"
             theme={{mediumPaddingHorizontal: '0', mediumHeight: 'normal'}}
           >
             {I18n.t('Attempt %{number}', {number: attempt.attempt})}
@@ -182,8 +182,7 @@ export default class StudentsTable extends React.Component {
   renderTrayButton(student) {
     return (
       <Button
-        variant="icon"
-        icon={<IconExpandStartLine rotate="180" />}
+        renderIcon={<IconExpandStartLine rotate="180" />}
         data-student-id={student.lid}
         ref={b => (this.trayButton = b)}
         onClick={this.handleTrayOpen}

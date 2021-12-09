@@ -277,7 +277,7 @@ export default class CourseItemRow extends Component {
                     onSelect={this.props.onManageMenuSelect}
                     onToggle={this.toggleManageMenuShown}
                     trigger={
-                      <Button variant="icon" size="small">
+                      <Button size="small">
                         <IconMoreLine />
                         <ScreenReaderContent>
                           {I18n.t('Manage options for %{name}', {name: this.props.title})}

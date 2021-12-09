@@ -51,9 +51,11 @@ export function ButtonsTray({editor, onUnmount, editing}) {
             </Flex.Item>
 
             <Flex.Item>
-              <CloseButton placement="static" variant="icon" onClick={() => setIsOpen(false)}>
-                {formatMessage('Close')}
-              </CloseButton>
+              <CloseButton
+                placement="static"
+                onClick={() => setIsOpen(false)}
+                screenReaderLabel={formatMessage('Close')}
+              />
             </Flex.Item>
           </Flex>
         </Flex.Item>

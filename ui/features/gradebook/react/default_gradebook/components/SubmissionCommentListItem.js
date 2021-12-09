@@ -119,7 +119,7 @@ export default class SubmissionCommentListItem extends React.Component {
               <div style={{margin: '0 0 0 0.375rem'}}>
                 <Button
                   href={this.props.authorUrl}
-                  variant="link"
+                  color="link"
                   theme={{mediumPaddingHorizontal: '0', mediumHeight: 'normal'}}
                   margin="none none xxx-small"
                 >
@@ -139,9 +139,8 @@ export default class SubmissionCommentListItem extends React.Component {
             {this.props.currentUserIsAuthor && (
               <Button
                 size="small"
-                variant="icon"
                 onClick={this.handleEditComment}
-                buttonRef={this.bindEditButton}
+                elementRef={this.bindEditButton}
               >
                 <IconEditLine
                   title={I18n.t('Edit Comment: %{comment}', {comment: this.props.comment})}
@@ -149,7 +148,7 @@ export default class SubmissionCommentListItem extends React.Component {
               </Button>
             )}
             <span style={{float: 'right'}}>
-              <Button size="small" variant="icon" onClick={this.handleDeleteComment}>
+              <Button size="small" onClick={this.handleDeleteComment}>
                 <IconTrashLine
                   title={I18n.t('Delete Comment: %{comment}', {comment: this.props.comment})}
                 />

@@ -74,13 +74,18 @@ export default function RoleTrayTableRow({
         <Flex.Item>
           {expandable && (
             <span className="ic-permissions_role_tray_table_role_expandable">
-              <Button variant="icon" size="small">
+              <Button size="small">
                 <IconArrowOpenStartSolid title={I18n.t('Expand permission')} />
               </Button>
             </span>
           )}
 
-          <Flex direction="column" width="12em" margin={expandable ? '0' : '0 0 0 medium'} inline>
+          <Flex
+            direction="column"
+            width="12em"
+            margin={expandable ? '0' : '0 0 0 medium'}
+            display="inline-flex"
+          >
             <Flex.Item>
               <Text weight="bold" lineHeight="fit" size="small">
                 {title}

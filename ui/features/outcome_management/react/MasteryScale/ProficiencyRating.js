@@ -264,9 +264,9 @@ class ProficiencyRating extends React.Component {
         {canManage ? (
           <Popover
             on="click"
-            show={this.state.showColorPopover}
+            isShowingContent={this.state.showColorPopover}
             onToggle={this.handleMenuToggle}
-            onShow={this.focusColorPicker}
+            onPositioned={this.focusColorPicker}
             shouldContainFocus
             // Note: without this prop, there's a focus issue where the window will scroll up
             // on Chrome which seems to be caused by an issue within Popover (possibly INSTUI-1799)
@@ -275,7 +275,7 @@ class ProficiencyRating extends React.Component {
             // mount with focusColorPicker
             shouldFocusContentOnTriggerBlur
             renderTrigger={
-              <Button ref={this.setColorRef} variant="link">
+              <Button ref={this.setColorRef} color="link">
                 <div>
                   <span className="colorPickerIcon" style={{background: formatColor(color)}} />
                   <ScreenReaderContent>

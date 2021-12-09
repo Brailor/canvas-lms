@@ -74,10 +74,10 @@ export default class CreatorEventGroup extends PureComponent {
                     <Tooltip
                       on={['click', 'focus', 'hover']}
                       placement="start"
-                      tip={message}
-                      variant="inverse"
+                      renderTip={message}
+                      color="primary"
                     >
-                      <Button icon={<IconWarningLine color="error" />} size="medium" variant="icon">
+                      <Button renderIcon={<IconWarningLine color="error" />} size="medium">
                         <ScreenReaderContent>{I18n.t('Toggle tooltip')}</ScreenReaderContent>
                       </Button>
                     </Tooltip>

@@ -129,7 +129,7 @@ function BaseUploadTool({children, hideFooter, icon, label, renderFooter, title}
       shouldCloseOnDocumentClick
     >
       <Modal.Header>
-        <CloseButton placement="end" offset="medium" variant="icon" onClick={closeModal}>
+        <CloseButton placement="end" offset="medium" onClick={closeModal}>
           {I18n.t('Close')}
         </CloseButton>
         <Heading>{modalTitle}</Heading>
@@ -210,7 +210,7 @@ function CanvasFileChooser({courseID, onFileSelect, userID}) {
       <>
         {cancelButton}
         <Button
-          variant="primary"
+          color="primary"
           onClick={() => {
             onFileSelect(selectedCanvasFileID)
             closeModal()

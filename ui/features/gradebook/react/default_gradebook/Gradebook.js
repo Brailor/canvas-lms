@@ -4570,7 +4570,6 @@ class Gradebook extends React.Component {
             renderIcon={IconSettingsSolid}
             ref={this.gradebookSettingsModalButton}
             id="gradebook-settings-button"
-            variant="icon"
             onClick={() => this.gradebookSettingsModal.current?.open()}
           >
             <ScreenReaderContent>{I18n.t('Gradebook Settings')}</ScreenReaderContent>

@@ -50,7 +50,7 @@ export default class CriterionInfo extends React.Component {
 
   renderCloseButton() {
     return (
-      <CloseButton placement="end" offset="medium" variant="icon" onClick={this.handleButtonClick}>
+      <CloseButton placement="end" offset="medium" onClick={this.handleButtonClick}>
         {I18n.t('Close')}
       </CloseButton>
     )
@@ -84,7 +84,7 @@ export default class CriterionInfo extends React.Component {
   render() {
     return (
       <span>
-        <Button variant="icon" icon={<IconQuestionLine />} onClick={this.handleButtonClick}>
+        <Button renderIcon={<IconQuestionLine />} onClick={this.handleButtonClick}>
           <ScreenReaderContent>{I18n.t('More Information About Ratings')}</ScreenReaderContent>
         </Button>
         {this.renderModal()}

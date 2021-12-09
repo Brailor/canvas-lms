@@ -50,7 +50,6 @@ export default class Carousel extends Component {
         ref={button => {
           this.leftArrow = button
         }}
-        variant="icon"
         onClick={this.handleLeftArrowClick}
         size="small"
       >
@@ -64,7 +63,6 @@ export default class Carousel extends Component {
         ref={button => {
           this.rightArrow = button
         }}
-        variant="icon"
         onClick={this.handleRightArrowClick}
         size="small"
       >

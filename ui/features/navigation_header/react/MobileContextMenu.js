@@ -129,7 +129,7 @@ export default function MobileContextMenu({spinner, contextType, contextId}) {
         return (
           <Grid.Row key={tab.id}>
             <Grid.Col width="auto">
-              <Button icon={Icon} variant="link" href={tab.html_url}>
+              <Button renderIcon={Icon} color="link" href={tab.html_url}>
                 <Text weight={isCurrentTab ? 'bold' : 'normal'}>{tab.label}</Text>
                 {isTabOff && <ScreenReaderContent>{'- ' + srText(tab)}</ScreenReaderContent>}
               </Button>

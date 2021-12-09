@@ -154,11 +154,10 @@ export default class CompleteIncompleteGradeInput extends Component {
             placement="bottom"
             trigger={
               <Button
-                buttonRef={this.bindButton}
+                elementRef={this.bindButton}
                 disabled={this.props.disabled}
                 size="small"
-                variant="icon"
-                icon={IconArrowOpenDownLine}
+                renderIcon={IconArrowOpenDownLine}
               >
                 <ScreenReaderContent>{I18n.t('Open Complete/Incomplete menu')}</ScreenReaderContent>
               </Button>

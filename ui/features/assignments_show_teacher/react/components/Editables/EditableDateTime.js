@@ -227,13 +227,12 @@ export default class EditableDateTime extends React.Component {
       return (
         <Button
           size="small"
-          variant="icon"
           margin="0 0 0 x-small"
-          icon={IconCalendarMonthLine}
+          renderIcon={IconCalendarMonthLine}
           onClick={onClick}
           onFocus={this.delayedHandler(onFocus)}
           onBlur={onBlur}
-          buttonRef={buttonRef}
+          elementRef={buttonRef}
           readOnly={this.props.readOnly}
         >
           <ScreenReaderContent>
@@ -260,7 +259,7 @@ export default class EditableDateTime extends React.Component {
         elementRef={this.elementRef}
         {...containerProps}
       >
-        <Flex inline direction="row" justifyItems="space-between" width="100%">
+        <Flex display="inline-flex" direction="row" justifyItems="space-between" width="100%">
           <Flex.Item grow shrink>
             {this.renderEditor(getEditorProps())}
             {this.renderViewer(getViewerProps())}

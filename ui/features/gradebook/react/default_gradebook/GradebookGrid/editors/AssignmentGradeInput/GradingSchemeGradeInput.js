@@ -209,7 +209,7 @@ export default class GradingSchemeInput extends Component {
         <TextInput
           disabled={this.props.disabled}
           inputRef={this.bindTextInput}
-          label={this.props.label}
+          renderLabel={this.props.label}
           messages={this.props.messages}
           onChange={this.handleTextChange}
           size="small"
@@ -224,12 +224,7 @@ export default class GradingSchemeInput extends Component {
             onSelect={this.handleSelect}
             placement="bottom"
             trigger={
-              <Button
-                buttonRef={this.bindButton}
-                disabled={this.props.disabled}
-                size="small"
-                variant="icon"
-              >
+              <Button elementRef={this.bindButton} disabled={this.props.disabled} size="small">
                 <IconArrowOpenDownLine label={I18n.t('Open Grading Scheme menu')} />
               </Button>
             }

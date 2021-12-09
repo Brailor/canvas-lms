@@ -122,7 +122,7 @@ export default function EmbedOptionsTray(props) {
               padding="small medium"
               textAlign="end"
             >
-              <Button disabled={text === '' || link === ''} onClick={handleSave} variant="primary">
+              <Button disabled={text === '' || link === ''} onClick={handleSave} color="primary">
                 {formatMessage('Done')}
               </Button>
             </Flex.Item>

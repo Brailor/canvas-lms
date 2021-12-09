@@ -72,7 +72,7 @@ export function LtiToolsModal(props) {
             type="search"
             renderLabel={<ScreenReaderContent>{formatMessage('Search')}</ScreenReaderContent>}
             placeholder={formatMessage('Search')}
-            renderAfterInput={<IconSearchLine inline={false} />}
+            renderAfterInput={<IconSearchLine display={false} />}
             onChange={handleFilterChange}
           />
         </View>

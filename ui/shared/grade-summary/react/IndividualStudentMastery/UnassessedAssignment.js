@@ -32,9 +32,11 @@ const UnassessedAssignment = ({assignment}) => {
       <ApplyTheme theme={{[Button.theme]: {linkColor: '#68777D', fontWeight: '700'}}}>
         <Button
           href={url}
-          variant="link"
+          color="link"
           theme={{mediumPaddingHorizontal: '0', mediumHeight: 'normal'}}
-          icon={_.includes(submission_types, 'online_quiz') ? IconQuizLine : IconAssignmentLine}
+          renderIcon={
+            _.includes(submission_types, 'online_quiz') ? IconQuizLine : IconAssignmentLine
+          }
         >
           {title} ({I18n.t('Not yet assessed')})
         </Button>

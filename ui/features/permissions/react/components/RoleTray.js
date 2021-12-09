@@ -248,7 +248,7 @@ export default class RoleTray extends Component {
                 <ScreenReaderContent>{children}</ScreenReaderContent>
                 {I18n.t('Cancel')}
               </Button>
-              <Button onClick={onOk} id="confirm-delete-role" variant="primary">
+              <Button onClick={onOk} id="confirm-delete-role" color="primary">
                 {I18n.t('Ok')}
               </Button>
             </View>
@@ -288,11 +288,10 @@ export default class RoleTray extends Component {
   renderCloseButton = () => (
     <Button
       id="close-role-tray-button"
-      variant="icon"
       size="small"
       margin="small 0 0 xx-small"
       onClick={this.state.editTrayVisable ? this.hideEditTray : this.hideTray}
-      buttonRef={c => (this.closeButton = c)}
+      elementRef={c => (this.closeButton = c)}
     >
       {this.state.editTrayVisable ? (
         <IconArrowStartSolid title={I18n.t('Back')} />
@@ -342,11 +341,10 @@ export default class RoleTray extends Component {
 
   renderEditButton = () => (
     <Button
-      variant="icon"
       size="medium"
       id="edit_button"
       onClick={this.showEditTray}
-      buttonRef={c => (this.editButton = c)}
+      elementRef={c => (this.editButton = c)}
     >
       <Text color="brand">
         <IconEditLine title={I18n.t('Edit')} />
@@ -357,10 +355,9 @@ export default class RoleTray extends Component {
   renderDeleteButton = () => (
     <Button
       id="delete-role-button"
-      variant="icon"
       size="medium"
       onClick={this.showDeleteAlert}
-      buttonRef={c => (this.deleteButton = c)}
+      elementRef={c => (this.deleteButton = c)}
     >
       <Text color="brand">
         <IconTrashLine title={I18n.t('Delete')} />
@@ -433,7 +430,7 @@ export default class RoleTray extends Component {
 
       <View as="div" margin="medium 0 large 0">
         <TextInput
-          label={I18n.t('Role Name')}
+          renderLabel={I18n.t('Role Name')}
           name="edit_name_box"
           value={this.state.editRoleLabelInput}
           messages={this.state.editRoleLabelErrorMessages}

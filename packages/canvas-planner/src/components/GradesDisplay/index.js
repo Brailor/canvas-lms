@@ -82,7 +82,7 @@ export class GradesDisplay extends React.Component {
         <View key={course.id} as="div" margin="0 0 large 0">
           <div className={styles.course} style={courseNameStyles}>
             <Button
-              variant="link"
+              color="link"
               size="small"
               theme={{smallPaddingHorizontal: '0', smallHeight: 'normal'}}
               href={`${course.href}/grades`}

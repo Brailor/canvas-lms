@@ -163,7 +163,7 @@ export class Whitelist extends Component {
             </Flex.Item>
             {!this.props.isSubAccount && (
               <Flex.Item>
-                <Button variant="link" onClick={() => this.setState({showViolationTray: true})}>
+                <Button color="link" onClick={() => this.setState({showViolationTray: true})}>
                   {I18n.t('View Violation Log')}
                 </Button>
               </Flex.Item>
@@ -196,7 +196,7 @@ export class Whitelist extends Component {
           <Flex>
             <Flex.Item grow shrink padding="0 medium 0 0">
               <TextInput
-                label={I18n.t('Domain Name')}
+                renderLabel={I18n.t('Domain Name')}
                 placeholder="http://somedomain.com"
                 value={this.state.addDomainInputValue}
                 messages={this.state.errors}
@@ -212,7 +212,7 @@ export class Whitelist extends Component {
                 ref={c => (this.addDomainBtn = c)}
                 type="submit"
                 margin="0 x-small 0 0"
-                icon={IconPlusSolid}
+                renderIcon={IconPlusSolid}
                 disabled={(this.props.inherited && this.props.isSubAccount) || domainLimitReached}
               >
                 {I18n.t('Domain')}
@@ -241,8 +241,7 @@ export class Whitelist extends Component {
                   <Table.Cell textAlign="end">
                     <Button
                       ref={c => (this.deleteButtons[domain] = c)}
-                      variant="icon"
-                      icon={IconTrashLine}
+                      renderIcon={IconTrashLine}
                       onClick={() => this.handleRemoveDomain(domain)}
                       data-testid={`delete-button-${domain}`}
                       disabled={this.props.inherited && this.props.isSubAccount}

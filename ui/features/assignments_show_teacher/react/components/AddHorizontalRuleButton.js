@@ -57,7 +57,7 @@ export default function AddHorizontalRuleButton(props) {
       <span style={layoutStyle} aria-hidden="true">
         <hr style={ruleStyle} />
       </span>
-      <Button variant="circle-default" icon={IconPlusLine} onClick={props.onClick}>
+      <Button shape="circle" renderIcon={IconPlusLine} onClick={props.onClick}>
         <ScreenReaderContent>{props.label}</ScreenReaderContent>
       </Button>
     </div>

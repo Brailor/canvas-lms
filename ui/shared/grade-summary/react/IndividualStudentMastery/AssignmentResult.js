@@ -21,7 +21,7 @@ import I18n from 'i18n!IndividiualStudentMasteryAssignmentResult'
 import _ from 'lodash'
 import {View} from '@instructure/ui-view'
 import {Flex} from '@instructure/ui-flex'
-import {Button} from '@instructure/ui-buttons'
+import {Link} from '@instructure/ui-link'
 import {Text} from '@instructure/ui-text'
 import {IconAssignmentLine, IconQuizLine, IconHighlighterLine} from '@instructure/ui-icons'
 import * as shapes from './shapes'
@@ -45,14 +45,9 @@ const scaleScore = (score, possible, outcome) => {
 }
 
 const renderLinkedResult = (name, url, isQuiz) => (
-  <Button
-    variant="link"
-    href={url}
-    theme={{mediumPaddingHorizontal: '0', mediumHeight: 'normal', fontWeight: '700'}}
-    icon={isQuiz ? IconQuizLine : IconAssignmentLine}
-  >
+  <Link isWithinText={false} href={url} renderIcon={isQuiz ? IconQuizLine : IconAssignmentLine}>
     {name}
-  </Button>
+  </Link>
 )
 
 const renderUnlinkedResult = name => (

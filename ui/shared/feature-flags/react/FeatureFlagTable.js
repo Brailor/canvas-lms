@@ -56,7 +56,7 @@ function FeatureFlagFilterTable({title, rows, disableDefaults}) {
               <Cell>
                 <>
                   {feature.feature_flag.hidden && (
-                    <Pill margin="0 x-small" text={I18n.t('Hidden')} />
+                    <Pill margin="0 x-small" children={I18n.t('Hidden')} />
                   )}
                   {feature.beta && (
                     <Tooltip
@@ -65,9 +65,9 @@ function FeatureFlagFilterTable({title, rows, disableDefaults}) {
                       )}
                     >
                       <Pill
-                        variant="primary"
+                        color="info"
                         margin="0 0 0 x-small"
-                        text={I18n.t('Feature Preview')}
+                        children={I18n.t('Feature Preview')}
                       />
                     </Tooltip>
                   )}
@@ -116,10 +116,10 @@ function FeatureFlagTable({title, rows, disableDefaults}) {
                     <>
                       {feature.display_name}
                       {feature.feature_flag.hidden && (
-                        <Pill margin="0 x-small" text={I18n.t('Hidden')} />
+                        <Pill margin="0 x-small" children={I18n.t('Hidden')} />
                       )}
                       {feature.beta && (
-                        <Pill variant="primary" margin="0 0 0 x-small" text={I18n.t('Beta')} />
+                        <Pill color="info" margin="0 0 0 x-small" children={I18n.t('Beta')} />
                       )}
                     </>
                   }

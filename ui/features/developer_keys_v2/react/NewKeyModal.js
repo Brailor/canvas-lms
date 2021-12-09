@@ -303,7 +303,7 @@ export default class DeveloperKeyModal extends React.Component {
             </Button>
             <Button
               onClick={isLtiKey ? this.saveLtiToolConfiguration : this.submitForm}
-              variant="primary"
+              color="primary"
               disabled={this.isSaving}
             >
               {I18n.t('Save')}

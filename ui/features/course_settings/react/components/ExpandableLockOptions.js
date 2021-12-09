@@ -91,7 +91,7 @@ export default class ExpandableLockOptions extends React.Component {
     const Icon = this.state.open ? IconArrowOpenDownSolid : IconArrowOpenEndSolid
     return (
       <div className="bcs_tab_indicator-icon" onKeyDown={this.onKeyDown}>
-        <Button variant="icon" onClick={this.toggle}>
+        <Button onClick={this.toggle}>
           <Text size="medium">
             <Icon />
           </Text>

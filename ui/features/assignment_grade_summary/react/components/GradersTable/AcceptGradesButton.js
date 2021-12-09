@@ -46,7 +46,7 @@ function startedButton(props) {
   const title = I18n.t('Accepting')
 
   return (
-    <Button {...buttonProps(props)} variant="light">
+    <Button {...buttonProps(props)} color="primary-inverse">
       <Spinner size="x-small" renderTitle={title} />
       <PresentationContent>{title}</PresentationContent>
     </Button>
@@ -58,8 +58,8 @@ function successButton(props) {
   return (
     <Button
       {...buttonProps(props)}
-      icon={IconCheckMarkSolid}
-      variant={props.disabled ? 'default' : 'light'}
+      renderIcon={IconCheckMarkSolid}
+      color={props.disabled ? 'default' : 'light'}
     >
       {I18n.t('Accepted')}
     </Button>

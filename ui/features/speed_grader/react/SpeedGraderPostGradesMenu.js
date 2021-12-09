@@ -29,9 +29,8 @@ export default function SpeedGraderPostGradesMenu(props) {
   const Icon = allowPostingGradesOrComments ? IconOffLine : IconEyeLine
   const menuTrigger = (
     <Button
-      icon={<Icon className="speedgrader-postgradesmenu-icon" />}
+      renderIcon={<Icon className="speedgrader-postgradesmenu-icon" />}
       title={I18n.t('Post or Hide Grades')}
-      variant="icon"
     />
   )
 

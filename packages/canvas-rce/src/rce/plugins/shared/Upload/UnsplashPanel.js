@@ -118,11 +118,11 @@ function Attribution({name, avatarUrl, profileUrl}) {
       <Flex.Item margin="xx-small" shrink>
         <Button
           size="small"
-          variant="link-inverse"
+          color="link-inverse"
           href={profileUrl}
           target="_blank"
           rel="noopener"
-          fluidWidth
+          display="block"
         >
           {name}
         </Button>
@@ -213,8 +213,8 @@ export default function UnsplashPanel({source, setUnsplashData, brandColor, live
                   key={resultImage.id}
                 >
                   <Button
-                    variant="link"
-                    fluidWidth
+                    color="link"
+                    display="block"
                     theme={{
                       mediumPaddingHorizontal: '0'
                     }}

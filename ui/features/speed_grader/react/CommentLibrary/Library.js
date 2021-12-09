@@ -133,7 +133,7 @@ const Library = ({
         </Flex.Item>
       </Flex>
       <Tray
-        isOpen={isTrayOpen}
+        open={isTrayOpen}
         comments={comments}
         isAddingComment={isAddingComment}
         onAddComment={onAddComment}

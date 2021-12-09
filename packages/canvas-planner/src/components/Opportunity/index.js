@@ -92,8 +92,7 @@ export class Opportunity extends Component {
         {isDismissed ? null : (
           <Button
             onClick={this.dismiss}
-            variant="icon"
-            icon={IconXLine}
+            renderIcon={IconXLine}
             size="small"
             title={formatMessage('Dismiss {opportunityName}', {
               opportunityName: this.props.opportunityTitle
@@ -138,10 +137,10 @@ export class Opportunity extends Component {
           <div className={styles.oppName}>{this.props.courseName}</div>
           <div className={styles.title}>
             <Button
-              variant="link"
+              color="link"
               theme={{mediumPaddingHorizontal: '0', mediumHeight: 'normal'}}
               href={this.props.url}
-              buttonRef={this.linkRef}
+              elementRef={this.linkRef}
             >
               {this.props.opportunityTitle}
             </Button>
@@ -149,7 +148,7 @@ export class Opportunity extends Component {
         </div>
         <div className={styles.footer}>
           <div className={styles.status}>
-            <Pill text={formatMessage('Missing')} variant="danger" />
+            <Pill children={formatMessage('Missing')} color="danger" />
             <div className={styles.due}>
               <span className={styles.dueText}>{formatMessage('Due:')}</span> {this.fullDate}
             </div>

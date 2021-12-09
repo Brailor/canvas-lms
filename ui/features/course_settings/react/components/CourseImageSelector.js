@@ -85,7 +85,7 @@ export default class CourseImageSelector extends React.Component {
                   <div className="CourseImageSelector__Button">
                     <Button
                       size="small"
-                      variant="circle-primary"
+                      color="primary"
                       label={I18n.t('Course image settings')}
                       aria-label={I18n.t('Course image settings')}
                     >

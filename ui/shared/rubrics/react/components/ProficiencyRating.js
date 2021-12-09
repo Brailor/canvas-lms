@@ -181,10 +181,10 @@ export default class ProficiencyRating extends React.Component {
           <span style={{whiteSpace: 'nowrap'}}>
             <Popover
               on="click"
-              show={this.state.showColorPopover}
+              isShowingContent={this.state.showColorPopover}
               onToggle={this.handleMenuToggle}
               renderTrigger={
-                <Button ref={this.setColorRef} variant="link">
+                <Button ref={this.setColorRef} color="link">
                   <div>
                     <span className="colorPickerIcon" style={{background: formatColor(color)}} />
                     {I18n.t('Change')}
@@ -212,10 +212,9 @@ export default class ProficiencyRating extends React.Component {
             <div className="delete">
               <Button
                 disabled={disableDelete}
-                buttonRef={this.setTrashRef}
+                elementRef={this.setTrashRef}
                 onClick={this.handleDelete}
-                variant="icon"
-                icon={<IconTrashLine />}
+                renderIcon={<IconTrashLine />}
               >
                 <ScreenReaderContent>{I18n.t('Delete proficiency rating')}</ScreenReaderContent>
               </Button>

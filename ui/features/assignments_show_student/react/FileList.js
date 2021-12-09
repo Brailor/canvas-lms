@@ -80,14 +80,13 @@ const FileList = props => {
             {canRemove && (
               <Flex.Item padding="0 small 0 x-small">
                 <Button
-                  icon={IconTrashLine}
+                  renderIcon={IconTrashLine}
                   id={file.id}
                   onClick={removeFileHandler(refsMap)}
                   ref={element => {
                     refsMap[file.id] = element
                   }}
                   size="small"
-                  variant="icon"
                 >
                   <ScreenReaderContent>
                     {I18n.t('Remove %{filename}', {filename: file.name})}

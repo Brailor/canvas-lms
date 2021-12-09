@@ -273,7 +273,7 @@ export default class CourseSidebar extends Component {
             ref={c => {
               this.unsyncedChangesBtn = c
             }}
-            variant="link"
+            color="link"
             onClick={this.handleUnsyncedChangesClick}
           >
             <Text>{I18n.t('Unsynced Changes')}</Text>
@@ -309,7 +309,7 @@ export default class CourseSidebar extends Component {
           ref={c => {
             this.asscBtn = c
           }}
-          variant="link"
+          color="link"
           onClick={this.handleAssociationsClick}
         >
           <Text>{I18n.t('Associations')}</Text>
@@ -324,7 +324,7 @@ export default class CourseSidebar extends Component {
 
     if (isSyncing) {
       return (
-        <Tooltip variant="inverse" tip={I18n.t('Not available during sync')} placement="bottom">
+        <Tooltip color="primary" renderTip={I18n.t('Not available during sync')} placement="bottom">
           {button}
         </Tooltip>
       )
@@ -372,7 +372,7 @@ export default class CourseSidebar extends Component {
               ref={c => {
                 this.syncHistoryBtn = c
               }}
-              variant="link"
+              color="link"
               onClick={this.handleSyncHistoryClick}
             >
               <Text>{I18n.t('Sync History')}</Text>

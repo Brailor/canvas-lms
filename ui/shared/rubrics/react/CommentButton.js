@@ -24,7 +24,7 @@ import I18n from 'i18n!edit_rubricCommentButton'
 
 const CommentButton = ({onClick}) => (
   <div>
-    <Button variant="icon" icon={<IconFeedbackLine />} margin="0 x-small 0 0" onClick={onClick}>
+    <Button renderIcon={<IconFeedbackLine />} margin="0 x-small 0 0" onClick={onClick}>
       <ScreenReaderContent>{I18n.t('Add Additional Comments')}</ScreenReaderContent>
     </Button>
   </div>

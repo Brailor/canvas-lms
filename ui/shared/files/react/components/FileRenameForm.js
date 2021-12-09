@@ -24,7 +24,7 @@ import ModalContent from '@canvas/modal/react/content'
 import ModalButtons from '@canvas/modal/react/buttons'
 import I18n from 'i18n!file_rename_form'
 
-FileRenameForm.buildContent = function() {
+FileRenameForm.buildContent = function () {
   const {onRenameFileMessage, onLockFileMessage} = this.props
   const nameToUse = this.state.fileOptions.name || this.state.fileOptions.file.name
   let buildContentToRender
@@ -67,7 +67,7 @@ FileRenameForm.buildContent = function() {
   return buildContentToRender
 }
 
-FileRenameForm.buildButtons = function() {
+FileRenameForm.buildButtons = function () {
   let buildButtonsToRender
   if (this.state.fileOptions.cannotOverwrite) {
     buildButtonsToRender = [
@@ -135,15 +135,15 @@ FileRenameForm.buildButtons = function() {
   return buildButtonsToRender
 }
 
-FileRenameForm.render = function() {
+FileRenameForm.render = function () {
   return (
     <div>
       <Modal
         className="ReactModal__Content--canvas ReactModal__Content--mini-modal"
         ref="canvasModal"
-        isOpen={this.props.fileOptions}
+        open={this.props.fileOptions}
         title={I18n.t('Copy')}
-        onRequestClose={this.props.onClose}
+        onDismiss={this.props.onClose}
         closeWithX={this.props.closeWithX}
         data-testid="FileRenameForm-modal"
       >

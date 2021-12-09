@@ -98,14 +98,14 @@ export default class NewKeyForm extends React.Component {
                 }
               >
                 <TextInput
-                  label={I18n.t('Key Name:')}
+                  renderLabel={I18n.t('Key Name:')}
                   name="developer_key[name]"
                   value={developerKey.name}
                   onChange={e => updateDeveloperKey('name', e.target.value)}
                   placeholder="Unnamed Tool"
                 />
                 <TextInput
-                  label={I18n.t('Owner Email:')}
+                  renderLabel={I18n.t('Owner Email:')}
                   name="developer_key[email]"
                   value={developerKey.email}
                   onChange={e => updateDeveloperKey('email', e.target.value)}
@@ -123,19 +123,19 @@ export default class NewKeyForm extends React.Component {
                 {!isLtiKey && (
                   <div>
                     <TextInput
-                      label={I18n.t('Redirect URI (Legacy):')}
+                      renderLabel={I18n.t('Redirect URI (Legacy):')}
                       name="developer_key[redirect_uri]"
                       value={developerKey.redirect_uri}
                       onChange={e => updateDeveloperKey('redirect_uri', e.target.value)}
                     />
                     <TextInput
-                      label={I18n.t('Vendor Code (LTI 2):')}
+                      renderLabel={I18n.t('Vendor Code (LTI 2):')}
                       name="developer_key[vendor_code]"
                       value={developerKey.vendor_code}
                       onChange={e => updateDeveloperKey('vendor_code', e.target.value)}
                     />
                     <TextInput
-                      label={I18n.t('Icon URL:')}
+                      renderLabel={I18n.t('Icon URL:')}
                       name="developer_key[icon_url]"
                       value={developerKey.icon_url}
                       onChange={e => updateDeveloperKey('icon_url', e.target.value)}
@@ -163,11 +163,11 @@ export default class NewKeyForm extends React.Component {
                       <div>
                         <span>{I18n.t('Client Credentials Audience')}</span>
                         <Tooltip
-                          tip={clientCredentialsAudienceTooltip}
+                          renderTip={clientCredentialsAudienceTooltip}
                           on={['click', 'focus']}
-                          variant="inverse"
+                          color="primary"
                         >
-                          <Button variant="icon" icon={IconInfoLine}>
+                          <Button renderIcon={IconInfoLine}>
                             <ScreenReaderContent>{I18n.t('toggle tooltip')}</ScreenReaderContent>
                           </Button>
                         </Tooltip>

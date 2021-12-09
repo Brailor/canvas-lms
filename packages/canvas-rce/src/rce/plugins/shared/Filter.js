@@ -294,7 +294,7 @@ export default function Filter(props) {
       <View as="div" margin="small none none none">
         <TextInput
           renderLabel={<ScreenReaderContent>{formatMessage('Search')}</ScreenReaderContent>}
-          renderBeforeInput={<IconSearchLine inline={false} />}
+          renderBeforeInput={<IconSearchLine display={false} />}
           renderAfterInput={renderClearButton()}
           messages={[{type: 'hint', text: msg}]}
           placeholder={formatMessage('Search')}

@@ -28,7 +28,7 @@ import {filterLabels} from '../constants/ViewOptions'
 
 function renderTriggerButton(bindButton) {
   return (
-    <Button ref={bindButton} variant="link">
+    <Button ref={bindButton} color="link">
       <Text color="primary">
         {I18n.t('View')} <IconMiniArrowDownSolid />
       </Text>

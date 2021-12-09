@@ -117,7 +117,7 @@ export default function ImageOptionsTray(props) {
     } finally {
       setShowUrlField(isValidURL ? isExternalUrl(url) : true)
     }
-  }, [])
+  }, [url])
 
   const messagesForSize = []
   if (imageSize !== CUSTOM) {
@@ -154,7 +154,7 @@ export default function ImageOptionsTray(props) {
             </Flex.Item>
 
             <Flex.Item>
-              <CloseButton placemet="static" variant="icon" onClick={onRequestClose}>
+              <CloseButton placemet="static" onClick={onRequestClose}>
                 {formatMessage('Close')}
               </CloseButton>
             </Flex.Item>
@@ -190,7 +190,7 @@ export default function ImageOptionsTray(props) {
               padding="small medium"
               textAlign="end"
             >
-              <Button disabled={saveDisabled} onClick={handleSave} variant="primary">
+              <Button disabled={saveDisabled} onClick={handleSave} color="primary">
                 {formatMessage('Done')}
               </Button>
             </Flex.Item>

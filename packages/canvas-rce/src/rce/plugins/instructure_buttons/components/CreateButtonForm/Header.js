@@ -40,13 +40,13 @@ export const Header = ({settings, onChange}) => {
         <Tooltip
           on={['hover', 'focus']}
           placement="top"
-          tip={
+          renderTip={
             <View display="block" id="alt-text-label-tooltip" maxWidth="14rem">
               {tooltipText}
             </View>
           }
         >
-          <Button icon={IconQuestionLine} size="small" variant="icon">
+          <Button renderIcon={IconQuestionLine} size="small">
             <ScreenReaderContent>{tooltipText}</ScreenReaderContent>
           </Button>
         </Tooltip>

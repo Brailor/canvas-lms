@@ -71,8 +71,8 @@ export default class AuditEvent extends PureComponent {
                 <Tooltip
                   on={['click', 'focus', 'hover']}
                   placement="start"
-                  tip={message}
-                  variant="inverse"
+                  renderTip={message}
+                  color="primary"
                 >
                   <View as="div" withFocusOutline={focused}>
                     {innerView}

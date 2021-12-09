@@ -342,7 +342,7 @@ export default class SubmissionTray extends React.Component {
               >
                 <Button
                   href={this.props.student.gradesUrl}
-                  variant="link"
+                  color="link"
                   theme={{mediumPaddingHorizontal: '0', mediumHeight: 'normal'}}
                 >
                   {name}
@@ -363,7 +363,7 @@ export default class SubmissionTray extends React.Component {
               >
                 <Button
                   href={this.props.assignment.htmlUrl}
-                  variant="link"
+                  color="link"
                   theme={{mediumPaddingHorizontal: '0', mediumHeight: 'normal'}}
                 >
                   {this.props.assignment.name}

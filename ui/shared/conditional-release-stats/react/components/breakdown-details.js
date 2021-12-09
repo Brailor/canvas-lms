@@ -92,7 +92,6 @@ export default class BreakdownDetails extends React.Component {
           <div className="crs-breakdown-details__content">
             <span className="crs-breakdown-details__closeButton">
               <Button
-                variant="icon"
                 ref={e => {
                   this.closeButton = e
                 }}

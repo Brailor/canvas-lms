@@ -120,9 +120,9 @@ export default class ToDoItem extends React.Component {
     )
     const titleComponent = this.props.item.html_url ? (
       <Button
-        variant="link"
+        color="link"
         theme={{mediumPaddingHorizontal: '0', mediumHeight: 'normal'}}
-        buttonRef={elt => {
+        elementRef={elt => {
           this.linkRef = elt
         }}
         href={this.props.item.html_url}
@@ -147,10 +147,9 @@ export default class ToDoItem extends React.Component {
         </div>
         <div className="ToDoSidebarItem__Close">
           <CloseButton
-            variant="icon"
             size="small"
             onClick={this.handleClick}
-            buttonRef={elt => {
+            elementRef={elt => {
               this.buttonRef = elt
             }}
           >

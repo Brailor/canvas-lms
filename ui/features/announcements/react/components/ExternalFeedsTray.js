@@ -69,13 +69,13 @@ export default class ExternalFeedsTray extends Component {
       return (
         <View margin="medium" as="div" textAlign="start">
           <Button
-            variant="link"
+            color="link"
             id="rss-feed-link"
             linkRef={link => {
               this.rssFeedLink = link
             }}
             href={this.props.atomFeedUrl}
-            icon={IconRssLine}
+            renderIcon={IconRssLine}
             theme={{mediumPaddingHorizontal: '0', mediumHeight: '1.5rem'}}
           >
             {I18n.t('RSS Feed')}
@@ -113,9 +113,9 @@ export default class ExternalFeedsTray extends Component {
         <Button
           id="external_feed"
           aria-haspopup="dialog"
-          buttonRef={link => (this.externalFeedRef = link)}
+          elementRef={link => (this.externalFeedRef = link)}
           onClick={() => this.setState({open: !this.state.open})}
-          variant="link"
+          color="link"
         >
           {I18n.t('External Feeds')}
         </Button>

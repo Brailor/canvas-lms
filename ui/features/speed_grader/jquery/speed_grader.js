@@ -641,8 +641,8 @@ function renderProgressIcon(attachment) {
     const {icon, tip} = iconAndTipMap[attachment.upload_status] || iconAndTipMap.default
     const tooltip = (
       <ThemeProvider>
-        <Tooltip tip={tip} on={['click', 'hover', 'focus']}>
-          <Button variant="icon" icon={icon}>
+        <Tooltip renderTip={tip} on={['click', 'hover', 'focus']}>
+          <Button renderIcon={icon}>
             <ScreenReaderContent>toggle tooltip</ScreenReaderContent>
           </Button>
         </Tooltip>
@@ -658,7 +658,7 @@ function renderHiddenSubmissionPill(submission) {
   if (isPostable(submission)) {
     ReactDOM.render(
       <ThemeProvider>
-        <Pill variant="warning" text={I18n.t('Hidden')} margin="0 0 small" />
+        <Pill color="warning" children={I18n.t('Hidden')} margin="0 0 small" />
       </ThemeProvider>,
       mountPoint
     )

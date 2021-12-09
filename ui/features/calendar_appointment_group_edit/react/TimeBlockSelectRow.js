@@ -154,7 +154,6 @@ class TimeBlockSelectorRow extends React.Component {
               ref={c => {
                 this.deleteBtn = c
               }}
-              variant="icon"
               onClick={this.handleDelete}
             >
               <IconXSolid title="{I18n.t('Delete Time Range')}" />

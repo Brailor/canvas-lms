@@ -318,7 +318,7 @@ export default class ProficiencyTable extends React.Component {
           `
           ).trim()}
         />
-        <Button variant="primary" onClick={this.removeBillboard}>
+        <Button color="primary" onClick={this.removeBillboard}>
           {I18n.t('Get Started')}
         </Button>
       </div>
@@ -365,7 +365,7 @@ export default class ProficiencyTable extends React.Component {
             ))}
             <Table.Row>
               <Table.Cell colSpan="4" textAlign="center">
-                <Button onClick={this.addRow} icon={<IconPlusLine />} variant="circle-primary">
+                <Button onClick={this.addRow} renderIcon={<IconPlusLine />} color="primary">
                   <ScreenReaderContent>{I18n.t('Add proficiency rating')}</ScreenReaderContent>
                 </Button>
               </Table.Cell>
@@ -373,7 +373,7 @@ export default class ProficiencyTable extends React.Component {
           </Table.Body>
         </Table>
         <div className="save">
-          <Button variant="primary" onClick={this.handleSubmit}>
+          <Button color="primary" onClick={this.handleSubmit}>
             {I18n.t('Save Learning Mastery')}
           </Button>
         </div>

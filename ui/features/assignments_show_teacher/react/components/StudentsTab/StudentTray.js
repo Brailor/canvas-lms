@@ -69,7 +69,7 @@ export default class StudentTray extends React.Component {
 
   renderTrayCloseButton() {
     return (
-      <CloseButton placement="start" variant="icon" onClick={this.props.onHideTray}>
+      <CloseButton placement="start" onClick={this.props.onHideTray}>
         {I18n.t('Close student details')}
       </CloseButton>
     )
@@ -101,9 +101,9 @@ export default class StudentTray extends React.Component {
       <Button
         href={speedgraderLink}
         margin="xx-small auto xx-small auto"
-        icon={IconSpeedGraderLine}
+        renderIcon={IconSpeedGraderLine}
         target="_blank"
-        variant="link"
+        color="link"
       >
         <Text transform="uppercase" size="small" lineHeight="fit">
           {I18n.t('SpeedGrader')}
@@ -151,9 +151,9 @@ export default class StudentTray extends React.Component {
         </Heading>
         <View display="block" margin="x-small none">
           <Button
-            variant="link"
-            icon={IconEmailLine}
-            buttonRef={b => (this.messageStudentsButton = b)}
+            color="link"
+            renderIcon={IconEmailLine}
+            elementRef={b => (this.messageStudentsButton = b)}
             onClick={this.handleMessageButtonClick}
             theme={{mediumPaddingHorizontal: '0', mediumHeight: '1.5rem'}}
           >
@@ -161,8 +161,8 @@ export default class StudentTray extends React.Component {
           </Button>
         </View>
         <Button
-          variant="link"
-          icon={IconUploadLine}
+          color="link"
+          renderIcon={IconUploadLine}
           onClick={this.handleSubmitForStudent}
           theme={{mediumPaddingHorizontal: '0', mediumHeight: '1.5rem'}}
         >
@@ -241,8 +241,7 @@ export default class StudentTray extends React.Component {
               <Flex.Item shrink textAlign="start">
                 <Button
                   size="small"
-                  variant="icon"
-                  icon={IconArrowOpenStartLine}
+                  renderIcon={IconArrowOpenStartLine}
                   onClick={this.props.onPreviousStudent}
                 >
                   <ScreenReaderContent>{I18n.t('Previous student')}</ScreenReaderContent>
@@ -255,7 +254,7 @@ export default class StudentTray extends React.Component {
                     href={studentProfileUrl}
                     aria-label={I18n.t("Go to %{name}'s profile", {name: student.shortName})}
                     target="_blank"
-                    variant="link"
+                    color="link"
                     theme={{largePadding: '0.75rem', largeHeight: 'normal'}}
                   >
                     {student.shortName}
@@ -265,8 +264,7 @@ export default class StudentTray extends React.Component {
               <Flex.Item shrink textAlign="end">
                 <Button
                   size="small"
-                  variant="icon"
-                  icon={IconArrowOpenEndLine}
+                  renderIcon={IconArrowOpenEndLine}
                   onClick={this.props.onNextStudent}
                 >
                   <ScreenReaderContent>{I18n.t('Next student')}</ScreenReaderContent>

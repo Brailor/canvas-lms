@@ -91,7 +91,7 @@ export class CompletedItemsFacade extends Component {
       return (
         <BadgeList>
           {this.props.badges.map(b => (
-            <Pill key={b.id} text={b.text} variant={b.variant} />
+            <Pill key={b.id} children={b.text} color={b.variant} />
           ))}
         </BadgeList>
       )

@@ -83,7 +83,6 @@ export default class AccountGradingPeriod extends React.Component {
           elementRef={ref => {
             this._refs.editButton = ref
           }}
-          variant="icon"
           disabled={this.props.actionsDisabled}
           onClick={this.onEdit}
           title={I18n.t('Edit %{title}', {title: this.props.period.title})}
@@ -104,7 +103,6 @@ export default class AccountGradingPeriod extends React.Component {
           elementRef={ref => {
             this._refs.deleteButton = ref
           }}
-          variant="icon"
           disabled={this.props.actionsDisabled}
           onClick={this.promptDeleteGradingPeriod}
           title={I18n.t('Delete %{title}', {title: this.props.period.title})}

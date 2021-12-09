@@ -66,8 +66,8 @@ class ShowOnFocusButton extends Component {
     const {buttonProps, children} = this.props
     return (
       <Button
-        variant="link"
-        buttonRef={btn => {
+        color="link"
+        elementRef={btn => {
           this.btnRef = btn
           this.props.buttonRef(btn)
         }}

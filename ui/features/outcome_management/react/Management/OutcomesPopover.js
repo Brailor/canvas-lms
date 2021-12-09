@@ -50,13 +50,13 @@ const OutcomesPopover = ({outcomes, outcomeCount, onClearHandler}) => {
         on="click"
         placement="top center"
         screenReaderLabel={I18n.t('Outcomes Selected')}
-        show={showOutcomesList}
+        isShowingContent={showOutcomesList}
         onToggle={setShowOutcomesList}
         shouldContainFocus
         shouldReturnFocus
         renderTrigger={
           <Button
-            variant="link"
+            color="link"
             size="medium"
             interaction={outcomeCount > 0 ? 'enabled' : 'disabled'}
           >
@@ -104,7 +104,7 @@ const OutcomesPopover = ({outcomes, outcomeCount, onClearHandler}) => {
           </View>
         </View>
         <View as="div" padding="small" borderWidth="small 0 0">
-          <Button variant="link" size="medium" onClick={closeAndClear}>
+          <Button color="link" size="medium" onClick={closeAndClear}>
             {I18n.t('Clear all')}
           </Button>
         </View>

@@ -161,7 +161,7 @@ export class UpdateItemTray extends Component {
   renderDeleteButton() {
     if (!this.editingExistingNote()) return
     return (
-      <Button variant="light" margin="0 x-small 0 0" onClick={this.handleDeleteClick}>
+      <Button color="primary-inverse" margin="0 x-small 0 0" onClick={this.handleDeleteClick}>
         {formatMessage('Delete')}
       </Button>
     )
@@ -170,7 +170,7 @@ export class UpdateItemTray extends Component {
   renderSaveButton() {
     return (
       <Button
-        variant="primary"
+        color="primary"
         margin="0 0 0 x-small"
         disabled={!this.isValid()}
         onClick={this.handleSave}

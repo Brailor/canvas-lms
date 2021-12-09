@@ -113,11 +113,8 @@ export default class ClosedCaptionCreatorRow extends Component {
   }
 
   renderChooseFile() {
-    const {
-      NO_FILE_CHOSEN,
-      SUPPORTED_FILE_TYPES,
-      CLOSED_CAPTIONS_CHOOSE_FILE
-    } = this.props.uploadMediaTranslations.UploadMediaStrings
+    const {NO_FILE_CHOSEN, SUPPORTED_FILE_TYPES, CLOSED_CAPTIONS_CHOOSE_FILE} =
+      this.props.uploadMediaTranslations.UploadMediaStrings
 
     return (
       <Flex.Item margin="0 small small 0">

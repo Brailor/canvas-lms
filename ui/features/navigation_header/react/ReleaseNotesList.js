@@ -108,7 +108,7 @@ export default function ReleaseNotesList({badgeDisabled, setBadgeDisabled}) {
                 <Flex.Item>
                   {has_new_tag && (
                     <PresentationContent>
-                      <Pill variant="success" text={I18n.t('NEW')} />
+                      <Pill color="success" children={I18n.t('NEW')} />
                     </PresentationContent>
                   )}
                 </Flex.Item>

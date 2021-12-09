@@ -90,12 +90,12 @@ class StatusColorListItem extends React.Component {
             <Grid.Col width="auto">
               <Popover
                 on="click"
-                show={isColorPickerShown}
+                isShowingContent={isColorPickerShown}
                 onToggle={colorPickerOnToggle}
                 contentRef={colorPickerContentRef}
                 shouldReturnFocus
                 renderTrigger={
-                  <Button buttonRef={colorPickerButtonRef} variant="icon" size="small">
+                  <Button elementRef={colorPickerButtonRef} color="icon" size="small">
                     <Text size="medium">
                       <ScreenReaderContent>
                         {I18n.t('%{status} Color Picker', {status})}

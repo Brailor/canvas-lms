@@ -58,7 +58,7 @@ export default class DiscussionManageMenu extends Component {
           onSelect={this.props.onSelect}
           onToggle={this.toggleManageMenuOpen}
           trigger={
-            <Button variant="icon" size="small">
+            <Button size="small">
               <IconMoreLine />
               <ScreenReaderContent>
                 {I18n.t('Manage options for %{name}', {name: this.props.entityTitle})}

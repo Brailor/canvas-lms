@@ -127,7 +127,7 @@ class SyncChange extends Component {
                   {hasExceptions ? (
                     <Pill
                       id="exceptionPill"
-                      text={I18n.t(
+                      children={I18n.t(
                         {one: '%{count} exception', other: '%{count} exceptions'},
                         {count: exceptions.length}
                       )}

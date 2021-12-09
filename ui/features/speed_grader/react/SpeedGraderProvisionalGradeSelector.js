@@ -175,7 +175,7 @@ export default class SpeedGraderProvisionalGradeSelector extends React.Component
 
     return (
       <View as="div" id="grading_details_container">
-        <Button margin="0" onClick={this.onDetailsToggled} size="small" variant="link">
+        <Button margin="0" onClick={this.onDetailsToggled} size="small" color="link">
           {detailsVisible ? I18n.t('Hide Details') : I18n.t('Show Details')}
         </Button>
 

@@ -78,10 +78,10 @@ export default function CommentRow(props) {
         </Text>
         {props.comment.attachments.map(attachment => (
           <Button
-            variant="link"
+            color="link"
             key={attachment._id}
             href={attachment.url}
-            icon={getIconByType(attachment.mimeClass)}
+            renderIcon={getIconByType(attachment.mimeClass)}
             theme={{mediumPaddingHorizontal: '0', mediumHeight: 'normal'}}
           >
             {attachment.displayName}
